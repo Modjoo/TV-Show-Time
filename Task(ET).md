@@ -1,6 +1,7 @@
-
 # SerialWatcher
+
 ## Equipe
+
 * Emmanuel
 * Théo
 * Christophe
@@ -11,9 +12,11 @@
 * Type : **Web Application**
 
 ### Description 
+
 L’application permettra de planifier les séries que l’utilisateur aimerait voir. Elle permettra d’afficher un planning de diffusion des épisodes auxquelles l’utilisateur est abonné. Le client pourra définir s’il a visionné un ou plusieurs épisodes dans une ou plusieurs saisons, afin que ceux-ci ne soient plus affichés dans son « ToWatch ».
 
-Fonctionnalités :
+## Fonctionnalités 
+
 1. Authentification des utilisateurs.
 2. Chaque utilisateur aura son propre profil.
 3. Afficher un calendrier qui répertorie le prochain épisode de chaque série suivie qui est en cours. 
@@ -29,6 +32,7 @@ Fonctionnalités :
 10. Pouvoir choisir une page web à scanner afin de détecter la sortie de l’épisode.
 
 ## Répartition des tâches
+
 - Théo : 
    * [ ] Formation AngularJS
    * [ ] Formation Laravel
@@ -47,16 +51,17 @@ Fonctionnalités :
    * [ ] Implémentation de l'API
    * [ ] Gestion des profils utilisateur
    * [ ] Lister les épisodes/saisons d'une série
-   * 
+   * ...
    
 - Manu l'boloss-kun :
    * [ ] Formation Laravel
    * [ ] Formation AngularJS
    * [ ] Formation RESTFull
+   * [ ] Recherche sur l'API IMDB
    * [ ] Modélisation base de données 
    * [ ] Création de la bdd
    * [ ] Création de l'interface dao
    * [ ] Génération des fichiers de migration / seed
-   
-
-
+   * [ ] Gestion des profils utilisateur
+   * [ ] Gestion de l'agenda
+   * ...
