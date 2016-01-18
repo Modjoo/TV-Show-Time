@@ -5,6 +5,7 @@
 * Emmanuel
 * Théo
 * Christophe
+
 ## Technologies : 
 
 * Langage back-end : **PhP**
@@ -42,7 +43,7 @@ L’application permettra de planifier les séries que l’utilisateur aimerait 
    * [ ] Selon le planning / code du calendar OR code de la recherche
    * ...
 
-- Touphe-chan :
+- Christophe :
    * [ ] Formation Laravel
    * [ ] Formation RESTfull Service
    * [ ] Formation AngularJS
@@ -53,7 +54,7 @@ L’application permettra de planifier les séries que l’utilisateur aimerait 
    * [ ] Lister les épisodes/saisons d'une série
    * ...
    
-- Manu l'boloss-kun :
+- Emmanuel :
    * [ ] Formation Laravel
    * [ ] Formation AngularJS
    * [ ] Formation RESTFull
