@@ -24,7 +24,7 @@ Before run the project with wamp you need to download all dependencies. Go to yo
 composer install
 ```
 
-copy the file .env.example and rename it .env
+copy the file .env.example, rename it .env and configure it.
 
 ### Generate api key 
 
@@ -33,6 +33,16 @@ Generate api key for .env
 ```sh
 php artisan key:generate
 ```
+
+### Migrate database from laravel
+
+1. create your database
+2. deploy 
+
+```sh
+php artisan migrate
+```
+
 
 ## Contributing
 
