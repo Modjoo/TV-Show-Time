@@ -14,13 +14,13 @@ class CreateSeriesTable extends Migration {
 	{
 		Schema::create('series', function(Blueprint $table)
 		{
-			$table->integer('id_serie', true);
+			$table->integer('id', true);
 			$table->string('title', 45);
 			$table->string('synopsis', 45);
-			$table->string('cover_img_url', 45)->nullable();
+			$table->string('cover_img_url')->nullable();
 			$table->string('actors', 45)->nullable();
 			$table->string('producer', 45)->nullable();
-			$table->string('duration_pattern', 45)->nullable();
+			$table->integer('duration_pattern')->nullable();
 		});
 	}
 

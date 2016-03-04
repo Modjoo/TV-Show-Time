@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSeasonsTable extends Migration {
+class CreateGenresTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,10 @@ class CreateSeasonsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('seasons', function(Blueprint $table)
+		Schema::create('genres', function(Blueprint $table)
 		{
-			$table->integer('id_season', true);
-			$table->string('title', 45)->nullable();
-			$table->integer('id_serie')->index('fk_Seasons_Series1_idx');
+			$table->integer('id', true);
+			$table->string('name', 45);
 		});
 	}
 
@@ -28,7 +27,7 @@ class CreateSeasonsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('seasons');
+		Schema::drop('genres');
 	}
 
 }

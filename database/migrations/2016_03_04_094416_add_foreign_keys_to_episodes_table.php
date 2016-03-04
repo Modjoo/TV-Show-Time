@@ -14,7 +14,7 @@ class AddForeignKeysToEpisodesTable extends Migration {
 	{
 		Schema::table('episodes', function(Blueprint $table)
 		{
-			$table->foreign('id_season', 'fk_Episodes_Seasons1')->references('id_season')->on('seasons')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('season_id', 'fk_Episodes_Seasons1')->references('id')->on('seasons')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}
 
