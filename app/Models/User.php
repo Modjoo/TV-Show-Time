@@ -1,28 +1,21 @@
-<?php
-
-namespace App\Models;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class User
- */
-class User extends Model
-{
+class User extends Model {
 
-    public $timestamps = false;
+    protected $table = 'users';
+    protected $fillable = ['pseudo', 'avatar_img', 'birthday', 'gender'];
+    protected $guarded = ['id', 'password'];
 
-    protected $fillable = [
-        'id_user',
-        'pseudo',
-        'password',
-        'email',
-        'avatar_img',
-        'birthday',
-        'gender'
-    ];
 
-    protected $guarded = [];
+    public function episodes() {
+        return $this->belongsToMany(\App\Models\Episode::class, 'episodes_users', 'user_id', 'episode_id');
+    }
 
-        
+    public function episodesUsers() {
+        return $this->hasMany(\App\Models\EpisodesUser::class, 'user_id', 'id');
+    }
+
+
 }

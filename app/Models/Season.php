@@ -1,24 +1,20 @@
-<?php
-
-namespace App\Models;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Season
- */
-class Season extends Model
-{
+class Season extends Model {
 
-    public $timestamps = false;
+    protected $table = 'seasons';
+    protected $fillable = ['id', 'title', 'serie_id'];
 
-    protected $fillable = [
-        'id_season',
-        'title',
-        'id_serie'
-    ];
 
-    protected $guarded = [];
+    public function series() {
+        return $this->belongsTo(\App\Models\Series::class, 'serie_id', 'id');
+    }
 
-        
+    public function episodes() {
+        return $this->hasMany(\App\Models\Episode::class, 'season_id', 'id');
+    }
+
+
 }

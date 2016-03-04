@@ -1,23 +1,20 @@
-<?php
-
-namespace App\Models;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Genre
- */
-class Genre extends Model
-{
+class Genre extends Model {
 
-    public $timestamps = false;
+    protected $table = 'genres';
+    protected $fillable = ['id', 'name'];
 
-    protected $fillable = [
-        'id_genre',
-        'name'
-    ];
 
-    protected $guarded = [];
+    public function series() {
+        return $this->belongsToMany(\App\Models\Series::class, 'genres_series', 'genre_id', 'serie_id');
+    }
 
-        
+    public function genresSeries() {
+        return $this->hasMany(\App\Models\GenresSeries::class, 'genre_id', 'id');
+    }
+
+
 }
