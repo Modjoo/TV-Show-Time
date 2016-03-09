@@ -42,6 +42,12 @@ Generate new token
 php artisan jwt:generate
 ```
 
+### Download front end dependencies
+
+```sh
+npm install angular satellizer angular-ui-router bootstrap
+```
+
 ### Migrate database from laravel
 
 1. create your database
