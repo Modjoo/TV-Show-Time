@@ -6,6 +6,7 @@ class Episode extends Model {
 
     protected $table = 'episodes';
     protected $fillable = ['id', 'title', 'duration', 'description', 'number', 'release_date', 'cover_img_url', 'season_id'];
+    public $timestamps = false;
 
 
     public function season() {

@@ -6,6 +6,7 @@ class EpisodesUser extends Model {
 
     protected $table = 'episodes_users';
     protected $fillable = ['id', 'user_id', 'episode_id'];
+    public $timestamps = false;
 
 
     public function episode() {

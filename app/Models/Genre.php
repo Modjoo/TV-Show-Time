@@ -6,6 +6,7 @@ class Genre extends Model {
 
     protected $table = 'genres';
     protected $fillable = ['id', 'name'];
+    public $timestamps = false;
 
 
     public function series() {

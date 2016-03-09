@@ -5,8 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model {
 
     protected $table = 'users';
-    protected $fillable = ['pseudo', 'avatar_img', 'birthday', 'gender'];
+    protected $fillable = ['pseudo', 'avatar_img', 'birthday', 'gender', 'updated_at'];
     protected $guarded = ['id', 'password'];
+    public $timestamps = false;
 
 
     public function episodes() {

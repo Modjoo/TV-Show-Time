@@ -6,6 +6,7 @@ class Season extends Model {
 
     protected $table = 'seasons';
     protected $fillable = ['id', 'title', 'serie_id'];
+    public $timestamps = false;
 
 
     public function series() {
