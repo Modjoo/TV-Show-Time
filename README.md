@@ -34,6 +34,14 @@ Generate api key for .env
 php artisan key:generate
 ```
 
+### Authentication token
+
+Generate new token
+
+```sh
+php artisan jwt:generate
+```
+
 ### Migrate database from laravel
 
 1. create your database
