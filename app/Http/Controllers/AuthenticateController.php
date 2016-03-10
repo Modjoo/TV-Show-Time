@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Mockery\CountValidator\Exception;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Hash;
 use App\Models\User;
 
 class AuthenticateController extends Controller
@@ -18,21 +20,18 @@ class AuthenticateController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->only('pseudo', 'password');
-
-        $user = User::where('pseudo', $credentials['pseudo'])->where('password', Hash::make($credentials['password']))->get();
-
-        $token = JWTAuth::fromUser($user);
+        $user = User::where('pseudo', '=', $credentials['pseudo'])->first();
 
         try{
-            // verify the credentials
-            if(! $token = JWTAuth::attempt($credentials)){
+            if(Hash::check($credentials['password'], $user->password)){
+                $token = JWTAuth::fromUser($user);
+            }else{
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
-        } catch (JWTException $e){
+        }catch (JWTException $e){
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
-        // get the token
+        
         return response()->json(compact('token'));
     }
 

@@ -1,0 +1,5 @@
+projectKey=org.sonarqube:Serial_Watcher
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/org.sonarqube:Serial_Watcher
+ceTaskId=AVLV121C_6RFSQ8Ppmdp
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVLV121C_6RFSQ8Ppmdp
