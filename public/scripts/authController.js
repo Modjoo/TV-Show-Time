@@ -35,8 +35,6 @@
 
             }).then(function (response) {
 
-                console.log(response);
-
                 // Stringify the returned data for the local storage
                 var user = JSON.stringify(response.data.user);
 

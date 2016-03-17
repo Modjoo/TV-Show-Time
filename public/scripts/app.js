@@ -15,12 +15,12 @@
             $stateProvider
                 .state('auth', {
                     url: '/auth',
-                    templateUrl: '../resources/views/authView.html',
+                    templateUrl: '../views/authView.html',
                     controller: 'AuthController as auth'
                 })
                 .state('users', {
                     url: '/users',
-                    templateUrl: '../resources/views/userView.html',
+                    templateUrl: '../views/userView.html',
                     controller: 'UserController as user'
                 });
 

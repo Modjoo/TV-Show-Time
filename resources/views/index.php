@@ -1,25 +1,34 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Angular-Laravel Authentication</title>
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-    </head>
-    <body ng-app="authApp">
+<head>
+    <meta charset="utf-8">
+    <title>Angular-Laravel Authentication</title>
+    <?php
+        echo Html::style('css/bootstrap.css');
 
-        <div class="container">
-            <div ui-view></div>
-        </div>
+        // Change blade tags
+        Blade::setEscapedContentTags('[[', ']]');
+        Blade::setContentTags('[[[', ']]]');
+    ?>
+</head>
+<body ng-app="authApp">
 
-    </body>
+<div class="container">
+    <div ui-view></div>
+</div>
 
-    <!-- Application Dependencies -->
-    <script src="../node_modules/angular/angular.js"></script>
-    <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="../node_modules/satellizer/satellizer.js"></script>
+</body>
 
-    <!-- Application Scripts -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/authController.js"></script>
-    <script src="scripts/userController.js"></script>
+<?php
+
+echo Html::script(asset('scripts/lib/angular.js'));
+echo Html::script(asset('scripts/lib/angular-ui-router.js'));
+echo Html::script(asset('scripts/lib/satellizer.js'));
+
+// Angularjs scripts
+echo Html::script(asset('scripts/app.js'));
+echo Html::script(asset('scripts/authController.js'));
+echo Html::script(asset('scripts/userController.js'));
+
+?>
 </html>
