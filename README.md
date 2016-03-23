@@ -57,6 +57,11 @@ npm install angular satellizer angular-ui-router bootstrap
 php artisan migrate
 ```
 
+### Launch server
+
+```sh
+php artisan serve --port 8082
+```
 
 ## Contributing
 

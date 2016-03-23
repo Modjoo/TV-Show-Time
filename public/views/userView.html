@@ -1,9 +1,9 @@
 <div class="col-sm-6 col-sm-offset-3">
     <div class="well">
-        <h5 ng-if="authenticated">Welcome, {{10+2+25}}</h5>
+        <h5 ng-if="authenticated">Welcome, {{currentUser.pseudo}}</h5>
         <h3>Users</h3>
         <div class="buttons" style="margin-bottom: 10px">
-            <button class="btn btn-primary" ng-click="user.getUsers()">Get Users!</button>
+            <button class="btn btn-primary" ng-click="user.checkTokenSecurity()">Get Users!</button>
             <button class="btn btn-danger" ng-click="user.logout()">Logout</button>
         </div>
         <ul class="list-group" ng-if="user.users">

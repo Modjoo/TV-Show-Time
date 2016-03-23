@@ -12,15 +12,24 @@
 */
 
 Route::get('/', function () {
+    // Change blade tags
+    Blade::setEscapedContentTags('[[', ']]');
+    Blade::setContentTags('[[[', ']]]');
+
     return view('index');
 });
 
-Route::get('/toto', function (){
-   return "test";
+
+
+Route::get('/hello', function () {
+    return "It works !";
 });
 
-Route::group(['prefix' => 'api'], function()
-{
+Route::get('/securitycheck', ['middleware' => 'jwt.auth', function () {
+    return "Security works !";
+}]);
+
+Route::group(['prefix' => 'api'], function () {
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');

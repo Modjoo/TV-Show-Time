@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     'use strict';
 
@@ -13,22 +13,28 @@
         vm.users;
         vm.error;
 
-        vm.getUsers = function() {
+        /**
+         * Example
+         */
+        vm.checkTokenSecurity = function() {
 
-            //Grab the list of users from the API
-            $http.get('api/authenticate').success(function(users) {
-                vm.users = users;
+            // This request will hit the index method in the AuthenticateController
+            // on the Laravel side and will return the list of users
+            $http.get('securitycheck').success(function(message) {
+                console.log("data : ", message);
             }).error(function(error) {
                 vm.error = error;
+                console.error("Security error : ", error);
             });
         };
+
 
         // We would normally put the logout method in the same
         // spot as the login method, ideally extracted out into
         // a service. For this simpler example we'll leave it here
-        vm.logout = function() {
+        vm.logout = function () {
 
-            $auth.logout().then(function() {
+            $auth.logout().then(function () {
 
                 // Remove the authenticated user from local storage
                 localStorage.removeItem('user');

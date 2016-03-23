@@ -4,11 +4,9 @@
     <meta charset="utf-8">
     <title>Angular-Laravel Authentication</title>
     <?php
-        echo Html::style('css/bootstrap.css');
+    //echo Html::style('css/bootstrap.css');
+    echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"./css/bootstrap.css\">";
 
-        // Change blade tags
-        Blade::setEscapedContentTags('[[', ']]');
-        Blade::setContentTags('[[[', ']]]');
     ?>
 </head>
 <body ng-app="authApp">

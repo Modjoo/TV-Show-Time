@@ -6,7 +6,7 @@
 
             // Satellizer configuration that specifies which API
             // route the JWT should be retrieved from
-            $authProvider.loginUrl = 'TV-Show-Time/public/api/authenticate';
+            $authProvider.loginUrl = '/api/authenticate';
 
             // Redirect to the auth state if any other states
             // are requested other than users
@@ -67,5 +67,28 @@
             $httpProvider.interceptors.push('redirectWhenLoggedOut');
 
             $authProvider.loginUrl = '/api/authenticate';
+        })
+        /**
+         * Load user from the rootScope
+         */
+        .run(function($rootScope, $state){
+            // $stateChangeStart is fired whenever the state changes. We can use some parameters.
+            $rootScope.$on('$stateChangeStart', function(event, toState){
+                // Grab the user data from the local storage
+                var user = JSON.parse(localStorage.getItem('user'));
+
+                if(user){
+                    $rootScope.authenticated = true;
+                    $rootScope.currentUser = user;
+
+                    // If the user is logged in and we hit the auth route we don't need
+                    // to stay there and can send the user to the main state
+                    if(toState.name === "auth"){
+                        event.preventDefault();
+
+                        $state.go('users');
+                    }
+                }
+            });
         });
 })();
