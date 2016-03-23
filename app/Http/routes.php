@@ -35,6 +35,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 });
 
+// Test omdb request
+Route::controller('omdb', 'OmdbController');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
