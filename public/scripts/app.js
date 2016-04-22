@@ -10,7 +10,7 @@
 
             // Redirect to the auth state if any other states
             // are requested other than users
-            $urlRouterProvider.otherwise('/auth');
+            $urlRouterProvider.otherwise('/');
 
             $stateProvider
                 .state('auth', {
@@ -22,6 +22,10 @@
                     url: '/users',
                     templateUrl: '../views/userView.html',
                     controller: 'UserController as user'
+                })
+                .state('template', {
+                    url: '/',
+                    templateUrl: '../template.html',
                 });
 
             function redirectWhenLoggedOut($q, $injector) {

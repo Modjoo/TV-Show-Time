@@ -21,8 +21,11 @@ class AuthenticateController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->only('pseudo', 'password');
-        $user = User::where('pseudo', '=', $credentials['pseudo'])->first();
-
+		
+		
+		$user = User::where('pseudo', '=', $credentials['pseudo'])->first();
+	
+		
         try {
             if ($user != null && Hash::check($credentials['password'], $user->password)) {
                 $token = JWTAuth::fromUser($user);

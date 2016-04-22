@@ -6,6 +6,7 @@
     <?php
     //echo Html::style('css/bootstrap.css');
     echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"./css/bootstrap.css\">";
+     echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"./css/style.css\">";
 
     ?>
 </head>
