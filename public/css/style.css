@@ -1,4 +1,8 @@
 /*-TEMPLATE ------------------------------------------------------*/
+body{
+    background:url(../bg_swatch.png) no-repeat;
+    height:100%;
+}
 .container {
     min-width:100%;
     padding:0;
@@ -14,7 +18,12 @@
 .navbar-brand{
     padding:0;
     margin:-5px;
+    vertical-align: middle;
 
+}
+.navbar-brand img{
+    vertical-align: middle;
+    margin:-6px;
 }
 .search{
     padding:0 25px 0 25px;
@@ -37,8 +46,10 @@
 #prof_pic{
     min-width:42px;
     min-height:42px;
+    margin-left:45px;
 
 }
+
 .sform input{
     background:#6dbec9;
     border-radius:20px;
@@ -51,34 +62,55 @@
 
 /*PLACEHOLDER...*/
 .sform input::-webkit-input-placeholder {
-color: #f3f3f3 !important;
+    color: #f3f3f3 !important;
 }
- 
+
 .sform input:-moz-placeholder { /* Firefox 18- */
-color: #f3f3f3 !important;  
+    color: #f3f3f3 !important;  
 }
- 
+
 .sform input::-moz-placeholder {  /* Firefox 19+ */
-color: #f3f3f3 !important;  
+    color: #f3f3f3 !important;  
 }
- 
+
 .sform input:-ms-input-placeholder {  
-color: #f3f3f3 !important;  
+    color: #f3f3f3 !important;  
 }
 /*PLACEHOLDER*/
 
 .sbutton, .sbutton:hover, .sbutton:focus, .sbutton:active, .sbutton:visited{
-border:0;
-background:#f9f7f7 !important;
-outline:0 !important;
+    border:0;
+    background:#f9f7f7 !important;
+    outline:0 !important;
 }
 .search button, .search button:hover, .search button:active, .sbutton:visited, .sbutton:focus{
     color:#6dbec9;
-    
+
 }
 .navbar-right{
     margin-right:2%;
 }
+.mright a:hover{
+    color:#6dbec9 !important;
+
+}
+/* CONTENT CONTAINER */
+#contentContainer{
+    width:80%;
+    height:80%;
+    display:flex;
+    position:absolute;
+    top:15%;
+    left:10%;
+    background:#f3f3f3;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3); 
+
+
+
+}
+
+/*END CONTENT CONTAINER  */
+
 /*-TEMPLATE ------------------------------------------------------*/
 
 
@@ -95,6 +127,7 @@ outline:0 !important;
     top: 50%;
     left:50%;
     transform: translate(-50%,-50%);
+    
 
 
 }
@@ -114,46 +147,11 @@ outline:0 !important;
 
 
 }
-.btn-primary{
-    background-color:#f3f3f3;
-    color:#6dbec9;
-    border:0;
-    border-radius: 0;
-    outline:0;
-
-}
-.btn-primary:hover{
-    background-color:#6dbec9;
-    color:#f3f3f3;
+.btn{
     border:0;
     outline:0;
-
 }
-.btn-primary:focus{
-    background-color:#6dbec9;
-    color:#f3f3f3; 
-    border:0;
-    outline:0;
 
-}
-.btn-primary:active{
-    background-color:#6dbec9;
-    color:#f3f3f3; 
-    border:0;
-
-
-}
-.btn-primary:clicked{
-    background-color:#6dbec9;
-    color:#f3f3f3; 
-    border:0;
-    outline:0;
-
-}
-.form-control{
-    border-radius:0;
-
-}
 
 /* AUTHENTIFICATION *-------------------------------------------------*/
 
