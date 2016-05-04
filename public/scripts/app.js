@@ -7,7 +7,7 @@
             templateUrl:'../template.html'
         };
     })
-        .config(function ($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
+        .config(function ($stateProvider,$locationProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
 
         // Satellizer configuration that specifies which API
         // route the JWT should be retrieved from
@@ -36,6 +36,8 @@
             url: '/',
             templateUrl: '../index.html',
         });
+            // use the HTML5 History API
+            $locationProvider.html5Mode(true);
 
         function redirectWhenLoggedOut($q, $injector) {
 

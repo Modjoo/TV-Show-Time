@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     // Change blade tags
     Blade::setEscapedContentTags('[[', ']]');
@@ -37,6 +38,14 @@ Route::group(['prefix' => 'api'], function () {
 
 // Test omdb request
 Route::controller('omdb', 'OmdbController');
+
+
+
+// Remove # from angularjs URL
+Route::any('{path?}', function()
+{
+    return view('index');
+})->where("path", ".+");
 
 /*
 |--------------------------------------------------------------------------
