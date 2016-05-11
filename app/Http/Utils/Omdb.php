@@ -11,12 +11,12 @@ namespace App\Http\Utils;
 
 use App\Contracts\ISearchSeries;
 use GuzzleHttp\Client;
+use GuzzleHttp;
 
-// TODO: Create query manager for add params and check.
 class Omdb implements ISearchSeries
 {
     private $request = null;
-    private static $DEFAULT_URL = 'http://www.omdbapi.com/?';
+    private static $DEFAULT_URL = 'http://www.omdbapi.com';
 
     /**
      * Omdb constructor.
@@ -26,35 +26,51 @@ class Omdb implements ISearchSeries
     {
         $this->request = new Client();
     }
-    
-    public function searchByName($name)
+
+    public function searchBySeriesName($name)
     {
-        $query = self::$DEFAULT_URL + '*' + $name + '*';
-        $this->requestAPI($query);
+        $params = array('s' => $name.'*', 'type' => 'series');
+        return $this->requestAPI($this->generateQuery($params));
     }
 
-    public function searchById($id)
+    public function searchBySeriesId($id)
     {
-        $query = self::$DEFAULT_URL + 't=' + $id;
-        $this->requestAPI($query);
+        $params = array('i' => $id);
+        return $this->requestAPI($this->generateQuery($params));
+    }
+
+    public function searchByEpisodeId($id)
+    {
+        $params = array('i' => $id);
+        return $this->requestAPI($this->generateQuery($params));
     }
 
     //http://www.omdbapi.com/?i=tt0944947&plot=full
     public function listSaison($id)
     {
-        $query = self::$DEFAULT_URL + 'i=' + $id + '&plot=full';
-        $this->requestAPI($query);
+        $params = array('i' => $id, 'plot' => 'full');
+        return $this->requestAPI($this->generateQuery($params));
     }
 
     public function getInfoSaison($id, $saisonNumber)
     {
-        $query = self::$DEFAULT_URL + 'i=' + $id + '&Season=' + $saisonNumber + '&plot=full';
-        $this->requestAPI($query);
+        $params = array('i' => $id, 'Season' => $saisonNumber, 'plot' => 'full');
+        return $this->requestAPI($this->generateQuery($params));
     }
 
-    private function requestAPI($query){
+    private function requestAPI($query)
+    {
         $res = $this->request->get($query);
-        return $res->getBody();
+        return json_decode($res->getBody()->getContents());
+    }
+
+    /**
+     * @param $params May be an array or object containing properties.
+     * @return string Full url
+     */
+    private function generateQuery($params)
+    {
+        return self::$DEFAULT_URL . '?' . http_build_query($params);
     }
 
 

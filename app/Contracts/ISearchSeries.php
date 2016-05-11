@@ -16,15 +16,12 @@ interface ISearchSeries
      * @param $name
      * @return mixed
      */
-    public function searchByName($name);
+    public function searchBySeriesName($name);
 
-    /**
-     * Retrieve full information for the corresponding id
-     * @param $id
-     * @return mixed
-     */
-    public function searchById($id);
+    public function searchBySeriesId($id);
 
+    public function searchByEpisodeId($id);
+    
     /**
      * List all saison with the series id
      * @param $id
