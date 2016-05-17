@@ -177,6 +177,9 @@ body{
 .cs-style-3 figcaption {
 	height: 10%;
 	width: 100%;
+    margin: 0 auto;
+    padding: 0 auto;
+    
 	top: auto;
 	bottom: 0;
 	opacity: 0;
