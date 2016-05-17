@@ -24,8 +24,11 @@ Route::get('/', function () {
 
 Route::get('/hello', function () {
     $pouet = new \App\Http\Utils\Omdb();
-    $response = $pouet->searchBySeriesName("Break");
-    dd($response);
+    $response = $pouet->searchBySeriesName("games");
+    if($response->Response == "True"){
+        echo "pouet";
+    }
+    dd($response->Response);
     return "It works !";
 });
 
