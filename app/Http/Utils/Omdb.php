@@ -32,14 +32,14 @@ class Omdb implements ISearchSeries
         $params = array('s' => $name.'*', 'type' => 'series');
         return $this->requestAPI($this->generateQuery($params));
     }
-
-    public function searchBySeriesId($id)
+    
+    public function searchSerieById($id)
     {
         $params = array('i' => $id);
         return $this->requestAPI($this->generateQuery($params));
     }
 
-    public function searchByEpisodeId($id)
+    public function searchEpisodeById($id)
     {
         $params = array('i' => $id);
         return $this->requestAPI($this->generateQuery($params));

@@ -18,9 +18,9 @@ interface ISearchSeries
      */
     public function searchBySeriesName($name);
 
-    public function searchBySeriesId($id);
+    public function searchSerieById($id);
 
-    public function searchByEpisodeId($id);
+    public function searchEpisodeById($id);
     
     /**
      * List all saison with the series id
