@@ -15,7 +15,6 @@ class OmdbController extends Controller
     }
 
     public function getJsonomdb(){
-
         $client = new GuzzleHttp\Client();
         $res = $client->get('http://www.omdbapi.com/?s=*nes&type=series');
         echo $res->getBody();

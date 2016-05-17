@@ -23,6 +23,9 @@ Route::get('/', function () {
 
 
 Route::get('/hello', function () {
+    $pouet = new \App\Http\Utils\Omdb();
+    $response = $pouet->searchBySeriesName("Break");
+    dd($response);
     return "It works !";
 });
 
