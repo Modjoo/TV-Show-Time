@@ -24,11 +24,13 @@ Route::get('/', function () {
 
 Route::get('/hello', function () {
     $pouet = new \App\Http\Utils\Omdb();
-    $response = $pouet->searchBySeriesName("games");
-    if($response->Response == "True"){
-        echo "pouet";
-    }
-    dd($response->Response);
+    $season = $pouet->getInfoSaison("tt2244871",1);
+
+    $episode = $pouet->searchEpisodeById("tt2399793");
+
+
+    dd(\App\Http\Utils\JsonParser::parseSeason($season));
+
     return "It works !";
 });
 

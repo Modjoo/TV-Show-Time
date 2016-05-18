@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Season extends Model {
 
     protected $table = 'seasons';
-    protected $fillable = ['id', 'title', 'serie_id'];
+    protected $fillable = ['id', 'title', 'number', 'external_id', 'serie_id'];
     public $timestamps = false;
 
 
