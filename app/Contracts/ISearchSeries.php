@@ -12,29 +12,37 @@ namespace App\Contracts;
 interface ISearchSeries
 {
     /**
-     * Gives a film list corresponding to research
-     * @param $name
+     * Search a serie by string
+     * @param $string
      * @return mixed
      */
-    public function searchBySeriesName($name);
-
-    public function searchSerieById($id);
-
-    public function searchEpisodeById($id);
-    
-    /**
-     * List all saison with the series id
-     * @param $id
-     * @return mixed
-     */
-    public function listSaison($id);
+    public function searchBySeriesName($string);
 
     /**
-     * Retrive all saison information 
-     * @param $id -> Series id
-     * @param $saisonNumber -> Saison number
+     * @param $idSerie
      * @return mixed
      */
-    public function getInfoSaison($id, $saisonNumber);
+    public function searchSerieById($idSerie);
+
+    /**
+     * @param $idEpisod
+     * @return mixed
+     */
+    public function searchEpisodeById($idEpisod);
+
+    /**
+     * Function with several http requests due to missing data
+     * @param $idSerie
+     * @return number of the seasons in the serie
+     */
+    public function getSeasonAmount($idSerie);
+
+    /**
+     * Retrieve episods from season number
+     * @param $idSerie
+     * @param $seasonNumber
+     * @return mixed
+     */
+    public function getInfoSeason($id, $saeasonNumber);
 
 }

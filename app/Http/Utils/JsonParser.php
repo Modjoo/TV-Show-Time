@@ -15,15 +15,15 @@ class JsonParser implements IJsonParser
 {
 
 
-    public function parseEpisode($json){
+    public static function parseEpisode($json){
 
     }
 
-    public function parseSerie($json){
+    public static function parseSerie($json){
 
     }
 
-    public function parseSeason($json){
+    public static function parseSeason($json){
 
     }
 
