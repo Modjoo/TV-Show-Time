@@ -13,7 +13,6 @@ use App\Contracts\IJsonParser;
 use App\Exceptions\InvalidJsonException;
 use App\Models\Season;
 use App\Models\Series;
-use League\Flysystem\Exception;
 
 class JsonParser implements IJsonParser
 {
