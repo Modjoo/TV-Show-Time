@@ -32,12 +32,16 @@
             templateUrl: '../views/userView.html',
             controller: 'UserController as user'
         })
+            .state('single', {
+            url: '/single',
+            templateUrl: '../views/singleView.html'
+        })
             .state('index', {
             url: '/',
             templateUrl: '../index.html',
         });
-            // use the HTML5 History API
-            $locationProvider.html5Mode(true);
+        // use the HTML5 History API
+        $locationProvider.html5Mode(true);
 
         function redirectWhenLoggedOut($q, $injector) {
 
