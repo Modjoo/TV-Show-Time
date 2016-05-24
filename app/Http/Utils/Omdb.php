@@ -6,7 +6,7 @@
  * Time: 14:41
  */
 
-namespace App\Http\Dao;
+namespace App\Http\Utils;
 
 
 use App\Contracts\ISearchSeries;
@@ -54,7 +54,7 @@ class Omdb implements ISearchSeries
         $nbSeasonMax = false;
         $nbSeasons = 1;
         while (!$nbSeasonMax){
-            $json = getInfoSaison($idSerie, $nbSeasons);
+            $json = $this->getInfoSeason($idSerie,$nbSeasons);
             if (!JsonParser::isValid($json)){
                 return $nbSeasons;
             }

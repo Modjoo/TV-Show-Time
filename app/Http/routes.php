@@ -23,6 +23,12 @@ Route::get('/', function () {
 
 
 Route::get('/hello', function () {
+    $pouet = new \App\Http\Services\DataBaseService();
+
+
+    $pouet->findOrCreateSeriesFromExternalId("tt0944947");
+
+    /*
     $pouet = new \App\Http\Utils\Omdb();
     $serie = $pouet->searchSerieById("tt0944947");
     $season = $pouet->getInfoSaison("tt0944947",1);
@@ -37,7 +43,7 @@ Route::get('/hello', function () {
 
     $episode = \App\Http\Utils\JsonParser::parseEpisode($episode1);
     $episode->season()->associate($season);
-    $episode->save();
+    $episode->save();*/
 
     /*$episode = \App\Models\Episode::where("id", '>', 0);
     dd($episode->get());*/
