@@ -6,7 +6,7 @@
  * Time: 14:41
  */
 
-namespace App\Http\Utils;
+namespace App\Http\Dao;
 
 
 use App\Contracts\ISearchSeries;
