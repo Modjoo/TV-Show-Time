@@ -20,12 +20,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-
+Route::get('/serie/{id}', 'HomeController@getSerie');
 
 Route::get('/hello', function () {
     $pouet = new \App\Http\Utils\Omdb();
-    $response = $pouet->searchBySeriesName("Break");
-    dd($response);
+    $response = $pouet->searchBySeriesName("games");
+    if($response->Response == "True"){
+        echo "pouet";
+    }
+    dd($response->Response);
     return "It works !";
 });
 
@@ -38,9 +41,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 });
-
-// Test omdb request
-Route::controller('omdb', 'OmdbController');
 
 
 

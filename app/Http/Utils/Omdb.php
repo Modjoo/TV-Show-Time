@@ -6,7 +6,7 @@
  * Time: 14:41
  */
 
-namespace App\Http\Utils;
+namespace App\Http\Dao;
 
 
 use App\Contracts\ISearchSeries;
@@ -27,37 +27,53 @@ class Omdb implements ISearchSeries
         $this->request = new Client();
     }
 
-    public function searchBySeriesName($name)
+
+    public function searchBySeriesName($string)
     {
-        $params = array('s' => $name.'*', 'type' => 'series');
+        $params = array('s' => $string.'*', 'type' => 'series');
         return $this->requestAPI($this->generateQuery($params));
     }
-    
+
+
     public function searchSerieById($id)
     {
         $params = array('i' => $id);
         return $this->requestAPI($this->generateQuery($params));
     }
 
-    public function searchEpisodeById($id)
+
+    public function searchEpisodeById($idEpisod)
     {
-        $params = array('i' => $id);
+        $params = array('i' => $idEpisod);
         return $this->requestAPI($this->generateQuery($params));
     }
 
-    //http://www.omdbapi.com/?i=tt0944947&plot=full
-    public function listSaison($id)
+
+    public function getSeasonAmount($idSerie)
     {
-        $params = array('i' => $id, 'plot' => 'full');
+        $nbSeasonMax = false;
+        $nbSeasons = 1;
+        while (!$nbSeasonMax){
+            $json = getInfoSaison($idSerie, $nbSeasons);
+            if (!JsonParser::isValid($json)){
+                return $nbSeasons;
+            }
+            $nbSeasons++;
+        }
+        return 0;
+    }
+
+    public function getInfoSeason($idSerie, $seasonNumber)
+    {
+        $params = array('i' => $idSerie, 'Season' => $seasonNumber, 'plot' => 'full');
         return $this->requestAPI($this->generateQuery($params));
     }
 
-    public function getInfoSaison($id, $saisonNumber)
-    {
-        $params = array('i' => $id, 'Season' => $saisonNumber, 'plot' => 'full');
-        return $this->requestAPI($this->generateQuery($params));
-    }
-
+    /**
+     * Send request http to the omdb api
+     * @param $query
+     * @return mixed
+     */
     private function requestAPI($query)
     {
         $res = $this->request->get($query);
