@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-
+Route::get('/serie/{id}', 'HomeController@getSerie');
 
 Route::get('/hello', function () {
     $pouet = new \App\Http\Utils\Omdb();
@@ -41,9 +41,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 });
-
-// Test omdb request
-Route::controller('omdb', 'OmdbController');
 
 
 

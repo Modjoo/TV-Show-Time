@@ -7,6 +7,8 @@
  * Time: 14:46
  */
 
+namespace App\Http\Services;
+
 use \App\Http\Utils\Omdb;
 use \App\Http\Utils\JsonParser;
 class SearchService
