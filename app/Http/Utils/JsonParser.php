@@ -11,15 +11,18 @@ namespace App\Http\Utils;
 
 use App\Contracts\IJsonParser;
 use App\Exceptions\InvalidJsonException;
+use App\Models\Episode;
 use App\Models\Season;
 use App\Models\Series;
+use App\Http\Utils;
 
 class JsonParser implements IJsonParser
 {
 
 
     public static function parseEpisode($json){
-        
+        $map = self::mapEpisode($json);
+        return new Episode($map);
     }
 
     public static function parseSerie($json){
@@ -53,14 +56,21 @@ class JsonParser implements IJsonParser
             "cover_img_url" => $json->Poster,
             "actors" => $json->Actors,
             "producer" => $json->Writer,
-            "duration_pattern" => self::extractNumber($json->Runtime),
+            "external_id" => $json->imdbID,
+            "duration_pattern" => Utils\Utils::extractNumber($json->Runtime),
         ];
         return $map;
     }
     
     private static function mapEpisode($json){
         $map = [
-
+            "title" => $json->Title,
+            "duration" => Utils\Utils::extractNumber($json->Runtime),
+            "description" => $json->Plot,
+            "number" => Utils\Utils::extractNumber($json->Episode),
+            "release_date" => Utils\Utils::convertDate($json->Released),
+            "cover_img_url" => $json->Poster,
+            "external_id" => $json->imdbID,
         ];
         return $map;
     }
@@ -68,19 +78,9 @@ class JsonParser implements IJsonParser
     private static function mapSeason($json){
         $map = [
             "title" => $json->Title,
-            "number" => self::extractNumber($json->Season),
+            "number" => Utils\Utils::extractNumber($json->Season),
         ];
         return $map;
     }
-
-    private static function extractNumber($string){
-        $duration = 0;
-        preg_match("/[0-9]+/", $string, $matches);
-        if(sizeof($matches) == 1){
-            $duration = intval($matches[0]);
-        }
-        return $duration;
-    }
-
 
 }

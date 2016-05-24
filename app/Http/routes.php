@@ -20,16 +20,34 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/series/{id}', function($id){
+   dd($id);
+});
 
 
 Route::get('/hello', function () {
     $pouet = new \App\Http\Utils\Omdb();
-    $season = $pouet->getInfoSaison("tt2244871",1);
+    $serie = $pouet->searchSerieById("tt0944947");
+    $season = $pouet->getInfoSaison("tt0944947",1);
+    $episode1 = $pouet->searchEpisodeById("tt1480055");
 
-    $episode = $pouet->searchEpisodeById("tt2399793");
+    $serie = \App\Http\Utils\JsonParser::parseSerie($serie);
+    $serie->save();
 
+    $season = \App\Http\Utils\JsonParser::parseSeason($season);
+    $season->series()->associate($serie);
+    $season->save();
 
-    dd(\App\Http\Utils\JsonParser::parseSeason($season));
+    $episode = \App\Http\Utils\JsonParser::parseEpisode($episode1);
+    $episode->season()->associate($season);
+    $episode->save();
+
+    /*$episode = \App\Models\Episode::where("id", '>', 0);
+    dd($episode->get());*/
+/*
+    $serie = \App\Models\Series::where("id", '=', 1)->first();
+    $serie->seasons = $serie->seasons()->get();
+    dd($serie);*/
 
     return "It works !";
 });
@@ -43,11 +61,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 });
-
-// Test omdb request
-Route::controller('omdb', 'OmdbController');
-
-
 
 // Remove # from angularjs URL
 Route::any('{path?}', function()
