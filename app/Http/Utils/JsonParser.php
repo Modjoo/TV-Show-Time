@@ -63,15 +63,26 @@ class JsonParser implements IJsonParser
     }
     
     private static function mapEpisode($json){
-        $map = [
-            "title" => $json->Title,
-            "duration" => Utils\Utils::extractNumber($json->Runtime),
-            "description" => $json->Plot,
-            "number" => Utils\Utils::extractNumber($json->Episode),
-            "release_date" => Utils\Utils::convertDate($json->Released),
-            "cover_img_url" => $json->Poster,
-            "external_id" => $json->imdbID,
-        ];
+        if(method_exists($json, 'Runtime')){
+            $map = [
+                "title" => $json->Title,
+                "duration" => Utils\Utils::extractNumber($json->Runtime),
+                "description" => $json->Plot,
+                "number" => Utils\Utils::extractNumber($json->Episode),
+                "release_date" => Utils\Utils::convertDate($json->Released),
+                "cover_img_url" => $json->Poster,
+                "external_id" => $json->imdbID,
+                "isfilled" => true
+            ];
+        }else{
+            $map = [
+                "title" => $json->Title,
+                "number" => Utils\Utils::extractNumber($json->Episode),
+                "external_id" => $json->imdbID,
+                "isfilled" => false
+            ];
+        }
+
         return $map;
     }
 

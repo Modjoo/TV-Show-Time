@@ -26,7 +26,7 @@ Route::get('/hello', function () {
     $pouet = new \App\Http\Services\DataBaseService();
 
 
-    $pouet->findOrCreateSeriesFromExternalId("tt0944947");
+    //$pouet->findOrCreateSeriesFromExternalId("tt1332710");
 
     /*
     $pouet = new \App\Http\Utils\Omdb();

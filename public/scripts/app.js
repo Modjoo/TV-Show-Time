@@ -26,6 +26,10 @@
             .state('calendar', {
             url: '/calendar',
             templateUrl: '../views/calendarView.html'
+        }).state('pouet', {
+            url: '/pouet',
+            templateUrl: '../views/calendarView.html',
+            controller: 'HomeController as home'
         })
             .state('users', {
             url: '/users',
