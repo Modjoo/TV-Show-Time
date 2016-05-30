@@ -31,13 +31,18 @@
             url: '/users',
             templateUrl: '../views/userView.html',
             controller: 'UserController as user'
+        }).state('pouet', {
+            url:'/pouet',
+            controller: 'HomeController as home'
         })
             .state('index', {
             url: '/',
-            templateUrl: '../index.html',
+            templateUrl: '../views/homeView.html',
         });
             // use the HTML5 History API
             $locationProvider.html5Mode(true);
+
+
 
         function redirectWhenLoggedOut($q, $injector) {
 
@@ -74,6 +79,10 @@
                 }
             }
         }
+
+            function test(){
+                alert("tamer");
+            }
 
         // Setup for the $httpInterceptor
         $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);

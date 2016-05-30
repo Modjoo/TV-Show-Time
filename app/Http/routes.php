@@ -20,6 +20,22 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/api/testjson', function(){
+   return "{
+    \"menu\": {
+        \"id\": \"jdhdhdh\",
+        \"value\": \"File\",
+        \"popup\": {
+            \"menuitem\": [
+                { \"value\": \"New\", \"onclick\": \"CreateNewDoc()\" },
+                { \"value\": \"Open\", \"onclick\": \"OpenDoc()\" },
+                { \"value\": \"Close\", \"onclick\": \"CloseDoc()\" }
+            ]
+        }
+    }
+}";
+});
+
 
 
 Route::get('/hello', function () {

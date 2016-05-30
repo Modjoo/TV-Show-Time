@@ -25,13 +25,16 @@
 echo Html::script(asset('scripts/lib/angular.js'));
 echo Html::script(asset('scripts/lib/angular-ui-router.js'));
 echo Html::script(asset('scripts/lib/satellizer.js'));
+echo Html::script(asset('scripts/lib/angular-resource.js'));
     
 echo Html::script(asset('scripts/toucheffects.js'));
 
 // Angularjs scripts
 echo Html::script(asset('scripts/app.js'));
-echo Html::script(asset('scripts/authController.js'));
-echo Html::script(asset('scripts/userController.js'));
+echo Html::script(asset('scripts/controllers/authController.js'));
+echo Html::script(asset('scripts/controllers/userController.js'));
+echo Html::script(asset('scripts/controllers/homeController.js'));
+echo Html::script(asset('scripts/services/services.js'));
 
 ?>
 </html>
