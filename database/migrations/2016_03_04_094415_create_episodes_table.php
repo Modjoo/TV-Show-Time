@@ -19,7 +19,7 @@ class CreateEpisodesTable extends Migration {
 			$table->integer('duration')->nullable();
 			$table->string('description', 45)->nullable();
 			$table->integer('number');
-			$table->dateTime('release_date');
+			$table->dateTime('release_date')->nullable();
 			$table->string('cover_img_url')->nullable();
 			$table->integer('season_id')->index('fk_Episodes_Seasons1_idx');
 		});

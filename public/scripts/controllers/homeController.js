@@ -22,24 +22,4 @@
             console.log(test);
         }
     }
-
-    //myrgApp.controller('homeController', ['$scope', '$log', '$http',
-    //    function ($scope, $log, $http) {
-    //        $scope.sendJson = function () {
-    //            var sendJson = {
-    //                name: $scope.sendJson
-    //            };
-    //            $http({
-    //                method: 'POST',
-    //                url: '/test',
-    //                data: sendJson
-    //            })
-    //                .success(function () {
-    //                    console.log('true');
-    //                })
-    //                .error(function () {
-    //                    console.log('false');
-    //                })
-    //        }
-    //    }]);
 })();

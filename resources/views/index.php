@@ -35,6 +35,6 @@ echo Html::script(asset('scripts/controllers/authController.js'));
 echo Html::script(asset('scripts/controllers/userController.js'));
 echo Html::script(asset('scripts/controllers/homeController.js'));
 echo Html::script(asset('scripts/services/services.js'));
-
+    
 ?>
 </html>
