@@ -81,19 +81,8 @@ Route::get('/securitycheck', ['middleware' => 'jwt.auth', function () {
     return "Security works !";
 }]);
 
-Route::group(['prefix' => 'api'], function () {
-    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
-    Route::post('authenticate', 'AuthenticateController@authenticate');
-    Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
-});
 
 
-
-// Remove # from angularjs URL
-Route::any('{path?}', function()
-{
-    return view('index');
-})->where("path", ".+");
 
 /*
 |--------------------------------------------------------------------------
@@ -109,5 +98,88 @@ Route::any('{path?}', function()
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+
+/*
+ * ROUTES TO USE
 */
+
+
+
+Route::group(['prefix' => 'api'], function () {
+
+    // Home Controller
+    /**
+     * Get all featured series
+     */
+    Route::get('featured', 'HomeController@getFeaturedSeries');
+
+    /**
+     * Get favourites series from user
+     */
+    Route::get('favourites/{iduser}', 'HomeController@getFavouritesSeries');
+
+
+    // Authenticate Controller
+
+    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+    Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+
+
+    // Serie Controller
+    /**
+     * Get a serie by ID from home page
+     */
+    Route::get('serie/{id}', 'SerieController@getSerie');
+
+    /**
+     * Get episode information
+     */
+    Route::get('episode/{id}', 'SerieController@getEpisode');
+
+    /**
+     * Subscribe to a serie
+     */
+    Route::post('subscribe/{idserie}', 'SerieController@subscribe');
+
+    /**
+     * Unsubscribe from a serie
+     */
+    Route::post('unsubscribe/{idserie}', 'SerieController@unsubscribe');
+
+
+    // Profile Controller
+
+    /**
+     * Get all profile info
+     */
+    Route::get('profile', 'ProfileController@getProfile');
+
+    Route::group(['prefix' => 'profile'], function (){
+
+        /**
+         * Get all subscriptions
+         */
+        Route::get('getSubscriptions', 'ProfileController@getSubscriptions');
+
+        /**
+         * Set personal data
+         */
+        Route::post('setPersonalData', 'ProfileController@setPersonnalData');
+
+
+    });
+
+
+});
+
+
+
+
+// Remove # from angularjs URL
+Route::any('{path?}', function()
+{
+    return view('index');
+})->where("path", ".+");
 
