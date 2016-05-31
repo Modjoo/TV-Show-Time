@@ -115,13 +115,13 @@ body{
 /*HOVER THUMBNAIL*/
 
 .grid figure {
-    
+
     display: inline-block;
     padding:0;
     margin: 0;
     float:left;
     overflow-x:auto;
-    
+
     overflow-y:hidden;
 }
 .grid figcaption {
@@ -131,13 +131,13 @@ body{
 
     background: #596572;
     color: #6dbec9;
-   
+
 }
 .grid figcaption p{
     color:#f3f3f3;
     margin-left:auto;
     margin-right:auto;
-  text-align:left;
+    text-align:left;
 
     padding:1%;
 }
@@ -159,53 +159,53 @@ body{
 }
 /* Caption Style 3 */
 .cs-style-3 figure {
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .cs-style-3 figure img {
-	-webkit-transition: -webkit-transform 0.4s;
-	-moz-transition: -moz-transform 0.4s;
-	transition: transform 0.4s;
+    -webkit-transition: -webkit-transform 0.4s;
+    -moz-transition: -moz-transform 0.4s;
+    transition: transform 0.4s;
 }
 
 .no-touch .cs-style-3 figure:hover img,
 .cs-style-3 figure.cs-hover img {
 
-      transform: scale(1.15) rotate(0.1deg);
+    transform: scale(1.15) rotate(0.1deg);
 }
 
 .cs-style-3 figcaption {
-	height: 10%;
-	width: 100%;
+    height: 10%;
+    width: 100%;
     margin: 0 auto;
     padding: 0 auto;
-    
-	top: auto;
-	bottom: 0;
-	opacity: 0;
-	-webkit-transform: translateY(100%);
-	-moz-transform: translateY(100%);
-	-ms-transform: translateY(100%);
-	transform: translateY(100%);
-	-webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
-	-moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
-	transition: transform 0.4s, opacity 0.1s 0.3s;
+
+    top: auto;
+    bottom: 0;
+    opacity: 0;
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+    -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
+    -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+    transition: transform 0.4s, opacity 0.1s 0.3s;
 }
 
 .no-touch .cs-style-3 figure:hover figcaption,
 .cs-style-3 figure.cs-hover figcaption {
-	opacity: 1;
-	-webkit-transform: translateY(10px);
-	-moz-transform: translateY(10px);
-	-ms-transform: translateY(10px);
-	transform: translateY(10px);
-	-webkit-transition: -webkit-transform 0.4s, opacity 0.1s;
-	-moz-transition: -moz-transform 0.4s, opacity 0.1s;
-	transition: transform 0.4s, opacity 0.1s;
+    opacity: 1;
+    -webkit-transform: translateY(10px);
+    -moz-transform: translateY(10px);
+    -ms-transform: translateY(10px);
+    transform: translateY(10px);
+    -webkit-transition: -webkit-transform 0.4s, opacity 0.1s;
+    -moz-transition: -moz-transform 0.4s, opacity 0.1s;
+    transition: transform 0.4s, opacity 0.1s;
 }
 
 .cs-style-3 figcaption a {
-	position: absolute;
+    position: absolute;
 
 }
 
@@ -277,4 +277,153 @@ body{
 
 
 /* AUTHENTIFICATION *-------------------------------------------------*/
+/* SINGLE PAGE --------------------------------------------------------*/
+#circular img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    background:teal;
+}
+#circular {
+    margin:15%;
+    text-align:center;
 
+}
+#subscribe{
+    text-align:center;
+}
+.sbs{
+    position: relative;
+    vertical-align: top;
+    width: 70%;
+    height: 60px;
+    padding: 0;
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #6dbec9;
+    border: 0;
+    border-bottom: 2px solid #57a0aa;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0 -2px #57a0aa;
+    box-shadow: inset 0 -2px #57a0aa;
+}
+#bar{
+    height:100%;
+    width:20px;
+    border: 1px black;
+}
+select {
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
+    background-color:#6dbec9;
+    background-repeat:no-repeat;
+    background-position: right 10px top 20px;
+    background-size: 16px 16px;
+    color:white;
+    padding:18px;
+    padding-right:30px;
+
+    font-size:16px;
+    font-weight:bold;
+    color:#fff;
+    text-align:center;
+    text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -webkit-appearance: none;
+    border:0;
+    outline:0;
+    -webkit-transition:0.3s ease all;
+    -moz-transition:0.3s ease all;
+    -ms-transition:0.3s ease all;
+    -o-transition:0.3s ease all;
+    transition:0.3s ease all;
+}
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+    position: relative;
+    padding-left: 75px;
+    cursor: pointer;
+    padding-right:25px;
+}
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before,
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+    content: '';
+    position: absolute;
+}
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+    left:0; top: -3px;
+    width: 65px; height: 30px;
+    background: #DDDDDD;
+    border-radius: 15px;
+    transition: background-color .2s;
+}
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+    width: 20px; height: 20px;
+    transition: all .2s;
+    border-radius: 50%;
+    background: #7F8C9A;
+    top: 2px; left: 5px;
+}
+
+/* on checked */
+[type="checkbox"]:checked + label:before {
+    background:#34495E; 
+}
+[type="checkbox"]:checked + label:after {
+    background: #6dbec9;
+    top: 2px; left: 40px;
+}
+
+[type="checkbox"]:checked + label .ui,
+[type="checkbox"]:not(:checked) + label .ui:before,
+[type="checkbox"]:checked + label .ui:after {
+    position: absolute;
+    left: 6px;
+    width: 65px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 22px;
+    transition: all .2s;
+}
+[type="checkbox"]:not(:checked) + label .ui:before {
+    content: "no";
+    left: 32px
+}
+[type="checkbox"]:checked + label .ui:after {
+    content: "yes";
+    color: #6dbec9;
+}
+[type="checkbox"]:focus + label:before {
+    border: 1px dashed #777;
+    box-sizing: border-box;
+    margin-top: -1px;
+}
+#selectSeason, #selectEpisode{
+    margin-top:8%;
+}
+#txtSingle{
+    font-size:1.8em;
+}
+#txtSingle h3{
+    font-size:2.2em;
+}
+#selectEpisode p{
+    float:left;
+}
+#singleDisplay{
+    padding:5%;
+}
+/* END SINGLE PAGE*/

@@ -37,6 +37,12 @@ Route::get('/api/testjson', function(){
 });
 
 
+Route::post('/api/testjsons', function(){
+    return $_POST;
+  
+});
+
+
 
 Route::get('/hello', function () {
     $pouet = new \App\Http\Services\DataBaseService();

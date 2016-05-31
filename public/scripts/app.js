@@ -25,6 +25,7 @@
         })
             .state('calendar', {
             url: '/calendar',
+            controller: 'CalendarController as calendar',
             templateUrl: '../views/calendarView.html'
         })
             .state('users', {
@@ -35,12 +36,17 @@
             url:'/pouet',
             controller: 'HomeController as home'
         })
+            .state('single', {
+            url:'/single',
+            controller: 'SingleController as single',
+            templateUrl: '../views/singleView.html'
+        })
             .state('index', {
             url: '/',
             templateUrl: '../views/homeView.html',
         });
-            // use the HTML5 History API
-            $locationProvider.html5Mode(true);
+        // use the HTML5 History API
+        $locationProvider.html5Mode(true);
 
 
 
@@ -80,9 +86,9 @@
             }
         }
 
-            function test(){
-                alert("tamer");
-            }
+        function test(){
+            alert("tamer");
+        }
 
         // Setup for the $httpInterceptor
         $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
