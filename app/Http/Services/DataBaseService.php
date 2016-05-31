@@ -11,6 +11,8 @@ namespace App\Http\Services;
 
 use App\Http\Utils\JsonParser;
 use App\Http\Utils\Omdb;
+use App\Models\Genre;
+use App\Models\GenresSeries;
 
 class DataBaseService
 {
@@ -27,8 +29,11 @@ class DataBaseService
 
 
     public function findOrCreateSeriesFromExternalId($externalSeriesID){
-        $serie = JsonParser::parseSerie($this->externalAPI->searchSerieById($externalSeriesID));
+        $rawJsonSerie = $this->externalAPI->searchSerieById($externalSeriesID);
+        $serie = JsonParser::parseSerie($rawJsonSerie);
+        
         $seasons = [];
+
         $numberOfSeason = $this->externalAPI->getSeasonAmount($externalSeriesID);
 
         for($i = 1; $i < $numberOfSeason; $i++){
@@ -42,6 +47,10 @@ class DataBaseService
 
         // --- SAVE --- //
         $serie->save();
+
+        $genres = JsonParser::parseGenres($rawJsonSerie);
+        $this->linkGenre($serie,$genres);
+
         foreach($seasons as $season){
             $season[0]["season"]->series()->associate($serie);
             $season[0]["season"]->save();
@@ -50,7 +59,6 @@ class DataBaseService
                 $episode->save();
             }
         }
-
     }
 
 
@@ -72,4 +80,17 @@ class DataBaseService
         }
         return $listEpisode;
     }
+
+    /**
+     * 
+     * @param $serie one serie object with pk
+     * @param $genres array of genres (list of string)
+     */
+    private function linkGenre($serie, $genres){
+        foreach ($genres as $genre){
+            $g = Genre::firstOrCreate(["name" => $genre]);
+            GenresSeries::firstOrCreate(["serie_id" => $serie->id, "genre_id" => $g->id]);
+        }
+    }
+    
 }

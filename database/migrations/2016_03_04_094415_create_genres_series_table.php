@@ -14,7 +14,7 @@ class CreateGenresSeriesTable extends Migration {
 	{
 		Schema::create('genres_series', function(Blueprint $table)
 		{
-			$table->string('id', 45)->unique('id_series_genre_UNIQUE');
+			$table->integer('id', true);
 			$table->integer('serie_id')->index('fk_Series_has_Genres_Series1_idx');
 			$table->integer('genre_id')->index('fk_Series_has_Genres_Genres1_idx');
 		});

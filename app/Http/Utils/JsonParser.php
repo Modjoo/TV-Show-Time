@@ -45,6 +45,22 @@ class JsonParser implements IJsonParser
 
 
     /**
+     * Extract Genre from json and convert them to array
+     * @param $json
+     * return array of genre name
+     */
+    public static function parseGenres($json){
+        $wordList = preg_split('/,/', $json->Genre, 0, PREG_SPLIT_NO_EMPTY);
+        
+        for($i = 0; $i < sizeof($wordList); $i++){
+            $wordList[$i] = trim($wordList[$i]);
+        }
+
+        return $wordList;
+    }
+
+
+    /**
      * Map the json with the serie attributes
      * @param $json Only one serie response from the api
      * @return array return mapped array
@@ -63,6 +79,7 @@ class JsonParser implements IJsonParser
     }
     
     private static function mapEpisode($json){
+        // TODO : voir pour la release date insertion dans la base de données
         if(method_exists($json, 'Runtime')){
             $map = [
                 "title" => $json->Title,

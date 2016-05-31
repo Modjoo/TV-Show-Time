@@ -20,8 +20,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/api/testjson', function(){
-   return "{
+Route::get('/api/testjson', function () {
+    return "{
     \"menu\": {
         \"id\": \"jdhdhdh\",
         \"value\": \"File\",
@@ -34,12 +34,6 @@ Route::get('/api/testjson', function(){
         }
     }
 }";
-});
-
-
-Route::post('/api/testjsons', function(){
-    return $_POST;
-  
 });
 
 
@@ -178,8 +172,7 @@ Route::group(['prefix' => 'api'], function () {
 
 
 // Remove # from angularjs URL
-Route::any('{path?}', function()
-{
+Route::any('{path?}', function () {
     return view('index');
 })->where("path", ".+");
 
