@@ -20,17 +20,6 @@ class SeriesTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'title' => 'Band of Brothers',
-                'synopsis' => 'The story of Easy Company of the US Army 101s',
-                'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTI3ODc2ODc0M15BMl5BanBnXkFtZTYwMjgzNjc3._V1_SX300.jpg',
-                'actors' => 'Scott Grimes, Damian Lewis, Ron Livingston, S',
-                'producer' => 'N/A',
-                'duration_pattern' => 705,
-                'external_id' => 'tt0185906',
-            ),
-            1 => 
-            array (
-                'id' => 2,
                 'title' => 'Escape from Planet Earth',
                 'synopsis' => 'Astronaut Scorch Supernova finds himself caug',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTQyMTk4NjkyMl5BMl5BanBnXkFtZTcwMzA2OTY4OA@@._V1_SX300.jpg',
@@ -39,9 +28,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 89,
                 'external_id' => 'tt0765446',
             ),
-            2 => 
+            1 => 
             array (
-                'id' => 3,
+                'id' => 2,
                 'title' => 'Breaking Bad',
                 'synopsis' => 'A high school chemistry teacher diagnosed wit',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTQ0ODYzODc0OV5BMl5BanBnXkFtZTgwMDk3OTcyMDE@._V1_SX300.jpg',
@@ -50,9 +39,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 49,
                 'external_id' => 'tt0903747',
             ),
-            3 => 
+            2 => 
             array (
-                'id' => 4,
+                'id' => 3,
                 'title' => 'Game of Thrones',
                 'synopsis' => 'While a civil war brews between several noble',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SX300.jpg',
@@ -61,9 +50,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 56,
                 'external_id' => 'tt0944947',
             ),
-            4 => 
+            3 => 
             array (
-                'id' => 5,
+                'id' => 4,
                 'title' => 'The Wire',
                 'synopsis' => 'Baltimore drug scene, seen through the eyes o',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BNjc1NzYwODEyMV5BMl5BanBnXkFtZTcwNTcxMzU1MQ@@._V1_SX300.jpg',
@@ -72,9 +61,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 59,
                 'external_id' => 'tt0306414',
             ),
-            5 => 
+            4 => 
             array (
-                'id' => 6,
+                'id' => 5,
                 'title' => 'Cosmos: A Spacetime Odyssey',
                 'synopsis' => 'A documentary series that explores how we dis',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTc5NzgwNDE3N15BMl5BanBnXkFtZTgwNDAxMTY5MTE@._V1._CR51,41,938,1336_SY132_CR2,0,89,132_AL_.jpg_V1_SX300.jpg',
@@ -83,9 +72,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 557,
                 'external_id' => 'tt2395695',
             ),
-            6 => 
+            5 => 
             array (
-                'id' => 7,
+                'id' => 6,
                 'title' => 'Cosmos',
                 'synopsis' => 'Astronomer Carl Sagan leads us on an engaging',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTI0NTg5MjA5OF5BMl5BanBnXkFtZTcwNDMxMTEyMQ@@._V1_SX300.jpg',
@@ -94,9 +83,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 60,
                 'external_id' => 'tt0081846',
             ),
-            7 => 
+            6 => 
             array (
-                'id' => 8,
+                'id' => 7,
                 'title' => 'Rick and Morty',
                 'synopsis' => 'An animated series that follows the exploits ',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTQxNDEwNTE0Nl5BMl5BanBnXkFtZTgwMzQ1MTg3MDE@._V1_SX300.jpg',
@@ -105,9 +94,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 22,
                 'external_id' => 'tt2861424',
             ),
-            8 => 
+            7 => 
             array (
-                'id' => 9,
+                'id' => 8,
                 'title' => 'The Civil War',
                 'synopsis' => 'A comprehensive survey of the American Civil ',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTc0NTY5MzAwOV5BMl5BanBnXkFtZTcwNTk3MzcyMQ@@._V1_SX300.jpg',
@@ -116,9 +105,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 680,
                 'external_id' => 'tt0098769',
             ),
-            9 => 
+            8 => 
             array (
-                'id' => 10,
+                'id' => 9,
                 'title' => 'The Sopranos',
                 'synopsis' => 'New Jersey mob boss, Tony Soprano, deals with',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTIxMjc4NTA2Nl5BMl5BanBnXkFtZTYwNTU2MzU5._V1_SX300.jpg',
@@ -127,9 +116,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 55,
                 'external_id' => 'tt0141842',
             ),
-            10 => 
+            9 => 
             array (
-                'id' => 11,
+                'id' => 10,
                 'title' => 'Young Sherlock Holmes',
                 'synopsis' => 'When assorted people start having inexplicabl',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMjA0NjMyMTg4NV5BMl5BanBnXkFtZTcwMDIwNTAwMQ@@._V1_SX300.jpg',
@@ -138,9 +127,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 109,
                 'external_id' => 'tt0090357',
             ),
-            11 => 
+            10 => 
             array (
-                'id' => 12,
+                'id' => 11,
                 'title' => 'The World at War',
                 'synopsis' => 'A series of documentaries about World War II.',
                 'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTYyMzQ0NDk4OF5BMl5BanBnXkFtZTcwOTAwNjYyMQ@@._V1_SX300.jpg',
@@ -149,9 +138,9 @@ class SeriesTableSeeder extends Seeder
                 'duration_pattern' => 52,
                 'external_id' => 'tt0071075',
             ),
-            12 => 
+            11 => 
             array (
-                'id' => 13,
+                'id' => 12,
                 'title' => 'Life',
                 'synopsis' => 'The story of wrongfully convicted men (Eddie ',
                     'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMjAwMTEwMDAwMl5BMl5BanBnXkFtZTcwODk4NDgyMQ@@._V1_SX300.jpg',
@@ -160,9 +149,9 @@ class SeriesTableSeeder extends Seeder
                     'duration_pattern' => 108,
                     'external_id' => 'tt0123964',
                 ),
-                13 => 
+                12 => 
                 array (
-                    'id' => 14,
+                    'id' => 13,
                     'title' => 'Avatar: The Last Airbender',
                     'synopsis' => 'In a war-torn world of elemental magic, a you',
                     'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTM3MTc3OTc0NF5BMl5BanBnXkFtZTcwOTQ0OTM1MQ@@._V1._CR34,0,295,440_SX89_AL_.jpg_V1_SX300.jpg',
@@ -171,9 +160,9 @@ class SeriesTableSeeder extends Seeder
                     'duration_pattern' => 23,
                     'external_id' => 'tt0417299',
                 ),
-                14 => 
+                13 => 
                 array (
-                    'id' => 15,
+                    'id' => 14,
                     'title' => 'Last Week Tonight with John Oliver',
                     'synopsis' => 'Former Daily Show Correspondent John Oliver b',
                     'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BNDAwMDY0NjA2Ml5BMl5BanBnXkFtZTgwMTA1NTI3NzE@._V1_SX300.jpg',
@@ -182,9 +171,9 @@ class SeriesTableSeeder extends Seeder
                     'duration_pattern' => 30,
                     'external_id' => 'tt3530232',
                 ),
-                15 => 
+                14 => 
                 array (
-                    'id' => 16,
+                    'id' => 15,
                     'title' => 'True Detective',
                     'synopsis' => 'An anthology series in which police investiga',
                     'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTUzNTMwODI1OV5BMl5BanBnXkFtZTgwMDIzMTQ0NTE@._V1_SX300.jpg',
@@ -193,9 +182,9 @@ class SeriesTableSeeder extends Seeder
                     'duration_pattern' => 55,
                     'external_id' => 'tt2356777',
                 ),
-                16 => 
+                15 => 
                 array (
-                    'id' => 17,
+                    'id' => 16,
                     'title' => 'Firefly',
                     'synopsis' => 'Five hundred years in the future, a renegade ',
                     'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTM0OTIzNjM4OV5BMl5BanBnXkFtZTcwNDk4MDU5MQ@@._V1._CR57,54,340,418_SY132_CR9,0,89,132_AL_.jpg_V1_SX300.jpg',
@@ -204,9 +193,9 @@ class SeriesTableSeeder extends Seeder
                     'duration_pattern' => 44,
                     'external_id' => 'tt0303461',
                 ),
-                17 => 
+                16 => 
                 array (
-                    'id' => 18,
+                    'id' => 17,
                     'title' => 'Human Planet',
                     'synopsis' => 'Like all life forms, humanity partially adapt',
                     'cover_img_url' => 'http://ia.media-imdb.com/images/M/MV5BMTMyMDI0MDI3M15BMl5BanBnXkFtZTcwMTQ5NDQ3NA@@._V1_SX300.jpg',
@@ -215,9 +204,9 @@ class SeriesTableSeeder extends Seeder
                     'duration_pattern' => 50,
                     'external_id' => 'tt1806234',
                 ),
-                18 => 
+                17 => 
                 array (
-                    'id' => 19,
+                    'id' => 18,
                     'title' => 'Golden Earring: Live from The Twilight Zone',
                     'synopsis' => 'N/A',
                     'cover_img_url' => 'N/A',
