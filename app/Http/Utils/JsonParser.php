@@ -38,6 +38,11 @@ class JsonParser implements IJsonParser
         return new Season($map);
     }
 
+    // TODO - implement parseSeriesList function when we search from a string.
+    public static function parseSeriesList($json){
+
+    }
+
     public static function isValid($json)
     {
         return $json->Response == "True";

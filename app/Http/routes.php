@@ -93,6 +93,12 @@ Route::group(['prefix' => 'api'], function () {
 
 
     // Serie Controller
+
+    /**
+     * Search serie from external api
+     */
+    Route::get('search/{string}', 'SerieController@searchSerie');
+
     /**
      * Get a serie by ID from home page
      */

@@ -28,6 +28,10 @@ class SearchService
         return JsonParser::parseSerie($json);
     }
 
+    public function searchSeriesByName($string){
+        return Omdb::searchBySeriesName($string);
+    }
+
 
 
 }

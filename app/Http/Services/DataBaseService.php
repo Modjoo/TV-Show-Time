@@ -93,4 +93,14 @@ class DataBaseService
         }
     }
     
+
+    // TODO : implement getFeaturedSeries function to get the last 10 series on the database
+    public function getFeaturedSeries(){
+
+    }
+
+    // TODO : implement getFavouritesSeries function to get the first 10 series from a user
+    public function getFavouritesSeries($iduser){
+
+    }
 }
