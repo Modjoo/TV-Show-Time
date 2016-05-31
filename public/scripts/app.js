@@ -28,10 +28,10 @@
             controller: 'CalendarController as calendar',
             templateUrl: '../views/calendarView.html'
         })
-            .state('users', {
-            url: '/users',
-            templateUrl: '../views/userView.html',
-            controller: 'UserController as user'
+            .state('profil', {
+            url: '/profil',
+            templateUrl: '../views/profilView.html',
+            controller: 'ProfilController as profil'
         }).state('pouet', {
             url:'/pouet',
             controller: 'HomeController as home'
