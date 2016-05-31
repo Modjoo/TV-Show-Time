@@ -39,35 +39,6 @@ Route::get('/api/testjson', function () {
 
 
 Route::get('/hello', function () {
-    $pouet = new \App\Http\Services\DataBaseService();
-
-
-    //$pouet->findOrCreateSeriesFromExternalId("tt1332710");
-
-    /*
-    $pouet = new \App\Http\Utils\Omdb();
-    $serie = $pouet->searchSerieById("tt0944947");
-    $season = $pouet->getInfoSaison("tt0944947",1);
-    $episode1 = $pouet->searchEpisodeById("tt1480055");
-
-    $serie = \App\Http\Utils\JsonParser::parseSerie($serie);
-    $serie->save();
-
-    $season = \App\Http\Utils\JsonParser::parseSeason($season);
-    $season->series()->associate($serie);
-    $season->save();
-
-    $episode = \App\Http\Utils\JsonParser::parseEpisode($episode1);
-    $episode->season()->associate($season);
-    $episode->save();*/
-
-    /*$episode = \App\Models\Episode::where("id", '>', 0);
-    dd($episode->get());*/
-/*
-    $serie = \App\Models\Series::where("id", '=', 1)->first();
-    $serie->seasons = $serie->seasons()->get();
-    dd($serie);*/
-
     return "It works !";
 });
 
