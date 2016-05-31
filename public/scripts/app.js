@@ -41,6 +41,11 @@
             controller: 'SingleController as single',
             templateUrl: '../views/singleView.html'
         })
+            .state('searchLanding', {
+            url:'/landing',
+            controller: 'ResearchController as research',
+            templateUrl: '../views/searchLandingView.html'
+        })
             .state('index', {
             url: '/',
             templateUrl: '../views/homeView.html',
