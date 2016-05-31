@@ -51,10 +51,7 @@ class SearchService
         foreach($rawSeries->Search as $serie){
             $series[] = $dataBaseService->findOrCreateSeriesFromExternalId($serie->imdbID);
         }
-
-        dd($series);
-
-        return null;
+        return $series;
     }
 
 

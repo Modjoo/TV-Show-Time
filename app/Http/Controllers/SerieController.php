@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\JsonService;
 use App\Http\Services\SearchService;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class SerieController extends Controller
     }
 
     public function searchSerie($string){
-        return $this->extservice->searchSeriesByName($string);
+        $series = $this->extservice->searchSeriesByName($string);
+        return JsonService::generateSeries($series);
     }
 
     public function getSerie($idserie){

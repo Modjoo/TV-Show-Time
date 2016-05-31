@@ -12,11 +12,15 @@ namespace App\Http\Services;
 class JsonService
 {
 
-    public function generateSerieSeason($serie, $seasons){
+    public static function generateSeries($series){
+        return json_encode(["series" => $series]);
+    }
+
+    public static function generateSerieSeason($serie, $seasons){
         return json_encode(["serie" => $serie, "seasons" => $seasons]);
     }
 
-    public function generateEpisodes($episodes){
+    public static function generateEpisodes($episodes){
         return json_encode(["episode" => $episodes]);
     }
 
