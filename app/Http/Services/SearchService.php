@@ -13,23 +13,33 @@ use \App\Http\Utils\Omdb;
 use \App\Http\Utils\JsonParser;
 class SearchService
 {
+    private $omdb;
+
+    /**
+     * SearchService constructor.
+     */
+    public function __construct()
+    {
+        $this->omdb= new Omdb();
+    }
+
     public function getEpisode($externalId){
-        $json = Omdb::searchEpisodeById($externalId);
+        $json = $this->omdb->searchEpisodeById($externalId);
         return JsonParser::parseEpisode($json);
     }
 
-    public function getSeason($externalSerieId, $seasonNumber){
-        $json = Omdb::getInfoSeason($externalSerieId, $seasonNumber);
+    public  function getSeason($externalSerieId, $seasonNumber){
+        $json = $this->omdb->getInfoSeason($externalSerieId, $seasonNumber);
         return JsonParser::parseSeason($json);
     }
 
-    public function getSerie($externalId){
-        $json = Omdb::searchSerieById($externalId);
+    public  function getSerie($externalId){
+        $json = $this->omdb->searchSerieById($externalId);
         return JsonParser::parseSerie($json);
     }
 
-    public function searchSeriesByName($string){
-        return Omdb::searchBySeriesName($string);
+    public  function searchSeriesByName($string){
+        return $this->omdb->searchBySeriesName($string);
     }
 
 

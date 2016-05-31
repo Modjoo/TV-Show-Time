@@ -39,6 +39,12 @@ Route::get('/api/testjson', function () {
 
 
 Route::get('/hello', function () {
+
+    $omd = new \App\Http\Utils\Omdb();
+    $data = $omd->searchBySeriesName("Game");
+
+    dd($data);
+
     return "It works !";
 });
 
@@ -132,12 +138,12 @@ Route::group(['prefix' => 'api'], function () {
         /**
          * Get all subscriptions
          */
-        Route::get('getSubscriptions', 'ProfileController@getSubscriptions');
+        Route::get('subscriptions', 'ProfileController@getSubscriptions');
 
         /**
          * Set personal data
          */
-        Route::post('setPersonalData', 'ProfileController@setPersonnalData');
+        Route::post('personal', 'ProfileController@setPersonnalData');
 
 
     });
