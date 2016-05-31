@@ -24,13 +24,13 @@ class HomeController extends Controller
 
 
     public function getFeaturedSeries(){
-        $featuredSeries = $this->dbs->getFeaturedSeries();
+        $featuredSeries = $this->dbservice->getFeaturedSeries();
         return json_encode(["featuredseries" => $featuredSeries]);
     }
 
 
     public function getFavouritesSeries(){
-        $favouritesSeries = $this->dbs.$this->getFeaturedSeries();
+        $favouritesSeries = $this->dbservice->getFeaturedSeries();
         return json_encode(["favouritesSeries" => $favouritesSeries]);
     }
 
