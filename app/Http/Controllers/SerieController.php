@@ -17,11 +17,11 @@ class SerieController extends Controller
     public function __construct()
     {
         $this->extservice = new SearchService();
-        $this->dbservice = new DataBaseService();
+        //$this->dbservice = new DataBaseService();
     }
 
     public function searchSerie($string){
-        return $this->extservice->searchSerie($string);
+        return $this->extservice->searchSeriesByName($string);
     }
 
     public function getSerie($idserie){

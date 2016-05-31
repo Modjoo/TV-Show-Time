@@ -39,12 +39,6 @@ Route::get('/api/testjson', function () {
 
 
 Route::get('/hello', function () {
-
-    $omd = new \App\Http\Utils\Omdb();
-    $data = $omd->searchBySeriesName("Game");
-
-    dd($data);
-
     return "It works !";
 });
 
@@ -101,7 +95,7 @@ Route::group(['prefix' => 'api'], function () {
     // Serie Controller
 
     /**
-     * Search serie from external api
+     * Search serie from with the name
      */
     Route::get('search/{string}', 'SerieController@searchSerie');
 
