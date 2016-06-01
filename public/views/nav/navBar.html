@@ -4,10 +4,9 @@
         <div id="mcontainer">
             <form class="navbar-form navbar-default search" role="search">
                 <div class="form-group sform">
-                    <input id="manuleswaggy" type="text" class="form-control" placeholder="Search" ng-model="searchText"
-                           ng-model-options='{debounce: 1000}' ng-change='search()'>
+                    <input id="manuleswaggy" type="text" class="form-control" placeholder="Search" ng-model="searchText">
                 </div>
-                <button ng-click="pouet()" type="submit" class="btn sbutton btn-default"><i class="fa fa-search fa-lg "
+                <button ng-click="search()" type="submit" class="btn sbutton btn-default"><i class="fa fa-search fa-lg "
                                                                          aria-hidden="true"></i></button>
             </form>
             <ul class="nav navbar-nav navbar-right">

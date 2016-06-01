@@ -25,7 +25,7 @@ class HomeController extends Controller
 
     public function getFeaturedSeries(){
         $featuredSeries = $this->dbservice->getFeaturedSeries();
-        return json_encode(["featuredseries" => $featuredSeries]);
+        return json_encode(["featuredseries" => $featuredSeries]);       
     }
 
 

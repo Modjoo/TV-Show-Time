@@ -5,7 +5,10 @@ module('authApp')
           searchByName: function(name){
               var d = $q.defer();
               $http.get('api/search/' + name).then(function(response){
+                  console.log("query search : ", name);
                   d.resolve(response.data);
+              },function(response){
+                  d.reject(response);
               });
               return d.promise;
           }

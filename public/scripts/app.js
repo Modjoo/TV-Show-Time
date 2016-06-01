@@ -44,6 +44,7 @@
                 .state('searchLanding', {
                     url: '/landing',
                     cache: false,
+                    reload: true,
                     controller: 'ResearchController as research',
                     templateUrl: '../views/searchLandingView.html'
                 })
