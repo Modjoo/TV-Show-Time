@@ -108,6 +108,7 @@ class DataBaseService
         return $listEpisode;
     }
 
+
     /**
      *
      * @param $serie one serie object with pk
@@ -125,6 +126,16 @@ class DataBaseService
     // TODO : implement getFeaturedSeries function to get the last 10 series on the database
     public function getFeaturedSeries()
     {
+        $dataBaseService = new DataBaseService();
+        $series = [];
+
+        $rawSeries = $this->getFeaturedSeries();
+        for("serie_id" <= 10)
+        {
+            $series[] = $dataBaseService->getFeaturedSeries($serie->imdbID);
+        }
+        return $series;
+        console.log($series);
 
     }
 
