@@ -1,14 +1,24 @@
-angular.
-module('authApp')
-    .service('search', ['$http','$q', function ($http, $q) {
+angular.module('authApp')
+    .service('search', ['$http', '$q', function ($http, $q) {
         return {
-          searchByName: function(name){
-              var d = $q.defer();
-              $http.get('api/search/' + name).then(function(response){
-                  d.resolve(response.data);
-              });
-              return d.promise;
-          }
+            searchByName: function (name) {
+                var d = $q.defer();
+                $http.get('api/search/' + name).then(function (response) {
+                    d.resolve(response.data);
+                });
+                return d.promise;
+            }
+        };
+    }])
+    .service('featuredService', ['$http', '$q', function ($http, $q) {
+        return {
+            getFeaturedSeries: function () {
+                var d = $q.defer();
+                $http.get('api/featured').then(function (response) {
+                    d.resolve(response.data);
+                });
+                return d.promise;
+            }
         };
     }])
     .service('cacheService', function ($window) {
@@ -50,11 +60,11 @@ module('authApp')
             return newEntity.value;
         };
 
-        var setCache= function (key, data){
+        var setCache = function (key, data) {
             var e = getEntity(key);
-            if(e){
+            if (e) {
                 e.value = data;
-            }else{
+            } else {
                 map.push(generateEntity({key: key, value: data}));
             }
             return data;
@@ -68,24 +78,24 @@ module('authApp')
     });
 
 
-    // EXAMPLE !!
-    /*
-    return {
-        getTest: function (json) {
-            var d = $q.defer();
-            $http.get('api/testjson').then(function (response) {
-                console.log(response);
-                d.resolve(response.data);
-                //return response;
-            });
-            return d.promise;
-        },
-        sendData: function(json){
-            var d = $q.defer();
-            $http.post('api/testjsons', json).then(function(response){
-                console.log("menu : ", response);
-               d.resolve(true); 
-            });
-        }
-    }
-    */
+// EXAMPLE !!
+/*
+ return {
+ getTest: function (json) {
+ var d = $q.defer();
+ $http.get('api/testjson').then(function (response) {
+ console.log(response);
+ d.resolve(response.data);
+ //return response;
+ });
+ return d.promise;
+ },
+ sendData: function(json){
+ var d = $q.defer();
+ $http.post('api/testjsons', json).then(function(response){
+ console.log("menu : ", response);
+ d.resolve(true);
+ });
+ }
+ }
+ */

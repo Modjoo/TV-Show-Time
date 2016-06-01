@@ -126,17 +126,7 @@ class DataBaseService
     // TODO : implement getFeaturedSeries function to get the last 10 series on the database
     public function getFeaturedSeries()
     {
-        $dataBaseService = new DataBaseService();
-        $series = [];
-
-        $rawSeries = $this->getFeaturedSeries();
-        for("serie_id" <= 10)
-        {
-            $series[] = $dataBaseService->getFeaturedSeries($serie->imdbID);
-        }
-        return $series;
-        console.log($series);
-
+        return \App\Models\Series::featured();
     }
 
     // TODO : implement getFavouritesSeries function to get the first 10 series from a user
