@@ -9,15 +9,14 @@
         .controller('ResearchController', ResearchController);
 
 
-    function ResearchController($scope, $rootScope, cacheService) {
-        $scope.data = cacheService.getData("searchResults");
+    function ResearchController($scope, $rootScope, $location, cacheService) {
         $rootScope.$on("UpdateSearch", function(event, data){
-            console.log("data ", data);
             $scope.data = data.data;
         });
 
         $scope.detail = function(serie){
-            console.log("dsadasdas : ", serie);
+            cacheService.addToCache("selected_serie", serie);
+            $location.path("/single");
         }
       
     }

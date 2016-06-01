@@ -17,7 +17,7 @@ class CreateEpisodesTable extends Migration {
 			$table->integer('id', true);
 			$table->string('title', 45);
 			$table->integer('duration')->nullable();
-			$table->string('description', 45)->nullable();
+			$table->string('description', 455)->nullable();
 			$table->integer('number');
 			$table->dateTime('release_date')->nullable();
 			$table->string('cover_img_url')->nullable();

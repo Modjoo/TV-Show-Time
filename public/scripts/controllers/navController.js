@@ -14,11 +14,10 @@
 
         $scope.search = function(){
             search.searchByName($scope.searchText).then(function(result){
-                cacheService.addToCache("searchResults", result);
                 $rootScope.$emit("UpdateSearch", {
                     data: result
                 });
-                $location.path("/landing")
+                $location.path("/landing");
             });
         };
     }
