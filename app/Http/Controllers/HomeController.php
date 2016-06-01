@@ -30,7 +30,8 @@ class HomeController extends Controller
 
 
     public function getFavouritesSeries(){
-        $favouritesSeries = $this->dbservice->getFeaturedSeries();
+        $idUser = 1;
+        $favouritesSeries = $this->dbservice->getFavouritesSeries($idUser);
         return json_encode(["favouritesSeries" => $favouritesSeries]);
     }
 
