@@ -91,6 +91,7 @@ class DataBaseService
         return $listEpisode;
     }
 
+
     /**
      *
      * @param $serie one serie object with pk
