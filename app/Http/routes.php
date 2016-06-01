@@ -39,6 +39,8 @@ Route::get('/api/testjson', function () {
 
 
 Route::get('/hello', function () {
+    $data = new \App\Http\Services\DataBaseService();
+    $data->findOrCreateSeriesFromExternalId("tt2372162");
     return "It works !";
 });
 

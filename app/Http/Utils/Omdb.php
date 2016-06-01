@@ -17,6 +17,7 @@ class Omdb implements ISearchSeries
 {
     private $request = null;
     private static $DEFAULT_URL = 'http://www.omdbapi.com';
+    const RESPONSE_FALSE = "False";
 
     /**
      * Omdb constructor.
@@ -77,7 +78,11 @@ class Omdb implements ISearchSeries
     private function requestAPI($query)
     {
         $res = $this->request->get($query);
-        return json_decode($res->getBody()->getContents());
+        $json = json_decode($res->getBody()->getContents());
+        if($json->Response == self::RESPONSE_FALSE){
+            return null;
+        }
+        return $json;
     }
 
     /**

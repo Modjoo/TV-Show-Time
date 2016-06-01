@@ -9,7 +9,8 @@
         .controller('ResearchController', ResearchController);
 
 
-    function ResearchController($http, $scope, search, cacheService) {
+    function ResearchController($scope, cacheService) {
+        console.log("research controller !");
         $scope.data = cacheService.getData("searchResults");
     }
 })();

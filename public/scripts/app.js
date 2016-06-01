@@ -4,7 +4,7 @@
         .module('authApp', ['ui.router', 'satellizer'])
         .directive('template', function () {
             return {
-                templateUrl: '../template.html'
+                templateUrl: '../views/nav/navBar.html'
             };
         })
         .config(function ($stateProvider, $locationProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
@@ -43,6 +43,7 @@
                 })
                 .state('searchLanding', {
                     url: '/landing',
+                    cache: false,
                     controller: 'ResearchController as research',
                     templateUrl: '../views/searchLandingView.html'
                 })

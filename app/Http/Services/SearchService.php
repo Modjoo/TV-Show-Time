@@ -48,6 +48,9 @@ class SearchService
         $series = [];
 
         $rawSeries = $this->omdb->searchBySeriesName($string);
+        if($rawSeries == null){
+            return $series;
+        }
         foreach($rawSeries->Search as $serie){
             $series[] = $dataBaseService->findOrCreateSeriesFromExternalId($serie->imdbID);
         }

@@ -34,6 +34,7 @@ echo Html::script(asset('scripts/app.js'));
 echo Html::script(asset('scripts/controllers/authController.js'));
 echo Html::script(asset('scripts/controllers/userController.js'));
 echo Html::script(asset('scripts/controllers/homeController.js'));
+echo Html::script(asset('scripts/controllers/navController.js'));
 echo Html::script(asset('scripts/controllers/researchController.js'));
 echo Html::script(asset('scripts/services/services.js'));
     
