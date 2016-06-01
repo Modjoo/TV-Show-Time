@@ -5,7 +5,8 @@
     <title>Angular-Laravel Authentication</title>
     <?php
     //echo Html::style('css/bootstrap.css');
-    echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"./css/bootstrap.css\">";
+    echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css\">";
+        echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"./css/bootstrap.css\">";
     echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"./css/style.css\">";
     echo "<script src='scripts/modernizr.custom.js'></script>";
     echo "<base href=\"/\">"
