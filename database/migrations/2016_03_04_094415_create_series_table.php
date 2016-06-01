@@ -16,7 +16,7 @@ class CreateSeriesTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->string('title', 45);
-			$table->string('synopsis', 45);
+			$table->string('synopsis', 455);
 			$table->string('cover_img_url')->nullable();
 			$table->string('actors', 45)->nullable();
 			$table->string('producer', 45)->nullable();

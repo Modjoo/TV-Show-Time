@@ -1,6 +1,7 @@
 angular.module('authApp')
     .service('search', ['$http', '$q', function ($http, $q) {
         return {
+<<<<<<< HEAD
             searchByName: function (name) {
                 var d = $q.defer();
                 $http.get('api/search/' + name).then(function (response) {
@@ -19,16 +20,29 @@ angular.module('authApp')
                 });
                 return d.promise;
             }
+=======
+          searchByName: function(name){
+              var d = $q.defer();
+              $http.get('api/search/' + name).then(function(response){
+                  d.resolve(response.data);
+              },function(response){
+                  d.reject(response);
+              });
+              return d.promise;
+          }
+>>>>>>> origin/master
         };
     }])
     .service('cacheService', function ($window) {
         var map = [];
+
         var generateEntity = function (params) {
             return {
                 key: params.key,
                 value: params.value
             }
         };
+        
         var getData = function (key) {
             var e = getEntity(key);
             if (e != null) {
@@ -39,6 +53,7 @@ angular.module('authApp')
         };
 
         var getEntity = function (key) {
+            reloadCache();
             var selected = null;
             map.forEach(function (c) {
                 if (c.key == key) {
@@ -57,6 +72,7 @@ angular.module('authApp')
             } else {
                 map.push(newEntity);
             }
+            saveCache();
             return newEntity.value;
         };
 
@@ -67,10 +83,22 @@ angular.module('authApp')
             } else {
                 map.push(generateEntity({key: key, value: data}));
             }
+            saveCache();
             return data;
         };
 
+        var reloadCache = function () {
+            map = JSON.parse($window.localStorage.getItem('cacheServices'));
+            if (!map) {
+                map = [];
+            }
+        };
+        var saveCache = function () {
+            $window.localStorage.setItem('cacheServices', JSON.stringify(map));
+        };
+
         return {
+            saveCache: saveCache,
             addToCache: addToCache,
             setCache: setCache,
             getData: getData

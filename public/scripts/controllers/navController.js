@@ -9,21 +9,16 @@
         .controller('NavController', NavController);
 
 
-    function NavController($location, $scope, search, cacheService) {
+    function NavController($location, $rootScope, $scope, search, cacheService) {
         $scope.searchText = '';
-        console.log("nav controlelr loadign");
 
-        $scope.pouet = function(){
-            console.log("pouet");
-            $location.path("/landing");
-        };
         $scope.search = function(){
             search.searchByName($scope.searchText).then(function(result){
-                cacheService.addToCache("searchResults", result);
-                console.log("search !");
+                $rootScope.$emit("UpdateSearch", {
+                    data: result
+                });
                 $location.path("/landing");
             });
-
         };
     }
 })();
