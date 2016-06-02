@@ -84,8 +84,7 @@ class JsonParser implements IJsonParser
     }
     
     private static function mapEpisode($json){
-        // TODO : voir pour la release date insertion dans la base de données
-        if(method_exists($json, 'Runtime')){
+        if(property_exists($json, 'Runtime')){
             $map = [
                 "title" => $json->Title,
                 "duration" => Utils\Utils::extractNumber($json->Runtime),

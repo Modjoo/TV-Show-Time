@@ -41,8 +41,11 @@ Route::get('/barchich/{string}', 'SerieController@searchSerie');
 
 
 Route::get('/hello', function () {
-    $data = new \App\Http\Services\DataBaseService();
-    $data->findOrCreateSeriesFromExternalId("tt2372162");
+    $omdb = new \App\Http\Utils\Omdb();
+    $rawEpisode = $omdb->searchEpisodeById("tt2692410");
+    $episode = \App\Http\Utils\JsonParser::parseEpisode($rawEpisode);
+    $episode->season_id = 1;
+    $episode->save();
     return "It works !";
 });
 

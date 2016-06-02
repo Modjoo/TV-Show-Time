@@ -15,7 +15,7 @@ class CreateSeasonsTable extends Migration {
 		Schema::create('seasons', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('title', 45)->nullable();
+			$table->string('title', 80)->nullable();
 			$table->integer('serie_id')->index('fk_Seasons_Series1_idx');
 		});
 	}

@@ -15,12 +15,12 @@ class CreateEpisodesTable extends Migration {
 		Schema::create('episodes', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('title', 45);
+			$table->string('title', 100);
 			$table->integer('duration')->nullable();
-			$table->string('description', 455)->nullable();
+			$table->string('description', 1000)->nullable();
 			$table->integer('number');
 			$table->dateTime('release_date')->nullable();
-			$table->string('cover_img_url')->nullable();
+			$table->string('cover_img_url', 200)->nullable();
 			$table->integer('season_id')->index('fk_Episodes_Seasons1_idx');
 		});
 	}
