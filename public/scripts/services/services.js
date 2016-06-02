@@ -1,11 +1,12 @@
 angular.module('authApp')
     .service('search', ['$http', '$q', function ($http, $q) {
         return {
-<<<<<<< HEAD
             searchByName: function (name) {
                 var d = $q.defer();
                 $http.get('api/search/' + name).then(function (response) {
                     d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
                 });
                 return d.promise;
             }
@@ -20,17 +21,6 @@ angular.module('authApp')
                 });
                 return d.promise;
             }
-=======
-          searchByName: function(name){
-              var d = $q.defer();
-              $http.get('api/search/' + name).then(function(response){
-                  d.resolve(response.data);
-              },function(response){
-                  d.reject(response);
-              });
-              return d.promise;
-          }
->>>>>>> origin/master
         };
     }])
     .service('cacheService', function ($window) {
@@ -42,7 +32,7 @@ angular.module('authApp')
                 value: params.value
             }
         };
-        
+
         var getData = function (key) {
             var e = getEntity(key);
             if (e != null) {
@@ -99,7 +89,6 @@ angular.module('authApp')
 
         return {
             saveCache: saveCache,
-            addToCache: addToCache,
             setCache: setCache,
             getData: getData
         }

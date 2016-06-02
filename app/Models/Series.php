@@ -30,9 +30,4 @@ class Series extends Model
     {
         return DB::select(DB::raw('select * from series where id > ( (select COUNT(*) from series) - 10)'));
     }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> origin/master
 }

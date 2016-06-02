@@ -12,7 +12,6 @@
     function HomeController($scope, featuredService) {
         featuredService.getFeaturedSeries().then(function (response) {
             $scope.featuredSeries = response.featuredseries;
-            console.log(response.featuredseries);
         });
 
 

@@ -126,11 +126,7 @@ class DataBaseService
     // TODO : implement getFeaturedSeries function to get the last 10 series on the database
     public function getFeaturedSeries()
     {
-<<<<<<< HEAD
         return \App\Models\Series::featured();
-=======
-        return [];
->>>>>>> origin/master
     }
 
     // TODO : implement getFavouritesSeries function to get the first 10 series from a user
