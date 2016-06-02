@@ -4,8 +4,11 @@
     <div ng-repeat="serie in data.series" >
         <!-- TODO: Fix image size css {{serie.cover_img_url}}-->
 
-        <div ng-click="detail(serie)" class=" col-md-3">
-           <img src="{{serie.cover_img_url}}">
+        <div ng-click="detail(serie)" class="Sbox col-md-3">
+            <div ng-if="serie.cover_img_url == 'N/A'">
+                {{serie.cover_img_url = 'img/no_img.png'}}>
+            </div>
+           <img class="searchImg" src="{{serie.cover_img_url}}">
             <h3> {{serie.title}} </h3>
             <p>{{serie.synopsis}}</p>
             <!-- TODO: Ajouter les catégories -->
