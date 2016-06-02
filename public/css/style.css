@@ -115,9 +115,16 @@ body{
 
 /*HOVER THUMBNAIL*/
 
+.searchImg{
+    max-width:300px;
+    max-height:370px;
+}
 figure img{
     width:182px;
     height:268px;
+}
+.Sbox{
+    height:550px;
 }
 .grid figure {
     max-width:182px;
