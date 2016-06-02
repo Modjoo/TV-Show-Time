@@ -53,6 +53,11 @@ Route::get('/securitycheck', ['middleware' => 'jwt.auth', function () {
     return "Security works !";
 }]);
 
+Route::get('api/auth/test', ['middleware' => 'jwt.auth', function () {
+    $user = \App\Http\Controllers\AuthenticateController::getAuthUser();
+    return $user;
+}]);
+
 
 
 

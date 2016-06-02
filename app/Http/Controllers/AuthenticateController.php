@@ -24,8 +24,7 @@ class AuthenticateController extends Controller
 		
 		
 		$user = User::where('pseudo', '=', $credentials['pseudo'])->first();
-	
-		
+
         try {
             if ($user != null && Hash::check($credentials['password'], $user->password)) {
                 $token = JWTAuth::fromUser($user);
@@ -39,10 +38,7 @@ class AuthenticateController extends Controller
         return response()->json(compact('token'));
 
     }
-
-    /**
-     *
-     */
+    
     public function getAuthenticatedUser()
     {
         try {
@@ -60,6 +56,31 @@ class AuthenticateController extends Controller
         }
 
         return response()->json(compact('user'));
+    }
+
+
+    /**
+     * Retrive the authenticate user.
+     * @return null
+     */
+    public static function getAuthUser()
+    {
+        $user = null;
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
+        } catch (TokenExpiredException $e) {
+            return null;
+        } catch (TokenInvalidException $e) {
+            return null;
+        } catch (JWTException $e) {
+            return null;
+        }
+
+        if($user != null){
+            $user = User::where('pseudo', '=', $user->pseudo)->first();
+        }
+
+        return $user;
     }
 
 }

@@ -9,7 +9,7 @@
         .controller('AuthController', AuthController);
 
 
-    function AuthController($auth, $state, $http, $rootScope) {
+    function AuthController($auth, $state, $location, $http, $rootScope) {
 
         var vm = this;
 
@@ -49,7 +49,7 @@
                 $rootScope.currentUser = response.data.user;
 
                 // Redirect the users state to view data
-                $state.go('users');
+                $location.path('/');
             });
         };
     }
