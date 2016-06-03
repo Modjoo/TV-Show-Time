@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class GenresSeries extends Model {
+class UsersSeries extends Model {
 
     protected $table = 'users_series';
     protected $fillable = ['id', 'user_id', 'serie_id'];
