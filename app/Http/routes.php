@@ -36,18 +36,26 @@ Route::get('/api/testjson', function () {
 }";
 });
 
-Route::get('/barchich/{string}', 'SerieController@searchSerie');
+//Route::get('/barchich/{string}', 'SerieController@unsubscribe');
 
 
 
 Route::get('/hello', function () {
-    $data = new \App\Http\Services\DataBaseService();
-    $data->findOrCreateSeriesFromExternalId("tt2372162");
+    $omdb = new \App\Http\Utils\Omdb();
+    $rawEpisode = $omdb->searchEpisodeById("tt2692410");
+    $episode = \App\Http\Utils\JsonParser::parseEpisode($rawEpisode);
+    $episode->season_id = 1;
+    $episode->save();
     return "It works !";
 });
 
 Route::get('/securitycheck', ['middleware' => 'jwt.auth', function () {
     return "Security works !";
+}]);
+
+Route::get('api/auth/test', ['middleware' => 'jwt.auth', function () {
+    $user = \App\Http\Controllers\AuthenticateController::getAuthUser();
+    return $user;
 }]);
 
 

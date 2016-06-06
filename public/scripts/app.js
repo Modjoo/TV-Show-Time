@@ -122,8 +122,8 @@
                     // to stay there and can send the user to the main state
                     if (toState.name === "auth") {
                         event.preventDefault();
-
-                        $state.go('users');
+                        // TODO: Implémenter l'action sign in si il est déja authentifier
+                        //$state.go('/pouet');
                     }
                 }
             });

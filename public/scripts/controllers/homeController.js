@@ -9,10 +9,15 @@
         .controller('HomeController', HomeController);
 
 
-    function HomeController($scope, featuredService) {
+    function HomeController($scope, $location, featuredService, cacheService) {
         featuredService.getFeaturedSeries().then(function (response) {
             $scope.featuredSeries = response.featuredseries;
         });
+
+        $scope.detail = function(serie){
+            cacheService.setCache("selected_serie", serie);
+            $location.path("/single");
+        };
 
 
         /*

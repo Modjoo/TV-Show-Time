@@ -5,25 +5,27 @@
 
         <div id="topWrapper" class="row wrapper grid cs-style-3">
             <div ng-repeat="serie in featuredSeries">
-                <figure>
-                    <div ng-if="serie.cover_img_url == 'N/A'">
-                        {{serie.cover_img_url = 'img/no_img.png'}}>
-                    </div>
-                    <img ng-src="{{serie.cover_img_url}}">
-                    <figcaption class="row">
-                        <div class="col-md-3">
-                            <h3>{{serie.title}} </h3>
-                            <span>{{serie.actors}}</span>
+                <div ng-click="detail(serie)">
+                    <figure>
+                        <div ng-if="serie.cover_img_url == 'N/A'">
+                            {{serie.cover_img_url = 'img/no_img.png'}}>
                         </div>
-                        <div class="col-md-9">
-                            <p>{{serie.synopsis}}</p>
-                        </div>
-                    </figcaption>
-                </figure>
+                        <img ng-src="{{serie.cover_img_url}}">
+                        <figcaption class="row">
+                            <div class="col-md-3">
+                                <h3>{{serie.title}} </h3>
+                                <span>{{serie.actors}}</span>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{serie.synopsis}}</p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
             </div>
         </div>
-        <h2>You might like those</h2>
 
+        <h2>You might like those</h2>
         <div id="botWrapper" class="row wrapper grid cs-style-3">
             <div>
                 <figure>
