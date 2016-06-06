@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
-use App\Http\Services\SearchService;
 use App\Http\Requests;
 use App\Http\Services\DataBaseService;
-use App\Models\Series;
 
 class HomeController extends Controller
 {

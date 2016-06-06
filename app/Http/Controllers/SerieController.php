@@ -6,8 +6,8 @@ use App\Http\Services\DataBaseService;
 use App\Http\Services\JsonService;
 use App\Http\Services\SearchService;
 use App\Models\Series;
+use App\Models\Episode;
 use App\Models\UsersSeries;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Utils;

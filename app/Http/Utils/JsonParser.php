@@ -108,6 +108,24 @@ class JsonParser implements IJsonParser
         return $map;
     }
 
+    /**
+     * Map the json with the user attributes
+     * @param $json One user from frontend
+     * @return array return mapped array
+     */
+    private static function mapUser($json){
+        $map = [
+            "title" => $json->Title,
+            "synopsis" => $json->Plot,
+            "cover_img_url" => $json->Poster,
+            "actors" => $json->Actors,
+            "producer" => $json->Writer,
+            "external_id" => $json->imdbID,
+            "duration_pattern" => Utils\Utils::extractNumber($json->Runtime),
+        ];
+        return $map;
+    }
+
     private static function mapSeason($json){
         $map = [
             "title" => $json->Title,

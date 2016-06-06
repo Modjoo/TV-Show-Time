@@ -36,7 +36,7 @@ Route::get('/api/testjson', function () {
 }";
 });
 
-//Route::get('/barchich/{string}', 'SerieController@unsubscribe');
+//Route::get('/barchich/{id}', 'ProfileController@setPersonnalData');
 
 
 
@@ -150,7 +150,6 @@ Route::group(['prefix' => 'api'], function () {
          * Set personal data
          */
         Route::post('personal', 'ProfileController@setPersonnalData');
-
 
     });
 
