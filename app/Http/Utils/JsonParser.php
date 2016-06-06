@@ -100,6 +100,7 @@ class JsonParser implements IJsonParser
                 "title" => $json->Title,
                 "number" => Utils\Utils::extractNumber($json->Episode),
                 "external_id" => $json->imdbID,
+                "release_date" => Utils\Utils::convertDate($json->Released),
                 "isfilled" => false
             ];
         }

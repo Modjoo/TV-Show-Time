@@ -36,7 +36,7 @@ Route::get('/api/testjson', function () {
 }";
 });
 
-Route::get('/barchich/{string}', 'SerieController@unsubscribe');
+//Route::get('/barchich/{string}', 'SerieController@unsubscribe');
 
 
 
