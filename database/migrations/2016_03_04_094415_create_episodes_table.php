@@ -15,6 +15,7 @@ class CreateEpisodesTable extends Migration {
 		Schema::create('episodes', function(Blueprint $table)
 		{
 			$table->integer('id', true);
+			$table->integer('serie_id')->index('fk_Episodes_has_Series_Series1_idx');
 			$table->string('title', 100);
 			$table->integer('duration')->nullable();
 			$table->string('description', 1000)->nullable();
