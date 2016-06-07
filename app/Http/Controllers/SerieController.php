@@ -9,6 +9,7 @@ use App\Models\Series;
 use App\Models\Episode;
 use App\Models\UsersSeries;
 
+
 use App\Http\Requests;
 use App\Http\Utils;
 
@@ -37,18 +38,24 @@ class SerieController extends Controller
     }
 
     public function subscribe($idSerie){
-        // TODO : implement session system (or other) to manage the user id in the webapp
-        $idUser = 1;
+        // Get user
+        $user = AuthenticateController::getAuthUser();
+        if ($user == null){
+            return null;
+        }
 
         $subscription = new UsersSeries();
-        $subscription->user_id = $idUser;
+        $subscription->user_id = $user->id;
         $subscription->serie_id = $idSerie;
         $subscription->save();
     }
 
     public function unsubscribe($idSerie){
-        // TODO : implement session system (or other) to manage the user id in the webapp
-        $idUser = 1;
-        UsersSeries::where(["serie_id" => $idSerie, "user_id" => $idUser])->get()->first()->delete();
+        // Get user
+        $user = AuthenticateController::getAuthUser();
+        if ($user == null){
+            return null;
+        }
+        UsersSeries::where(["serie_id" => $idSerie, "user_id" => $user->id])->get()->first()->delete();
     }
 }
