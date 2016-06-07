@@ -86,10 +86,14 @@ angular.module('authApp')
         var saveCache = function () {
             $window.localStorage.setItem('cacheServices', JSON.stringify(map));
         };
+        var clear = function(){
+            localStorage.removeItem('cacheServices');
+        };
 
         return {
             saveCache: saveCache,
             setCache: setCache,
+            clear: clear,
             getData: getData
         }
     });

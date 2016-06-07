@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
         $users = array(
             ['pseudo' => 'Modjo', 'password' => Hash::make('secret'), 'birthday' => \Carbon\Carbon::createFromDate(1999,07,25)->toDateTimeString(), 'gender' => 'Homme'],
             ['pseudo' => 'Hacker', 'password' => Hash::make('secret'), 'birthday' => \Carbon\Carbon::createFromDate(1750,07,19)->toDateTimeString(), 'gender' => 'Femme'],
+            ['pseudo' => 'Manu', 'password' => Hash::make('blabla'), 'birthday' => \Carbon\Carbon::createFromDate(1750,07,19)->toDateTimeString(), 'gender' => 'Femme']
         );
 
         // Loop through each user above and create the record for them in the database
