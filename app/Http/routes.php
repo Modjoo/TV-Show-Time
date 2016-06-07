@@ -36,7 +36,9 @@ Route::get('/api/testjson', function () {
 }";
 });
 
-//Route::get('/barchich/{id}', 'ProfileController@setPersonnalData');
+Route::get('/barchich/{id}', [
+    'uses' => 'ProfileController@setPersonnalData'
+]);
 
 
 
@@ -124,12 +126,18 @@ Route::group(['prefix' => 'api'], function () {
     /**
      * Subscribe to a serie
      */
-    Route::post('subscribe/{idserie}', 'SerieController@subscribe');
+    Route::get('/subscribe/{idserie}', [
+        'middleware' => 'jwt.auth',
+        'uses' => 'SerieController@subscribe'
+    ]);
 
     /**
      * Unsubscribe from a serie
      */
-    Route::post('unsubscribe/{idserie}', 'SerieController@unsubscribe');
+    Route::post('/unsubscribe/{idserie}', [
+        'middleware' => 'jwt.auth',
+        'uses' => 'SerieController@unsubscribe'
+    ]);
 
 
     // Profile Controller
@@ -139,7 +147,7 @@ Route::group(['prefix' => 'api'], function () {
      */
     Route::get('profile', 'ProfileController@getProfile');
 
-    Route::group(['prefix' => 'profile'], function (){
+    Route::group(['prefix' => 'profile', 'middleware' => 'jwt.auth'], function (){
 
         /**
          * Get all subscriptions
