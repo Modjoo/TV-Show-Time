@@ -52,14 +52,18 @@ class Omdb implements ISearchSeries
 
     public function getSeasonAmount($idSerie)
     {
-        $nbSeasonMax = false;
         $nbSeasons = 1;
-        while (!$nbSeasonMax){
+        while (true){
             $json = $this->getInfoSeason($idSerie,$nbSeasons);
             if (!JsonParser::isValid($json)){
-                return $nbSeasons;
+                if($nbSeasons > 1){
+                    return $nbSeasons-1;
+                }else{
+                    return $nbSeasons;
+                }
             }
             $nbSeasons++;
+
         }
         return 0;
     }

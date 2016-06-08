@@ -42,11 +42,9 @@ Route::get('/barchich/{id}', [
 
 
 Route::get('/hello', function () {
-    $omdb = new \App\Http\Utils\Omdb();
-    $rawEpisode = $omdb->searchEpisodeById("tt2692410");
-    $episode = \App\Http\Utils\JsonParser::parseEpisode($rawEpisode);
-    $episode->season_id = 1;
-    $episode->save();
+    $db = new \App\Http\Services\DataBaseService();
+    $serie = \App\Models\Series::find(1);
+    $db->findOrcreateSeasons($serie, $serie->external_id);
     return "It works !";
 });
 
@@ -113,6 +111,11 @@ Route::group(['prefix' => 'api'], function () {
      * Get a serie by ID from home page
      */
     Route::get('serie/{id}', 'SerieController@getSerie');
+
+    /**
+     * Get a serie by ID from home page
+     */
+    Route::get('serie/filled/{id}', 'SerieController@getFilledSerie');
 
     /**
      * Get episode information

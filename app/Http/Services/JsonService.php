@@ -24,4 +24,8 @@ class JsonService
         return json_encode(["episode" => $episodes]);
     }
 
+    public static function parseSeason($season, $episodeList){
+        return ["season" => $season, "episodes" => $episodeList];
+    }
+
 }
