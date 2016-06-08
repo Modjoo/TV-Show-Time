@@ -120,7 +120,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('serie/{id}', 'SerieController@getSerie');
 
     /**
-     * Get a serie by ID from home page
+     * Get a serie with all seasons and episodes
      */
     Route::get('serie/filled/{id}', 'SerieController@getFilledSerie');
 

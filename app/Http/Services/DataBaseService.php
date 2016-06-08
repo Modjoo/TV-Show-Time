@@ -59,10 +59,12 @@ class DataBaseService
             $numberOfSeason = $this->externalAPI->getSeasonAmount($externalID);
             for ($i = 1; $i <= $numberOfSeason; $i++) {
                 $rawSeason = $this->externalAPI->getInfoSeason($externalID, $i);
-                $season = JsonParser::parseSeason($rawSeason);
-                $season->series()->associate($serie);
-                $season->save();
-                $this->createFullEpisode($serie, $season, $rawSeason->Episodes);
+                if($rawSeason != null){
+                    $season = JsonParser::parseSeason($rawSeason);
+                    $season->series()->associate($serie);
+                    $season->save();
+                    $this->createFullEpisode($serie, $season, $rawSeason->Episodes);
+                }
             }
         }
         return $seasons;
