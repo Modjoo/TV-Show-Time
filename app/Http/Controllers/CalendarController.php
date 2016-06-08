@@ -38,10 +38,4 @@ class CalendarController extends Controller
         return json_encode(["series" => $series]);
     }
 
-    public function setPersonnalData($json){
-        $data = json_decode($json);
-        $user = User::find($data->id);
-        $user->update(['pseudo' => $data->pseudo, 'avatar_img' => $data->avatar, 'birthday' => convertDate($data->birthday), 'gender' => $data->gender]);
-        return $data->isfilled;
-    }
 }
