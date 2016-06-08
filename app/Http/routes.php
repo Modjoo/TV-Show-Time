@@ -36,12 +36,13 @@ Route::get('/api/testjson', function () {
 }";
 });
 
-Route::get('/barchich/{id}', [
-    'uses' => 'SerieController@getEpisodesSeen'
+Route::get('/barchich', [
+    'uses' => 'HomeController@getFavouritesSeries'
 ]);
 
 Route::get('/barchiFunc', function () {
-
+    dd(\App\Models\Series::whereIn('id', \App\Models\UsersSeries::where('user_id', '=', 1)->pluck("serie_id"))
+        ->paginate(10));
 });
 
 
@@ -99,7 +100,11 @@ Route::group(['prefix' => 'api'], function () {
     /**
      * Get favourites series from user
      */
-    Route::get('favourites', 'HomeController@getFavouritesSeries');
+    Route::get('favourites', [
+        'middleware' => 'jwt.auth',
+        'uses' => 'HomeController@getFavouritesSeries'
+    ]);
+
 
 
     // Authenticate Controller

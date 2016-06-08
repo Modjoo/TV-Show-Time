@@ -14,6 +14,7 @@ use App\Http\Utils\Omdb;
 use App\Models\Genre;
 use App\Models\GenresSeries;
 use App\Models\Series;
+use App\Models\UsersSeries;
 use App\Models\EpisodesUser;
 use App\Models\Episode;
 
@@ -140,15 +141,14 @@ class DataBaseService
             ->where('season_id', '=', $idSeason)->get();
     }
 
-    // TODO : implement getFeaturedSeries function to get the last 10 series on the database
     public function getFeaturedSeries()
     {
         return \App\Models\Series::featured();
     }
 
-    // TODO : implement getFavouritesSeries function to get the first 10 series from a user
-    public function getFavouritesSeries($iduser)
+    public function getFavouritesSeries($idUser)
     {
-
+        return Series::whereIn('id', UsersSeries::where('user_id', '=', $idUser)->pluck("serie_id"))
+            ->take(10)->get();
     }
 }
