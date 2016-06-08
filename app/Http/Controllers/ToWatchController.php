@@ -15,16 +15,15 @@ class ToWatchController extends Controller
     public function getToWatchEpisodes()
     {
         // Get user
+        $user = AuthenticateController::getAuthUser();
+        if ($user == null){
+            return null;
+        }
 
         $episodesIds = Episode::
-            whereIn('serie_id', UsersSeries::where("user_id", "=", 1)->pluck("serie_id"))
-            ->whereNotIn('id', EpisodesUser::where('user_id', '=', 1)->pluck("episode_id"));
-        // get all episodes from the series => Episodes
+            whereIn('serie_id', UsersSeries::where("user_id", "=", $user->id)->pluck("serie_id"))
+            ->whereNotIn('id', EpisodesUser::where('user_id', '=', $user->id)->pluck("episode_id"));
 
-
-        dd($episodesIds->get());
-        // compare episodes seen with episodes available => prevent list + EpisodesUsers
-
-        // get episodes missing
+        return json_encode(["episodes" => $episodesIds->get()]);
     }
 }

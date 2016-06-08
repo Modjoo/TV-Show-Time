@@ -27,8 +27,13 @@ class HomeController extends Controller
 
 
     public function getFavouritesSeries(){
-        $idUser = 1;
-        $favouritesSeries = $this->dbservice->getFavouritesSeries($idUser);
+        // Get user
+        $user = AuthenticateController::getAuthUser();
+        if ($user == null){
+            return null;
+        }
+
+        $favouritesSeries = $this->dbservice->getFavouritesSeries($user->id);
         return json_encode(["favouritesSeries" => $favouritesSeries]);
     }
 
