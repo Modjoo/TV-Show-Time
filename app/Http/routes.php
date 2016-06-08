@@ -36,8 +36,8 @@ Route::get('/api/testjson', function () {
 }";
 });
 
-Route::get('/barchich/{id}', [
-    'uses' => 'ProfileController@setPersonnalData'
+Route::get('/barchich', [
+    'uses' => 'ToWatchController@getToWatchEpisodes'
 ]);
 
 
