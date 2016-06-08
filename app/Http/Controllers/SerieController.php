@@ -58,6 +58,16 @@ class SerieController extends Controller
         }
         UsersSeries::where(["serie_id" => $idSerie, "user_id" => $user->id])->get()->first()->delete();
     }
+
+    public function getSeenEpisodes($idSeason){
+        // Get user
+        $user = AuthenticateController::getAuthUser();
+        if ($user == null){
+            return null;
+        }
+
+        return json_encode(["episodes" => $this->dbservice->getSeenEpisodes($user->id, $idSeason)]);
+    }
     
     public function getFilledSerie($idSerie){
         $seasonArray = [];

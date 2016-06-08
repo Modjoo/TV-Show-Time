@@ -37,8 +37,15 @@ Route::get('/api/testjson', function () {
 });
 
 Route::get('/barchich/{id}', [
-    'uses' => 'ProfileController@setPersonnalData'
+    'uses' => 'SerieController@getEpisodesSeen'
 ]);
+
+Route::get('/barchiFunc', function () {
+
+});
+
+
+
 
 
 Route::get('/hello', function () {
@@ -90,7 +97,7 @@ Route::group(['prefix' => 'api'], function () {
     /**
      * Get favourites series from user
      */
-    Route::get('favourites/{iduser}', 'HomeController@getFavouritesSeries');
+    Route::get('favourites', 'HomeController@getFavouritesSeries');
 
 
     // Authenticate Controller
@@ -140,9 +147,16 @@ Route::group(['prefix' => 'api'], function () {
 
 
     // Calendar Controller
-    Route::post('calendar/{iduser}', [
+    Route::post('calendar', [
         'middleware' => 'jwt.auth',
         'uses' => 'CalendarController@getsubscriptions'
+    ]);
+
+
+    // ToWatch Controller
+    Route::post('towatch', [
+        'middleware' => 'jwt.auth',
+        'uses' => 'ToWatchController@getToWatchEpisodes'
     ]);
 
 

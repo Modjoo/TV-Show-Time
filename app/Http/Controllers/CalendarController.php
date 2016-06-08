@@ -26,9 +26,11 @@ class CalendarController extends Controller
     }
 
     public function getSubscriptions(){
-        // TODO : implement session system (or other) to manage the user id in the webapp
-        $idUser = 1;
-        $usersSeries = UsersSeries::where("user_id", "=", $idUser)->get();
+        $user = AuthenticateController::getAuthUser();
+        if ($user == null){
+            return null;
+        }
+        $usersSeries = UsersSeries::where("user_id", "=", $user->id)->get();
         $series[] = array();
         $i = 0;
         foreach ($usersSeries as $usersSerie) {
