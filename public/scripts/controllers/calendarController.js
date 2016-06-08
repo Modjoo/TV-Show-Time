@@ -13,15 +13,10 @@
         .controller('CalendarController', CalendarController);
 
 
-    function CalendarController($scope, $location, featuredService, cacheService) {
-        featuredService.getFeaturedSeries().then(function (response) {
-            $scope.featuredSeries = response.featuredseries;
+    function CalendarController($scope, $location, calendarService, cacheService) {
+        calendarService.getSubscriptions().then(function (response) {
+            $scope.subscriptions = response.subscriptions;
         });
-
-        $scope.detail = function (serie) {
-            cacheService.setCache("selected_serie", serie);
-            $location.path("/single");
-        };
         $scope.options = {
             weekOffset: 1,
             daysOfTheWeek: ['ZO', 'MA', 'DI', 'WO', 'DO', 'VR', 'ZA'],

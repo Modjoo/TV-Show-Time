@@ -41,7 +41,6 @@ Route::get('/barchich', [
 ]);
 
 
-
 Route::get('/hello', function () {
     $omdb = new \App\Http\Utils\Omdb();
     $rawEpisode = $omdb->searchEpisodeById("tt2692410");
@@ -59,8 +58,6 @@ Route::get('api/auth/test', ['middleware' => 'jwt.auth', function () {
     $user = \App\Http\Controllers\AuthenticateController::getAuthUser();
     return $user;
 }]);
-
-
 
 
 /*
@@ -84,7 +81,6 @@ Route::group(['middleware' => ['web']], function () {
 */
 
 
-
 Route::group(['prefix' => 'api'], function () {
 
     // Home Controller
@@ -105,12 +101,12 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 
-
     // Serie Controller
 
     /**
      * Search serie from with the name
      */
+
     Route::get('search/{string}', 'SerieController@searchSerie');
 
     /**
@@ -140,6 +136,13 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
 
+    // Calendar Controller
+    Route::post('calendar/{iduser}', [
+        'middleware' => 'jwt.auth',
+        'uses' => 'CalendarController@getsubscriptions'
+    ]);
+
+
     // Profile Controller
 
     /**
@@ -147,7 +150,7 @@ Route::group(['prefix' => 'api'], function () {
      */
     Route::get('profile', 'ProfileController@getProfile');
 
-    Route::group(['prefix' => 'profile', 'middleware' => 'jwt.auth'], function (){
+    Route::group(['prefix' => 'profile', 'middleware' => 'jwt.auth'], function () {
 
         /**
          * Get all subscriptions
@@ -163,8 +166,6 @@ Route::group(['prefix' => 'api'], function () {
 
 
 });
-
-
 
 
 // Remove # from angularjs URL

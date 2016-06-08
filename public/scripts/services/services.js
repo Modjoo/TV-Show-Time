@@ -23,6 +23,17 @@ angular.module('authApp')
             }
         };
     }])
+    .service('calendarService', ['$http', '$q', function ($http, $q) {
+        return {
+            getSubscriptions: function () {
+                var d = $q.defer();
+                $http.get('api/calendar/{iduser}').then(function (response) {
+                    d.resolve(response.data);
+                });
+                return d.promise;
+            }
+        };
+    }])
     .service('cacheService', function ($window) {
         var map = [];
 
