@@ -45,6 +45,9 @@ class JsonParser implements IJsonParser
 
     public static function isValid($json)
     {
+        if($json == null){
+            return false;
+        }
         return $json->Response == "True";
     }
 

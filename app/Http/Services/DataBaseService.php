@@ -50,44 +50,46 @@ class DataBaseService
     }
 
 
-    public function createSeasons($serie, $externalID){
-        $seasons = [];
+    public function findOrcreateSeasons($serie, $externalID)
+    {
+        // Check if seasons exists
+        $seasons = $serie->seasons()->get();
+        $episodes = null;
 
-        $numberOfSeason = $this->externalAPI->getSeasonAmount($externalID);
-
-        for ($i = 1; $i < $numberOfSeason; $i++) {
-            $rawSeason = $this->externalAPI->getInfoSeason($externalID, $i);
-            $season = JsonParser::parseSeason($rawSeason);
-            $episodes = $this->extractEpisodeFromSeason($rawSeason, false);
-
-            // Add season object to array
-            $seasons[] = array(["season" => $season, "episodes" => $episodes]);
-        }
-
-        foreach ($seasons as $season) {
-            $season[0]["season"]->series()->associate($serie);
-            $season[0]["season"]->save();
-            foreach ($season[0]["episodes"] as $episode) {
-                $episode->season()->associate($season[0]["season"]);
-                $episode->save();
+        if (sizeof($seasons) <= 0) {
+            $numberOfSeason = $this->externalAPI->getSeasonAmount($externalID);
+            for ($i = 1; $i <= $numberOfSeason; $i++) {
+                $rawSeason = $this->externalAPI->getInfoSeason($externalID, $i);
+                if($rawSeason != null){
+                    $season = JsonParser::parseSeason($rawSeason);
+                    $season->series()->associate($serie);
+                    $season->save();
+                    $this->createFullEpisode($serie, $season, $rawSeason->Episodes);
+                }
             }
         }
+        return $seasons;
     }
 
     /**
      * @param $season {Season}
      * @param $externalID {String}
      */
-    public function createFullEpisode($season, $externalID){
-        $numberOfSeason = $season->number();
-
-        $rawSeason = $this->externalAPI->getInfoSeason($externalID, $numberOfSeason);
-        $season = JsonParser::parseSeason($rawSeason);
-        $episodes = $this->extractEpisodeFromSeason($rawSeason, true);
-        foreach ($episodes as $episode) {
-            $episode->season()->associate($season);
-            $episode->save();
+    public function createFullEpisode($serie, $season, $rawEpisodes = null)
+    {
+        $episodes = [];
+        if ($rawEpisodes == null) {
+            $rawEpisodes = $this->externalAPI->getInfoSeason($serie->external_id, $serie->number);
         }
+        $rawEpisodes = $this->extractEpisodeFromSeason($rawEpisodes, true);
+
+        foreach ($rawEpisodes as $episode) {
+            $episode->season()->associate($season);
+            $episode->serie_id = $serie->id;
+            $episode->save();
+            $episodes[] = $episode;
+        }
+        return $episodes;
     }
 
 
@@ -96,10 +98,9 @@ class DataBaseService
      * @param $fill query the api for fill the episode with complete data.
      * @return array
      */
-    private function extractEpisodeFromSeason($seasonJson, $fill)
+    private function extractEpisodeFromSeason($rawEpisodes, $fill)
     {
         $listEpisode = [];
-        $rawEpisodes = $seasonJson->Episodes;
         foreach ($rawEpisodes as $rawEpisode) {
             if ($fill) {
                 $rawEpisode = $this->externalAPI->searchEpisodeById($rawEpisode->imdbID);
@@ -125,7 +126,8 @@ class DataBaseService
         }
     }
 
-    public function getSubscriptions($userid){
+    public function getSubscriptions($userid)
+    {
         $usersSeries = UsersSeries::where("user_id", "=", $userid)->get();
         $series[] = array();
         $i = 0;

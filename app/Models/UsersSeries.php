@@ -17,5 +17,4 @@ class UsersSeries extends Model {
         return $this->belongsTo(\App\Models\Series::class, 'serie_id', 'id');
     }
 
-
 }

@@ -56,7 +56,6 @@ class SerieController extends Controller
         if ($user == null){
             return null;
         }
-
         UsersSeries::where(["serie_id" => $idSerie, "user_id" => $user->id])->get()->first()->delete();
     }
 
@@ -69,4 +68,17 @@ class SerieController extends Controller
 
         return json_encode(["episodes" => $this->dbservice->getSeenEpisodes($user->id, $idSeason)]);
     }
+    
+    public function getFilledSerie($idSerie){
+        $seasonArray = [];
+        $serie = \App\Models\Series::find($idSerie);
+        if($serie == null){
+            return "";
+        }
+        $seasons = $this->dbservice->findOrcreateSeasons($serie, $serie->external_id);
+        foreach ($seasons as $season){
+            $seasonArray[] = JsonService::parseSeason($season, $season->episodes()->get());
+        }
+        return JsonService::generateSerieSeason($serie, $seasonArray);
+    }    
 }
