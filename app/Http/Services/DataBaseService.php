@@ -122,6 +122,17 @@ class DataBaseService
         }
     }
 
+    public function getSubscriptions($userid){
+        $usersSeries = UsersSeries::where("user_id", "=", $userid)->get();
+        $series[] = array();
+        $i = 0;
+        foreach ($usersSeries as $usersSerie) {
+            $series[$i] = Series::find($usersSerie->serie_id);
+            $i++;
+        }
+        return $series;
+    }
+
 
     // TODO : implement getFeaturedSeries function to get the last 10 series on the database
     public function getFeaturedSeries()

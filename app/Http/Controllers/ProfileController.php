@@ -25,15 +25,7 @@ class ProfileController extends Controller
         if ($user == null){
             return null;
         }
-
-        $usersSeries = UsersSeries::where("user_id", "=", $user->id)->get();
-        $series[] = array();
-        $i = 0;
-        foreach ($usersSeries as $usersSerie) {
-            $series[$i] = Series::find($usersSerie->serie_id);
-            $i++;
-        }
-        return json_encode(["series" => $series]);
+        return json_encode(["series" => $this->dbservice.$this->getSubscriptions($user->id)]);
     }
 
     public function setPersonnalData($id){
