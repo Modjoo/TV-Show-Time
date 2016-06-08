@@ -14,6 +14,8 @@ use App\Http\Utils\Omdb;
 use App\Models\Genre;
 use App\Models\GenresSeries;
 use App\Models\Series;
+use App\Models\EpisodesUser;
+use App\Models\Episode;
 
 class DataBaseService
 {
@@ -133,6 +135,10 @@ class DataBaseService
         return $series;
     }
 
+    public function getSeenEpisodes($idUser, $idSeason){
+        return Episode::whereIn('id', EpisodesUser::where('user_id', '=', $idUser)->pluck("episode_id"))
+            ->where('season_id', '=', $idSeason)->get();
+    }
 
     // TODO : implement getFeaturedSeries function to get the last 10 series on the database
     public function getFeaturedSeries()

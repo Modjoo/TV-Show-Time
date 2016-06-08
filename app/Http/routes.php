@@ -36,9 +36,16 @@ Route::get('/api/testjson', function () {
 }";
 });
 
-Route::get('/barchich', [
-    'uses' => 'ToWatchController@getToWatchEpisodes'
+Route::get('/barchich/{id}', [
+    'uses' => 'SerieController@getEpisodesSeen'
 ]);
+
+Route::get('/barchiFunc', function () {
+
+});
+
+
+
 
 
 Route::get('/hello', function () {

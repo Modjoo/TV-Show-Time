@@ -20,10 +20,11 @@ class ToWatchController extends Controller
             return null;
         }
 
-        $episodesIds = Episode::
-            whereIn('serie_id', UsersSeries::where("user_id", "=", $user->id)->pluck("serie_id"))
+        $episodes = Episode::whereIn('serie_id', UsersSeries::where("user_id", "=", $user->id)->pluck("serie_id"))
             ->whereNotIn('id', EpisodesUser::where('user_id', '=', $user->id)->pluck("episode_id"));
 
-        return json_encode(["episodes" => $episodesIds->get()]);
+        return json_encode(["episodes" => $episodes->get()]);
     }
+
+
 }

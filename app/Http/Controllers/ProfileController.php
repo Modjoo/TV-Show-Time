@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Series;
 use App\Models\User;
-use App\Models\UsersSeries;
 use App\Http\Services\DataBaseService;
 use App\Http\Utils\Utils;
 use App\Http\Requests;
@@ -28,16 +26,16 @@ class ProfileController extends Controller
         return json_encode(["series" => $this->dbservice.$this->getSubscriptions($user->id)]);
     }
 
-    public function setPersonnalData($id){
+
+    public function setPersonnalData($json){
         // Get user
         $user = AuthenticateController::getAuthUser();
         if ($user == null){
             return null;
         }
 
-        $json = '{"pseudo":"Manu","avatar":"http://images.cryhavok.org/d/17176-1/Evil+Genius+Racoon.jpg","birthday":"19-04-2016","gender":"Homme"}';
         $data = \GuzzleHttp\json_decode($json);
-        $user = User::find(1);
+        $user = User::find($user->id);
         $user->update(['pseudo' => $data->pseudo, 'avatar_img' => $data->avatar, 'birthday' => Utils::convertDate($data->birthday), 'gender' => $data->gender]);
     }
 }
