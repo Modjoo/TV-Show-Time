@@ -12,6 +12,19 @@ angular.module('authApp')
             }
         };
     }])
+    .service('seriesService', ['$http', '$q', function ($http, $q) {
+        return {
+            getFilledSerie: function(serieId){
+                var d = $q.defer();
+                $http.get('api/serie/filled/' + serieId).then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            }
+        }
+    }])
     .service('featuredService', ['$http', '$q', function ($http, $q) {
         return {
             getFeaturedSeries: function () {
@@ -97,7 +110,7 @@ angular.module('authApp')
         var saveCache = function () {
             $window.localStorage.setItem('cacheServices', JSON.stringify(map));
         };
-        var clear = function(){
+        var clear = function () {
             localStorage.removeItem('cacheServices');
         };
 

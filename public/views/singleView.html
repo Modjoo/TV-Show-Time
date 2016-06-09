@@ -1,5 +1,7 @@
 <div template></div>
+
 <div id="contentContainer" class="container-fluid">
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
     <div id="leftContainer" class="col-md-3">
 
         <div id="circular">
@@ -26,26 +28,18 @@
 
         <div id="chooseBox">
             <div id="selectSeason" class="col-md-2">
-                <select name="season">
-                    <option >Pick a season</option>
-                    <option >Saison 1</option>
-                    <option >Saison 2</option>
-                    <option >Saison 3</option>
-                    <option >Saison 4</option>
+                <select ng-model="selectedEpisodes">
+                    <option ng-selected="fullSeason == selectedSeason"
+                            ng-repeat="fullSeason in seasonFilled.seasons"
+                            value="{{fullSeason.$$hashKey}}">
+                        Saison {{fullSeason.season.number}}
+                    </option>
                 </select>
             </div>
             <div id="selectEpisode" class="col-md-6">
-                <form action="#">
-                    <p><input type="checkbox" id="test1" /><label for="test1"><span class="ui"></span>Ep1</label></p>
-                    <p><input type="checkbox" id="test2" /><label for="test2"><span class="ui"></span>Ep2</label></p>
-                    <p><input type="checkbox" id="test3" /><label for="test3"><span class="ui"></span>Ep3</label></p>
-                    <p><input type="checkbox" id="test4" /><label for="test4"><span class="ui"></span>Ep4</label></p>
-                    <p><input type="checkbox" id="test5" /><label for="test5"><span class="ui"></span>Ep5</label></p>
-                    <p><input type="checkbox" id="test6" /><label for="test6"><span class="ui"></span>Ep6</label></p>
-                    <p><input type="checkbox" id="test7" /><label for="test7"><span class="ui"></span>Ep7</label></p>
-                    <p><input type="checkbox" id="test8" /><label for="test8"><span class="ui"></span>Ep8</label></p>
-                    <p><input type="checkbox" id="test9" /><label for="test9"><span class="ui"></span>Ep9</label></p>
-                </form>
+                <div ng-repeat="episode in episodes">
+                    <p><input type="checkbox" id="{{episode.number}}" ng-click="episodeSelected(episode)" /><label for="{{episode.number}}"><span class="ui"></span>{{episode.number}}</label></p>
+                </div>
             </div>
         </div>
 
