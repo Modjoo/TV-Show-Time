@@ -130,6 +130,11 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('serie/filled/{id}', 'SerieController@getFilledSerie');
 
     /**
+     * Get episodes seen by the user
+     */
+    Route::get('episodesseen/{idseason}', 'SerieController@getSeenEpisodes');
+
+    /**
      * Get episode information
      */
     Route::get('episode/{id}', 'SerieController@getEpisode');
