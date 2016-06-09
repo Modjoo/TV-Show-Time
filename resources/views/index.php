@@ -24,7 +24,7 @@
 
 <?php
 
-echo Html::script(asset('https://code.jquery.com/jquery-2.2.4.min.js'));
+echo Html::script(asset('scripts/lib/jquery-2.2.4.min.js'));
 echo Html::script(asset('scripts/lib/moment.js'));
 echo Html::script(asset('scripts/lib/angular.js'));
 echo Html::script(asset('scripts/lib/angular-ui-router.js'));
@@ -32,6 +32,9 @@ echo Html::script(asset('scripts/lib/satellizer.js'));
 echo Html::script(asset('scripts/lib/angular-resource.js'));
 echo Html::script(asset('scripts/lib/clndr.js'));
 echo Html::script(asset('scripts/lib/angular-clndr.min.js'));
+echo Html::script(asset('scripts/lib/spin.min.js'));
+echo Html::script(asset('scripts/lib/angular-spinner.min.js'));
+echo Html::script(asset('scripts/lib/angular-loading-spinner.js'));
 
 echo Html::script(asset('scripts/toucheffects.js'));
 
