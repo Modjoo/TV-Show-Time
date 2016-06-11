@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('authApp', ['ui.router', 'satellizer', 'tien.clndr', 'ngLoadingSpinner'])
+        .module('serialWatcherApp', ['ui.router', 'satellizer', 'tien.clndr', 'ngLoadingSpinner'])
         .directive('template', function () {
             return {
                 templateUrl: '../views/nav/navBar.html'

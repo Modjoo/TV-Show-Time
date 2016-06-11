@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('authApp')
+        .module('serialWatcherApp')
         .controller('UserController', UserController);
 
     function UserController($http, $auth, $rootScope) {

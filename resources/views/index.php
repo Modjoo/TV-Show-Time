@@ -9,12 +9,12 @@
     echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"./css/bootstrap.css\">";
     echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"./css/angular-clndr.css\">";
     echo "<link media=\"all\" type=\"text/css\" rel=\"stylesheet\" href=\"./css/style.css\">";
-    echo "<script src='scripts/modernizr.custom.js'></script>";
+    echo "<script src='scripts/lib/modernizr.custom.js'></script>";
     echo "<base href=\"/\">"
 
     ?>
 </head>
-<body ng-app="authApp">
+<body ng-app="serialWatcherApp">
 
 <div class="container">
     <div ui-view></div>
@@ -36,7 +36,7 @@ echo Html::script(asset('scripts/lib/spin.min.js'));
 echo Html::script(asset('scripts/lib/angular-spinner.min.js'));
 echo Html::script(asset('scripts/lib/angular-loading-spinner.js'));
 
-echo Html::script(asset('scripts/toucheffects.js'));
+echo Html::script(asset('scripts/lib/toucheffects.js'));
 
 // Angularjs scripts
 echo Html::script(asset('scripts/app.js'));

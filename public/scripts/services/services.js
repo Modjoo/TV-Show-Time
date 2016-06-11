@@ -1,4 +1,4 @@
-angular.module('authApp')
+angular.module('serialWatcherApp')
     .service('search', ['$http', '$q', function ($http, $q) {
         return {
             searchByName: function (name) {

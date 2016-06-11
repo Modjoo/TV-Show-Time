@@ -9,7 +9,7 @@
     'use strict';
 
     angular
-        .module('authApp')
+        .module('serialWatcherApp')
         .controller('CalendarController', CalendarController);
 
 
