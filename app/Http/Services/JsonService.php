@@ -28,4 +28,8 @@ class JsonService
         return ["season" => $season, "episodes" => $episodeList];
     }
 
+    public static function generateUser($user){
+        return ["user" => $user];
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\JsonService;
 use App\Models\User;
 use App\Http\Services\DataBaseService;
 use App\Http\Utils\Utils;
@@ -23,7 +24,7 @@ class ProfileController extends Controller
         if ($user == null){
             return null;
         }
-        return json_encode(["series" => $this->dbservice.$this->getSubscriptions($user->id)]);
+        return json_encode(["series" => $this->dbservice->getSubscriptions($user->id)]);
     }
 
 
@@ -38,4 +39,10 @@ class ProfileController extends Controller
         $user = User::find($user->id);
         $user->update(['pseudo' => $data->pseudo, 'avatar_img' => $data->avatar, 'birthday' => Utils::convertDate($data->birthday), 'gender' => $data->gender]);
     }
+    
+    public function getPersonnalData(){
+        $user = AuthenticateController::getAuthUser();
+        return JsonService::generateUser($user);
+    }
+    
 }

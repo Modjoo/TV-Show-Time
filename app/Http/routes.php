@@ -50,9 +50,6 @@ Route::get('/barchiFunc', function () {
 
 
 Route::get('/hello', function () {
-    $subscribe = \App\Models\UsersSeries::where(["user_id" => 1, "serie_id" => 2])->first();
-        return json_encode(["subscribe" => $subscribe != null]);
-    dd($subscribe);
     return "It works !";
 });
 
@@ -178,7 +175,7 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     // Calendar Controller
-    Route::post('calendar', [
+    Route::get('calendar', [
         'middleware' => 'jwt.auth',
         'uses' => 'CalendarController@getsubscriptions'
     ]);
@@ -209,6 +206,11 @@ Route::group(['prefix' => 'api'], function () {
          * Set personal data
          */
         Route::post('personal', 'ProfileController@setPersonnalData');
+
+        /**
+         * Set personal data
+         */
+        Route::get('personal', 'ProfileController@getPersonnalData');
 
     });
 

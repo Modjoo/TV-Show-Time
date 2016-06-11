@@ -31,7 +31,7 @@ class Omdb implements ISearchSeries
 
     public function searchBySeriesName($string)
     {
-        $params = array('s' => $string.'*', 'type' => 'series');
+        $params = array('s' => $string . '*', 'type' => 'series');
         return $this->requestAPI($this->generateQuery($params));
     }
 
@@ -52,20 +52,12 @@ class Omdb implements ISearchSeries
 
     public function getSeasonAmount($idSerie)
     {
-        $nbSeasons = 1;
-        while (true){
-            $json = $this->getInfoSeason($idSerie,$nbSeasons);
-            if (!JsonParser::isValid($json)){
-                if($nbSeasons > 1){
-                    return $nbSeasons-1;
-                }else{
-                    return $nbSeasons;
-                }
-            }
-            $nbSeasons++;
-
+        $json = $this->getInfoSeason($idSerie, 1);
+        if (JsonParser::isValid($json)) {
+            return intval($json->totalSeasons);
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     public function getInfoSeason($idSerie, $seasonNumber)
@@ -83,7 +75,7 @@ class Omdb implements ISearchSeries
     {
         $res = $this->request->get($query);
         $json = json_decode($res->getBody()->getContents());
-        if($json->Response == self::RESPONSE_FALSE){
+        if ($json->Response == self::RESPONSE_FALSE) {
             return null;
         }
         return $json;

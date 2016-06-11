@@ -78,6 +78,7 @@ class AuthenticateController extends Controller
 
         if($user != null){
             $user = User::where('pseudo', '=', $user->pseudo)->first();
+            $user->password = null;
         }
 
         return $user;

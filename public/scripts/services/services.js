@@ -173,6 +173,27 @@ angular.module('serialWatcherApp')
                 return d.promise;
             }
         }
+    }).service('profileService', function($http, $q){
+        return{
+            getProfile: function(){
+                var d = $q.defer();
+                $http.get('api/profile/personal').then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            },
+            setProfile: function(user){
+                var d = $q.defer();
+                $http.post('api/profile/personal', user).then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            }
+        }
     });
 
 
