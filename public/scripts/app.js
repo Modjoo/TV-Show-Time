@@ -28,6 +28,11 @@
                     controller: 'CalendarController as calendar',
                     templateUrl: '../views/calendarView.html'
                 })
+                .state('towatch', {
+                    url: '/towatch',
+                    controller: 'TowatchController as towatch',
+                    templateUrl: '../views/toWatchView.html'
+                })
                 .state('profil', {
                     url: '/profil',
                     templateUrl: '../views/profilView.html',

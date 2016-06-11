@@ -15,8 +15,14 @@
 
     function CalendarController($scope, $location, calendarService, cacheService) {
         calendarService.getSubscriptions().then(function (response) {
-            $scope.subscriptions = response.subscriptions;
+            $scope.subscription = response.subscription;
         });
+
+        $scope.detail = function (episode) {
+            cacheService.setCache("selected_episode", episode);
+            $location.path("/single");
+        };
+
         $scope.options = {
             weekOffset: 1,
             daysOfTheWeek: ['ZO', 'MA', 'DI', 'WO', 'DO', 'VR', 'ZA'],
@@ -35,7 +41,8 @@
                 return e.title
             }).join("\n"));
         };
-    console.log("pouet");
+
     }
+
 
 })();

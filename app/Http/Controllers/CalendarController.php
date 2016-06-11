@@ -40,7 +40,7 @@ class CalendarController extends Controller
             }
         })->get();
 
-        return \App\Http\Services\JsonService::generateEpisodes($episodes);
+        return \App\Http\Services\JsonService::generateSubscription($episodes);
 
     }
 
