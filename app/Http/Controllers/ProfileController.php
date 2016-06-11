@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Services\DataBaseService;
 use App\Http\Utils\Utils;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 
 class ProfileController extends Controller
 {
@@ -28,16 +29,19 @@ class ProfileController extends Controller
     }
 
 
-    public function setPersonnalData($json){
-        // Get user
+    public function setPersonnalData(){
+        $pseudo = Input::get('pseudo');
+        $avatar = Input::get('avatar_img');
+        $birthday = Input::get('birthday');
+        $gender = Input::get('gender');
+
         $user = AuthenticateController::getAuthUser();
         if ($user == null){
             return null;
         }
 
-        $data = \GuzzleHttp\json_decode($json);
         $user = User::find($user->id);
-        $user->update(['pseudo' => $data->pseudo, 'avatar_img' => $data->avatar, 'birthday' => Utils::convertDate($data->birthday), 'gender' => $data->gender]);
+        $user->update(['pseudo' => $pseudo, 'avatar_img' => $avatar, 'birthday' => Utils::convertDate($birthday), 'gender' => $gender]);
     }
     
     public function getPersonnalData(){

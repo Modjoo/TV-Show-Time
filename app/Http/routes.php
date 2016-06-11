@@ -47,7 +47,9 @@ Route::get('/barchiFunc', function () {
 
 
 
-
+Route::post('/testPosts', function(){
+   return \Illuminate\Support\Facades\Input::get('data');
+});
 
 Route::get('/hello', function () {
     return "It works !";

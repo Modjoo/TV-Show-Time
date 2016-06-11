@@ -10,12 +10,17 @@
     function ProfilController($location, $scope, $filter, profileService) {
         profileService.getProfile().then(function(result){
             var user = result.user;
-            console.log(user.birthday);
-            user.birthday = new Date(2013, 9, 22);
-            //$filter('date')(user.birthday, "dd.MM.yyyy");
+            user.birthday = new Date(user.birthday);
             $scope.user = user;
         });
 
-        
+        $scope.update = function(user){
+            var sendUser = angular.merge({}, user);
+            sendUser.birthday = $filter('date')(user.birthday, 'yyyy-MM-dd');
+            console.log("send data : ", sendUser);
+            profileService.setProfile(sendUser).then(function(r){
+                console.log(r);
+            });
+        }
     }
 })();

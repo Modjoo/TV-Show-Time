@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration {
 			$table->integer('id', true);
 			$table->string('pseudo', 45)->unique('pseudo_unique');
 			$table->string('password', 200);
-			$table->binary('avatar_img', 65535)->nullable();
+			$table->string('avatar_img', 400)->nullable();
 			$table->date('birthday');
 			$table->string('gender', 45);
 		});

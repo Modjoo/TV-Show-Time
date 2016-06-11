@@ -6,7 +6,7 @@
             <img class="img-circle">
         </div>
         <div id="subscribe">
-            <button class="btn btn-info-outline sbs" ng-click="">Update</button>
+            <button class="btn btn-info-outline sbs" ng-click="update(user)">Update</button>
         </div>
     </div>
 
@@ -19,18 +19,14 @@
                 <form>
                     Account:<br>
                     <input type="text" name="pseudo" ng-model="user.pseudo"><br>
-                    New password:<br>
-                    <input type="password" name="password" ng-model="user.newPassword"><br>
-                    Retype password:<br>
-                    <input type="password" name="password" ng-model="user.retypePassword"><br>
                     Gender:<br>
                     <input type="radio" name="gender" ng-model="user.gender" value="Homme"> Male<br>
                     <input type="radio" name="gender" ng-model="user.gender" value="Femme"> Female <br>
 
-                    Avatar: <br> <input type="text" ng-model="user.avatar_img" ><br>
+                    Avatar: <br> <input type="text" ng-model="user.avatar_img"><br>
 
                     Birthdate<br>
-                    <input type="date" ng-model="user.birthday" name="birthdate">
+                    <input type="date" ng-model="user.birthday" name="birthdate"><br>
 
 
                 </form>

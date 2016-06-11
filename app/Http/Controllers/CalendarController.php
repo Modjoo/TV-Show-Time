@@ -30,6 +30,7 @@ class CalendarController extends Controller
         if ($user == null){
             return null;
         }
+        
         $usersSeries = UsersSeries::where("user_id", "=", $user->id)->get();
         $series[] = array();
         $i = 0;
