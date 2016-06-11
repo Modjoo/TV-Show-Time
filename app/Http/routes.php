@@ -179,7 +179,7 @@ Route::group(['prefix' => 'api'], function () {
     // Calendar Controller
     Route::get('calendar', [
         'middleware' => 'jwt.auth',
-        'uses' => 'CalendarController@getsubscriptions'
+        'uses' => 'CalendarController@getCalendarSubs'
     ]);
 
 

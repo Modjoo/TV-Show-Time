@@ -25,20 +25,23 @@ class CalendarController extends Controller
         $this->dbservice = new DataBaseService();
     }
 
-    public function getSubscriptions(){
+    public function getCalendarSubs()
+    {
         $user = AuthenticateController::getAuthUser();
         if ($user == null){
             return null;
         }
-        
-        $usersSeries = UsersSeries::where("user_id", "=", $user->id)->get();
-        $series[] = array();
-        $i = 0;
-        foreach ($usersSeries as $usersSerie) {
-            $series[$i] = Series::find($usersSerie->serie_id);
-            $i++;
-        }
-        return json_encode(["series" => $series]);
+
+        $subscriptions = \App\Models\UsersSeries::where(['user_id' => $user->id])->get();
+
+        $episodes = \App\Models\Episode::whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function($query) use ($subscriptions){
+            foreach ($subscriptions as $subscription){
+                $query->orWhere(["serie_id" => $subscription->serie_id]);
+            }
+        })->get();
+
+        return \App\Http\Services\JsonService::generateEpisodes($episodes);
+
     }
 
 }
