@@ -57,6 +57,12 @@ npm install angular satellizer angular-ui-router bootstrap
 php artisan migrate
 ```
 
+3. Seed it
+
+```sh
+php artisan db:seed
+```
+
 ### Launch server
 
 ```sh

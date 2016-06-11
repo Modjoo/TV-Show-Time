@@ -40,7 +40,7 @@ angular.module('serialWatcherApp')
         return {
             getSubscriptions: function () {
                 var d = $q.defer();
-                $http.get('api/calendar/{iduser}').then(function (response) {
+                $http.get('api/calendar').then(function (response) {
                     d.resolve(response.data);
                 });
                 return d.promise;

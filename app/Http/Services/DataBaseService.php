@@ -137,6 +137,7 @@ class DataBaseService
             $i++;
         }
         return $series;
+
     }
 
     public function getSeenEpisodes($idUser, $idSeason){
