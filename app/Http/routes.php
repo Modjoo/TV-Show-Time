@@ -36,6 +36,20 @@ Route::get('/api/testjson', function () {
 }";
 });
 
+Route::get('/pouet', function(){
+
+    $subscriptions = \App\Models\UsersSeries::where(['user_id' => 1])->get();
+
+    $episodes = \App\Models\Episode::whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function($query) use ($subscriptions){
+        foreach ($subscriptions as $subscription){
+            $query->orWhere(["serie_id" => $subscription->serie_id]);
+        }
+    })->get();
+
+    return \App\Http\Services\JsonService::generateEpisodes($episodes);
+
+});
+
 Route::get('/barchich', [
     'uses' => 'HomeController@getFavouritesSeries'
 ]);

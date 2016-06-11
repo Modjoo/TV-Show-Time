@@ -65,6 +65,7 @@ class DataBaseService
                     $season->series()->associate($serie);
                     $season->save();
                     $this->createFullEpisode($serie, $season, $rawSeason->Episodes);
+                    $seasons[] = $season;
                 }
             }
         }
