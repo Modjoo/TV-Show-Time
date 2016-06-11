@@ -151,6 +151,28 @@ angular.module('serialWatcherApp')
                 return d.promise;
             }
         }
+    })
+    .service('episodeService', function($http, $q){
+        return{
+            setSeenEpisode: function(episodeId, seen){
+                var d = $q.defer();
+                $http.post('api/episode/seen/'+ episodeId +'/' + seen).then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            },
+            getWatchedEpisodes: function(idSeason){
+                var d = $q.defer();
+                $http.get('api/episodes/seen/' + idSeason).then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            }
+        }
     });
 
 

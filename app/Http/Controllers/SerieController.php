@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\DataBaseService;
 use App\Http\Services\JsonService;
 use App\Http\Services\SearchService;
+use App\Models\EpisodesUser;
 use App\Models\Series;
 use App\Models\Episode;
 use App\Models\UsersSeries;
@@ -72,6 +73,20 @@ class SerieController extends Controller
         }
 
         return json_encode(["episodes" => $this->dbservice->getSeenEpisodes($user->id, $idSeason)]);
+    }
+
+    public function seenEpisode($idEpisode, $seen){
+        // Get user
+        $user = AuthenticateController::getAuthUser();
+        if ($user == null){
+            return null;
+        }
+        $params = ['user_id' => $user->id, 'episode_id' => $idEpisode];
+        if($seen == 'true'){
+            EpisodesUser::firstOrCreate($params);
+        }else{
+            EpisodesUser::where($params)->first()->delete();
+        }
     }
     
     public function getFilledSerie($idSerie){

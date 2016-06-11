@@ -132,12 +132,25 @@ Route::group(['prefix' => 'api'], function () {
     /**
      * Get episodes seen by the user
      */
-    Route::get('episodesseen/{idseason}', 'SerieController@getSeenEpisodes');
+    Route::get('episodes/seen/{idseason}',[
+        'middleware' => 'jwt.auth',
+        'uses' => 'SerieController@getSeenEpisodes'
+    ]);
 
     /**
      * Get episode information
      */
     Route::get('episode/{id}', 'SerieController@getEpisode');
+
+    /**
+     * Define if the user have seen the episode
+     * seen: true if the user have seen the episode, false if not then will be remove from the database.
+     * id: Episode id
+     */
+    Route::post('episode/seen/{id}/{seen}',[
+        'middleware' => 'jwt.auth',
+        'uses' => 'SerieController@seenEpisode'
+    ]);
 
     /**
      * Subscribe to a serie

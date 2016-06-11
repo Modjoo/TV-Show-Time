@@ -14,7 +14,7 @@ class CreateEpisodesUsersTable extends Migration {
 	{
 		Schema::create('episodes_users', function(Blueprint $table)
 		{
-			$table->integer('id')->unique('id_user_portfolio_UNIQUE');
+			$table->integer('id', true);
 			$table->integer('user_id')->index('fk_User_has_Episodes_User_idx');
 			$table->integer('episode_id')->index('fk_User_has_Episodes_Episodes1_idx');
 		});

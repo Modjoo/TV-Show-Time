@@ -29,7 +29,7 @@
 
         <div id="chooseBox">
             <div id="selectSeason" class="col-md-2">
-                <select ng-model="selectedEpisodes">
+                <select ng-model="selectedSeason">
                     <option ng-selected="fullSeason == selectedSeason"
                             ng-repeat="fullSeason in seasonFilled.seasons"
                             value="{{fullSeason.$$hashKey}}">
@@ -39,7 +39,7 @@
             </div>
             <div id="selectEpisode" class="col-md-6">
                 <div ng-repeat="episode in episodes">
-                    <p><input type="checkbox" id="{{episode.number}}" ng-click="episodeSelected(episode)" /><label for="{{episode.number}}"><span class="ui"></span>{{episode.number}}</label></p>
+                    <p><input type="checkbox" id="{{episode.number}}" ng-click="episodeSelected(episode)" ng-checked="episode.isWatched" /><label for="{{episode.number}}"><span class="ui"></span>{{episode.number}}</label></p>
                 </div>
             </div>
         </div>
