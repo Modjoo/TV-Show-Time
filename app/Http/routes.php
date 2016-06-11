@@ -50,9 +50,9 @@ Route::get('/barchiFunc', function () {
 
 
 Route::get('/hello', function () {
-    $db = new \App\Http\Services\DataBaseService();
-    $serie = \App\Models\Series::find(1);
-    $db->findOrcreateSeasons($serie, $serie->external_id);
+    $subscribe = \App\Models\UsersSeries::where(["user_id" => 1, "serie_id" => 2])->first();
+        return json_encode(["subscribe" => $subscribe != null]);
+    dd($subscribe);
     return "It works !";
 });
 
@@ -142,7 +142,7 @@ Route::group(['prefix' => 'api'], function () {
     /**
      * Subscribe to a serie
      */
-    Route::get('/subscribe/{idserie}', [
+    Route::post('/subscribe/{idserie}', [
         'middleware' => 'jwt.auth',
         'uses' => 'SerieController@subscribe'
     ]);
@@ -155,6 +155,14 @@ Route::group(['prefix' => 'api'], function () {
         'uses' => 'SerieController@unsubscribe'
     ]);
 
+    /**
+     * Return true or false if the user is subscribe to the serie
+     * isSubscribe
+     */
+    Route::get('/subscribed/{idserie}', [
+        'middleware' => 'jwt.auth',
+        'uses' => 'SerieController@isSubscribed'
+    ]);
 
     // Calendar Controller
     Route::post('calendar', [

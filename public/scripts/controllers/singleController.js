@@ -12,9 +12,18 @@
     // TODO: Implémenter toutes la logique pour rechercher les saisons, ainsi que tous les épisodes
     // TODO: Implémenter la gestion des profils pour gérer ces épisodes vus ou non.
 
-    function SingleController($scope, $http, $rootScope,seriesService, cacheService) {
+    function SingleController($scope, seriesService, subscribeService, cacheService) {
         $scope.serie = cacheService.getData("selected_serie");
         $scope.episodes = null;
+        $scope.isSubscribe = false;
+
+        var user = localStorage.getItem("user");
+
+        if(user){
+            subscribeService.isSubscribed($scope.serie.id).then(function(response){
+                $scope.isSubscribe = response.subscribe;
+            });
+        }
 
         seriesService.getFilledSerie($scope.serie.id).then(function(filled){
             $scope.seasonFilled = filled;
@@ -30,7 +39,6 @@
                    }
                 });
             }
-            //$scope.episodes = selecedSerieId;
         });
 
         $scope.$watch('episodes', function (episodes) {
@@ -38,20 +46,22 @@
             // gestion du click si il n'est pas log.
             console.log(episodes);
         });
+        
+        $scope.subscribe = function(serie){
+            subscribeService.subscribeToSerie(serie.id).then(function(result){
+                $scope.isSubscribe = true;
+            });
+        };
+        
+        $scope.unsubscribe = function(serie){
+            subscribeService.unsubscribeToSerie(serie.id).then(function(result){
+                $scope.isSubscribe = false;
+            });
+        };
 
         $scope.episodeSelected = function(episode){
           console.log("click : ", episode);
         };
-
-
-        //TODO: Test send request http and get authenticate user ! for authenticate user
-        $scope.subscribe = function () {
-            $http.get('api/auth/test').then(function (response) {
-                console.log(response);
-            }, function (response) {
-                console.error("big error !");
-            });
-        }
 
     }
 })();

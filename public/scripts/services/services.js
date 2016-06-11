@@ -120,6 +120,37 @@ angular.module('serialWatcherApp')
             clear: clear,
             getData: getData
         }
+    })
+    .service('subscribeService', function($http, $q){
+        return{
+            subscribeToSerie: function(idSerie){
+                var d = $q.defer();
+                $http.post('api/subscribe/' + idSerie).then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            },
+            unsubscribeToSerie: function(idSerie){
+                var d = $q.defer();
+                $http.post('api/unsubscribe/' + idSerie).then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            },
+            isSubscribed: function(idSerie){
+                var d = $q.defer();
+                $http.get('api/subscribed/' + idSerie).then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            }
+        }
     });
 
 

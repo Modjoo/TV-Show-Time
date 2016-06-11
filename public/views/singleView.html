@@ -8,7 +8,8 @@
             <img class="img-circle" src="{{serie.cover_img_url}}">
         </div>
         <div id="subscribe">
-            <button ng-click="subscribe()" class="btn btn-info-outline sbs" ng-click="">Subscribe</button>
+            <button ng-click="subscribe(serie)" ng-if="!isSubscribe" class="btn btn-info-outline sbs" ng-click="">Subscribe</button>
+            <button ng-click="unsubscribe(serie)" ng-if="isSubscribe" class="btn btn-info-outline sbs" ng-click="">Unsubscribe</button>
         </div>
     </div>
 

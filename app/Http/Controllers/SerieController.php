@@ -43,11 +43,16 @@ class SerieController extends Controller
         if ($user == null){
             return null;
         }
-
-        $subscription = new UsersSeries();
-        $subscription->user_id = $user->id;
-        $subscription->serie_id = $idSerie;
-        $subscription->save();
+        UsersSeries::firstOrCreate(["user_id" => $user->id, "serie_id" => $idSerie]);
+    }
+    
+    public function isSubscribed($idSerie){
+        $user = AuthenticateController::getAuthUser();
+        if ($user == null){
+            return null;
+        }
+        $subscribe = UsersSeries::where(["user_id" => $user->id, "serie_id" => $idSerie])->first();
+        return json_encode(["subscribe" => $subscribe != null]);
     }
 
     public function unsubscribe($idSerie){
