@@ -16,11 +16,15 @@
     function CalendarController($scope, $location, calendarService, cacheService) {
         calendarService.getSubscriptions().then(function (response) {
             $scope.subscription = response.subscription;
+            angular.forEach($scope.subscription, function(episode){
+                $scope.events.push({date:episode.release_date, title:episode.title});
+                console.log($scope.events);
+
+            });
         });
 
         $scope.detail = function (episode) {
             cacheService.setCache("selected_episode", episode);
-            $location.path("/single");
         };
 
         $scope.options = {
@@ -32,9 +36,11 @@
             }
         };
         $scope.events = [
+            /*
             {date: moment().add(3, 'days').format(), title: "Happy days"},
             {date: moment().subtract(5, 'days').format(), title: "Good old days"},
             {date: moment().subtract(5, 'days').format(), title: "And some more"}
+            */
         ];
         $scope.showEvents = function (events) {
             alert(events.map(function (e) {
