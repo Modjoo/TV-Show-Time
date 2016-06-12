@@ -6,12 +6,21 @@
 
 (function () {
     'use strict';
-    angular
-        .module('serialWatcherApp')
-        .controller('CalendarController', CalendarController);
+    angular.module('serialWatcherApp').controller('CalendarController', CalendarController);
 
 
-    function CalendarController($scope, $location, calendarService, cacheService) {
+    function CalendarController($scope, calendarService, cacheService) {
+
+        $scope.options = {
+            weekOffset: 1,
+            daysOfTheWeek: ['ZO', 'MA', 'DI', 'WO', 'DO', 'VR', 'ZA'],
+            constraints: {
+                startDate: moment().subtract(1, 'months').format('YYYY-MM-15'),
+                endDate: moment().add(2, 'months').format('YYYY-MM-15')
+            }
+        };
+        
+        
         calendarService.getSubscriptions().then(function (response) {
             $scope.subscription = response.subscription;
             $scope.events = [];
@@ -23,15 +32,6 @@
 
         $scope.detail = function (episode) {
             cacheService.setCache("selected_episode", episode);
-        };
-
-        $scope.options = {
-            weekOffset: 1,
-            daysOfTheWeek: ['ZO', 'MA', 'DI', 'WO', 'DO', 'VR', 'ZA'],
-            constraints: {
-                startDate: moment().subtract(1, 'months').format('YYYY-MM-15'),
-                endDate: moment().add(2, 'months').format('YYYY-MM-15')
-            }
         };
 
         $scope.showEvents = function (events) {

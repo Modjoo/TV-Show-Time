@@ -27,117 +27,24 @@
 
         <h2>You might like those</h2>
         <div id="botWrapper" class="row wrapper grid cs-style-3">
-            <div>
-                <figure>
-                    <img src="img/breaking.jpg">
-                    <figcaption class="row">
-                        <div class="col-md-3">
-                            <h3>Music</h3>
-                            <span>Jacob Cummings</span>
+            <div ng-repeat="serie in favouritesSeries">
+                <div ng-click="detail(serie)">
+                    <figure>
+                        <div ng-if="serie.cover_img_url == 'N/A'">
+                            {{serie.cover_img_url = 'img/no_img.png'}}>
                         </div>
-                        <div class="col-md-9">
-                            <p>loremipsum lorem ipsum lorem ipsum</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div>
-                <figure>
-                    <img src="img/got.jpg">
-                    <figcaption class="row">
-                        <div class="col-md-3">
-                            <h3>Music</h3>
-                            <span>Jacob Cummings</span>
-                        </div>
-                        <div class="col-md-9">
-                            <p>loremipsum lorem ipsum lorem ipsum</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div>
-                <figure>
-                    <img src="img/monty.jpg">
-                    <figcaption class="row">
-                        <div class="col-md-3">
-                            <h3>Music</h3>
-                            <span>Jacob Cummings</span>
-                        </div>
-                        <div class="col-md-9">
-                            <p>loremipsum lorem ipsum lorem ipsum</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div>
-                <figure>
-                    <img src="img/narcos.jpg">
-                    <figcaption class="row">
-                        <div class="col-md-3">
-                            <h3>Music</h3>
-                            <span>Jacob Cummings</span>
-                        </div>
-                        <div class="col-md-9">
-                            <p>loremipsum lorem ipsum lorem ipsum</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div>
-                <figure>
-                    <img src="img/onepunch.jpg">
-                    <figcaption class="row">
-                        <div class="col-md-3">
-                            <h3>Music</h3>
-                            <span>Jacob Cummings</span>
-                        </div>
-                        <div class="col-md-9">
-                            <p>loremipsum lorem ipsum lorem ipsum</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div>
-                <figure>
-                    <img src="img/sherlock.jpg">
-                    <figcaption class="row">
-                        <div class="col-md-3">
-                            <h3>Music</h3>
-                            <span>Jacob Cummings</span>
-                        </div>
-                        <div class="col-md-9">
-                            <p>loremipsum lorem ipsum lorem ipsum</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div>
-                <figure>
-                    <img src="img/sherlock.jpg">
-                    <figcaption class="row">
-                        <div class="col-md-3">
-                            <h3>Music</h3>
-                            <span>Jacob Cummings</span>
-                        </div>
-                        <div class="col-md-9">
-                            <p>loremipsum lorem ipsum lorem ipsum</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-            <div>
-                <figure>
-                    <img src="img/sherlock.jpg">
-                    <figcaption class="row">
-                        <div class="col-md-3">
-                            <h3>Music</h3>
-                            <span>Jacob Cummings</span>
-                        </div>
-                        <div class="col-md-9">
-                            <p>loremipsum lorem ipsum lorem ipsum</p>
-                        </div>
-                    </figcaption>
-                </figure>
+                        <img ng-src="{{serie.cover_img_url}}">
+                        <figcaption class="row">
+                            <div class="col-md-3">
+                                <h3>{{serie.title}} </h3>
+                                <span>{{serie.actors}}</span>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{serie.synopsis}}</p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
             </div>
         </div>
     </div>

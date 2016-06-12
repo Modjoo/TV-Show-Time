@@ -1,7 +1,6 @@
 (function () {
     'use strict';
-    angular
-        .module('serialWatcherApp', ['ui.router', 'satellizer', 'tien.clndr', 'ngLoadingSpinner'])
+    angular.module('serialWatcherApp', ['ui.router', 'satellizer', 'tien.clndr', 'ngLoadingSpinner'])
         .directive('template', function () {
             return {
                 templateUrl: '../views/nav/navBar.html'
@@ -37,10 +36,7 @@
                     url: '/profil',
                     templateUrl: '../views/profilView.html',
                     controller: 'ProfilController as profil'
-                }).state('pouet', {
-                url: '/pouet',
-                controller: 'HomeController as home'
-            })
+                })
                 .state('single', {
                     url: '/single',
                     controller: 'SingleController as single',
@@ -50,7 +46,7 @@
                     url: '/landing',
                     cache: false,
                     reload: true,
-                    controller: 'ResearchController as research',
+                    controller: 'LandingController as searchlanding',
                     templateUrl: '../views/searchLandingView.html'
                 })
                 .state('index', {
@@ -58,14 +54,13 @@
                     controller: 'HomeController as home',
                     templateUrl: '../views/homeView.html',
                 });
+
             // use the HTML5 History API
             $locationProvider.html5Mode(true);
-
 
             function redirectWhenLoggedOut($q, $injector) {
 
                 return {
-
                     responseError: function (rejection) {
 
                         // Need to use $injector.get to bring in $state or else we get
@@ -92,14 +87,9 @@
                                 $state.go('auth');
                             }
                         });
-
                         return $q.reject(rejection);
                     }
                 }
-            }
-
-            function test() {
-                alert("tamer");
             }
 
             // Setup for the $httpInterceptor
@@ -110,6 +100,7 @@
 
             $authProvider.loginUrl = '/api/authenticate';
         })
+
         /**
          * Load user from the rootScope
          */
@@ -127,8 +118,6 @@
                     // to stay there and can send the user to the main state
                     if (toState.name === "auth") {
                         event.preventDefault();
-                        // TODO: Implémenter l'action sign in si il est déja authentifier
-                        //$state.go('/pouet');
                     }
                 }
             });

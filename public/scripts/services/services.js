@@ -1,6 +1,12 @@
 angular.module('serialWatcherApp')
+    // This service allows you to search a series using its name
     .service('search', ['$http', '$q', function ($http, $q) {
         return {
+            /**
+             * Search serie by the name
+             * @param name {String} query name
+             * @returns {d.promise}
+             */
             searchByName: function (name) {
                 var d = $q.defer();
                 $http.get('api/search/' + name).then(function (response) {
@@ -14,6 +20,11 @@ angular.module('serialWatcherApp')
     }])
     .service('seriesService', ['$http', '$q', function ($http, $q) {
         return {
+            /**
+             * Get a full serie with all saisons and all episodes.
+             * @param serieId {Integer} PK of the serie.
+             * @returns {d.promise}
+             */
             getFilledSerie: function (serieId) {
                 var d = $q.defer();
                 $http.get('api/serie/filled/' + serieId).then(function (response) {
@@ -25,11 +36,18 @@ angular.module('serialWatcherApp')
             }
         }
     }])
-    .service('featuredService', ['$http', '$q', function ($http, $q) {
+    .service('homeService', ['$http', '$q', function ($http, $q) {
         return {
             getFeaturedSeries: function () {
                 var d = $q.defer();
                 $http.get('api/featured').then(function (response) {
+                    d.resolve(response.data);
+                });
+                return d.promise;
+            },
+            getFavouriteSeries: function () {
+                var d = $q.defer();
+                $http.get('api/favourites').then(function (response) {
                     d.resolve(response.data);
                 });
                 return d.promise;
@@ -47,9 +65,13 @@ angular.module('serialWatcherApp')
             }
         };
     }])
+    // Add or delete data (stored inside on variable like hashmap) (Store in local storage).
     .service('cacheService', function ($window) {
         var map = [];
 
+        // This is one entity like Hash map
+        // Key the id.
+        // Value the data.
         var generateEntity = function (params) {
             return {
                 key: params.key,
@@ -66,6 +88,7 @@ angular.module('serialWatcherApp')
             return null;
         };
 
+        // Retrieve the entity with the key
         var getEntity = function (key) {
             reloadCache();
             var selected = null;
@@ -76,20 +99,8 @@ angular.module('serialWatcherApp')
             });
             return selected;
         };
-        var addToCache = function (key, data) {
-            var e = getEntity(key);
-            var newEntity = generateEntity({key: key, value: data});
-            if (e != null) {
-                var nvalue = angular.merge({}, newEntity.value, e.value);
-                newEntity.value = nvalue;
-                e.value = nvalue;
-            } else {
-                map.push(newEntity);
-            }
-            saveCache();
-            return newEntity.value;
-        };
 
+        // Allows the user to add data.
         var setCache = function (key, data) {
             var e = getEntity(key);
             if (e) {
@@ -115,14 +126,20 @@ angular.module('serialWatcherApp')
         };
 
         return {
-            saveCache: saveCache,
             setCache: setCache,
             clear: clear,
             getData: getData
         }
     })
+    // Subscribe or unsubscribe a user of a series.
+    // It also shows whether the user is already registered for a series.
     .service('subscribeService', function ($http, $q) {
         return {
+            /**
+             * Subscribe the user to a series
+             * @param idSerie {Integer} serie id (PK).
+             * @returns {d.promise}
+             */
             subscribeToSerie: function (idSerie) {
                 var d = $q.defer();
                 $http.post('api/subscribe/' + idSerie).then(function (response) {
@@ -132,6 +149,11 @@ angular.module('serialWatcherApp')
                 });
                 return d.promise;
             },
+            /**
+             * Unsubscribe the user to a series
+             * @param idSerie {Integer} serie id (PK).
+             * @returns {d.promise}
+             */
             unsubscribeToSerie: function (idSerie) {
                 var d = $q.defer();
                 $http.post('api/unsubscribe/' + idSerie).then(function (response) {
@@ -141,6 +163,11 @@ angular.module('serialWatcherApp')
                 });
                 return d.promise;
             },
+            /**
+             * Indicates whether the user is subscribed or not to a series
+             * @param idSerie {Integer} serie id (PK).
+             * @returns {d.promise} subscribe: true or false
+             */
             isSubscribed: function (idSerie) {
                 var d = $q.defer();
                 $http.get('api/subscribed/' + idSerie).then(function (response) {
@@ -152,8 +179,15 @@ angular.module('serialWatcherApp')
             }
         }
     })
+    //
     .service('episodeService', function ($http, $q) {
         return {
+            /**
+             * Define if the user have seen the episode.
+             * @param episodeId {Integer} id episode (PK)
+             * @param seen {Boolean} true if the user have watched
+             * @returns {d.promise}
+             */
             setSeenEpisode: function (episodeId, seen) {
                 var d = $q.defer();
                 $http.post('api/episode/seen/' + episodeId + '/' + seen).then(function (response) {
@@ -163,6 +197,11 @@ angular.module('serialWatcherApp')
                 });
                 return d.promise;
             },
+            /**
+             * Retrieve the list of episodes seen by users.
+             * @param idSeason
+             * @returns {d.promise} with list of episodes
+             */
             getWatchedEpisodes: function (idSeason) {
                 var d = $q.defer();
                 $http.get('api/episodes/seen/' + idSeason).then(function (response) {
@@ -175,6 +214,10 @@ angular.module('serialWatcherApp')
         }
     }).service('profileService', function ($http, $q) {
     return {
+        /**
+         * Retrieves all user profile information.
+         * @returns {d.promise} with user object
+         */
         getProfile: function () {
             var d = $q.defer();
             $http.get('api/profile/personal').then(function (response) {
@@ -184,6 +227,11 @@ angular.module('serialWatcherApp')
             });
             return d.promise;
         },
+        /**
+         * Set user profile information.
+         * @param user {User} Need to be a user object.
+         * @returns {d.promise}
+         */
         setProfile: function (user) {
             var d = $q.defer();
             $http.post('api/profile/personal', user).then(function (response) {
@@ -196,6 +244,10 @@ angular.module('serialWatcherApp')
     }
 }).service('toWatchService', function ($http, $q) {
     return {
+        /**
+         * Retrive a series lists containing the seasons and episodes that the user must watch.
+         * @returns {d.promise} with list of series
+         */
         toWatch: function () {
             var d = $q.defer();
             $http.get('api/towatch').then(function (response) {

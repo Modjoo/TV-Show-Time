@@ -27,7 +27,8 @@ class ToWatchController extends Controller
             $query->whereRaw('release_date between "0000-01-01 00:00:00" AND  NOW()')->whereNotIn('id', EpisodesUser::where('user_id', '=', $user->id)->pluck("episode_id"));
         }])->whereIn('id', UsersSeries::where("user_id", "=", $user->id)->pluck("serie_id"))->get();
 
-
+        // Logic for determining if an serie / saison / episode is empty
+        // For example if an saison contains no episodes wich means is empty == true
         foreach ($series as $serie){
             $serieIsEmpty = true;
             foreach ($serie->seasons as $season){

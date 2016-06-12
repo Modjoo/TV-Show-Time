@@ -1,38 +1,37 @@
-// public/scripts/authController.js
-
 (function () {
-
     'use strict';
+    angular.module('serialWatcherApp').controller('AuthController', AuthController);
 
-    angular
-        .module('serialWatcherApp')
-        .controller('AuthController', AuthController);
-
-
-    function AuthController($auth, $state, $location, $http, $rootScope) {
-
+    /**
+     * This Controller authenticates a user using his nickname is password. 
+     * @param $auth : Use Satellizer.js for the authentication
+     * @param $location
+     * @param $scope
+     * @param $window
+     * @param $http
+     * @param $rootScope
+     * @constructor
+     */
+    function AuthController($auth, $location, $scope, $window, $http, $rootScope) {
         var vm = this;
-
         vm.loginError = false;
         vm.loginErrorText;
 
+        /**
+         * Authenticate the user, use the api path : api/authenticate/user for getting the token.
+         */
         vm.login = function () {
-
             var credentials = {
                 pseudo: vm.pseudo,
                 password: vm.password
             };
-
             // Use Satellizer's $auth service to login
             $auth.login(credentials).then(function () {
-
                 //Return an $http request for the now authenticated user
                 return $http.get('api/authenticate/user');
-
             }, function (error) {
                 vm.loginError = true;
                 vm.loginErrorText = error.data.error;
-
             }).then(function (response) {
 
                 // Stringify the returned data for the local storage
@@ -49,8 +48,12 @@
                 $rootScope.currentUser = response.data.user;
 
                 // Redirect the users state to view data
-                $location.path('/');
+                $window.history.back();
             });
         };
+        
+        $scope.home = function(){
+            $location.path('/');
+        }
     }
 })();
