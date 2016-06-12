@@ -20,7 +20,7 @@
                                     <td>{{episode.number}}</td>
                                     <td>{{episode.title}}</td>
                                     <td>{{episode.description}}</td>
-                                    <td><input type="checkbox" id="{{episode.number}}" ng-click="episodeSelected(episode)" ng-checked="episode.isWatched"/><label for="{{episode.number}}"><span class="ui"></span>&nbsp;</label></td>
+                                    <td><input type="checkbox" id="{{episode.$$hashKey}}" ng-click="episodeSelected(episode)" ng-checked="episode.isWatched"/><label for="{{episode.$$hashKey}}"><span class="ui"></span>&nbsp;</label></td>
                                 </tr>
                             </table>
                         </div>
