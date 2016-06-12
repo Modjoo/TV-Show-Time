@@ -127,9 +127,9 @@ class DataBaseService
         }
     }
 
-    public function getSubscriptions($userid)
+    public function getSubscriptions($idUser)
     {
-        $usersSeries = UsersSeries::where("user_id", "=", $userid)->get();
+        $usersSeries = UsersSeries::where("user_id", "=", $idUser)->get();
         $series[] = array();
         $i = 0;
         foreach ($usersSeries as $usersSerie) {

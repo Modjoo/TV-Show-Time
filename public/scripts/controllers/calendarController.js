@@ -5,9 +5,7 @@
 // public/scripts/calendarController.js
 
 (function () {
-
     'use strict';
-
     angular
         .module('serialWatcherApp')
         .controller('CalendarController', CalendarController);
@@ -16,10 +14,10 @@
     function CalendarController($scope, $location, calendarService, cacheService) {
         calendarService.getSubscriptions().then(function (response) {
             $scope.subscription = response.subscription;
-            angular.forEach($scope.subscription, function(episode){
-                $scope.events.push({date:episode.release_date, title:episode.title});
-                console.log($scope.events);
+            $scope.events = [];
 
+            $scope.subscription.forEach(function(episode){
+                $scope.events.push({date: moment(episode.release_date).format(), title: episode.title});
             });
         });
 
@@ -35,20 +33,11 @@
                 endDate: moment().add(2, 'months').format('YYYY-MM-15')
             }
         };
-        $scope.events = [
-            /*
-            {date: moment().add(3, 'days').format(), title: "Happy days"},
-            {date: moment().subtract(5, 'days').format(), title: "Good old days"},
-            {date: moment().subtract(5, 'days').format(), title: "And some more"}
-            */
-        ];
+
         $scope.showEvents = function (events) {
             alert(events.map(function (e) {
                 return e.title
             }).join("\n"));
         };
-
     }
-
-
 })();

@@ -7,11 +7,6 @@
     angular
         .module('serialWatcherApp')
         .controller('SingleController', SingleController);
-
-
-    // TODO: Implémenter toutes la logique pour rechercher les saisons, ainsi que tous les épisodes
-    // TODO: Implémenter la gestion des profils pour gérer ces épisodes vus ou non.
-
     function SingleController($scope, $location, seriesService, subscribeService, episodeService, cacheService) {
         $scope.serie = cacheService.getData("selected_serie");
         $scope.selectedSeasonId = null;
@@ -89,7 +84,6 @@
         };
 
         $scope.episodeSelected = function (episode) {
-            console.log("click : ", episode);
             if ($scope.selectedSeasonId != null && isLogged) {
                 episode.isWatched = !episode.isWatched;
                 episodeService.setSeenEpisode(episode.id, episode.isWatched);

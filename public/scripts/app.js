@@ -30,7 +30,7 @@
                 })
                 .state('towatch', {
                     url: '/towatch',
-                    controller: 'TowatchController as towatch',
+                    controller: 'ToWatchController as towatch',
                     templateUrl: '../views/toWatchView.html'
                 })
                 .state('profil', {

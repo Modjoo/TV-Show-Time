@@ -85,7 +85,10 @@ class SerieController extends Controller
         if($seen == 'true'){
             EpisodesUser::firstOrCreate($params);
         }else{
-            EpisodesUser::where($params)->first()->delete();
+            $episodeUser = EpisodesUser::where($params)->first();
+            if($episodeUser){
+                $episodeUser->delete();
+            }
         }
     }
     

@@ -198,9 +198,9 @@ Route::group(['prefix' => 'api'], function () {
 
 
     // ToWatch Controller
-    Route::post('towatch', [
+    Route::get('towatch', [
         'middleware' => 'jwt.auth',
-        'uses' => 'ToWatchController@getToWatchEpisodes'
+        'uses' => 'ToWatchController@getToWatch'
     ]);
 
 
@@ -232,7 +232,6 @@ Route::group(['prefix' => 'api'], function () {
 
 
 });
-
 
 // Remove # from angularjs URL
 Route::any('{path?}', function () {

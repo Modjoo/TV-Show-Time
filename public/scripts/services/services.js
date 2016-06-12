@@ -14,7 +14,7 @@ angular.module('serialWatcherApp')
     }])
     .service('seriesService', ['$http', '$q', function ($http, $q) {
         return {
-            getFilledSerie: function(serieId){
+            getFilledSerie: function (serieId) {
                 var d = $q.defer();
                 $http.get('api/serie/filled/' + serieId).then(function (response) {
                     d.resolve(response.data);
@@ -121,9 +121,9 @@ angular.module('serialWatcherApp')
             getData: getData
         }
     })
-    .service('subscribeService', function($http, $q){
-        return{
-            subscribeToSerie: function(idSerie){
+    .service('subscribeService', function ($http, $q) {
+        return {
+            subscribeToSerie: function (idSerie) {
                 var d = $q.defer();
                 $http.post('api/subscribe/' + idSerie).then(function (response) {
                     d.resolve(response.data);
@@ -132,7 +132,7 @@ angular.module('serialWatcherApp')
                 });
                 return d.promise;
             },
-            unsubscribeToSerie: function(idSerie){
+            unsubscribeToSerie: function (idSerie) {
                 var d = $q.defer();
                 $http.post('api/unsubscribe/' + idSerie).then(function (response) {
                     d.resolve(response.data);
@@ -141,7 +141,7 @@ angular.module('serialWatcherApp')
                 });
                 return d.promise;
             },
-            isSubscribed: function(idSerie){
+            isSubscribed: function (idSerie) {
                 var d = $q.defer();
                 $http.get('api/subscribed/' + idSerie).then(function (response) {
                     d.resolve(response.data);
@@ -152,18 +152,18 @@ angular.module('serialWatcherApp')
             }
         }
     })
-    .service('episodeService', function($http, $q){
-        return{
-            setSeenEpisode: function(episodeId, seen){
+    .service('episodeService', function ($http, $q) {
+        return {
+            setSeenEpisode: function (episodeId, seen) {
                 var d = $q.defer();
-                $http.post('api/episode/seen/'+ episodeId +'/' + seen).then(function (response) {
+                $http.post('api/episode/seen/' + episodeId + '/' + seen).then(function (response) {
                     d.resolve(response.data);
                 }, function (response) {
                     d.reject(response);
                 });
                 return d.promise;
             },
-            getWatchedEpisodes: function(idSeason){
+            getWatchedEpisodes: function (idSeason) {
                 var d = $q.defer();
                 $http.get('api/episodes/seen/' + idSeason).then(function (response) {
                     d.resolve(response.data);
@@ -173,48 +173,37 @@ angular.module('serialWatcherApp')
                 return d.promise;
             }
         }
-    }).service('profileService', function($http, $q){
-        return{
-            getProfile: function(){
-                var d = $q.defer();
-                $http.get('api/profile/personal').then(function (response) {
-                    d.resolve(response.data);
-                }, function (response) {
-                    d.reject(response);
-                });
-                return d.promise;
-            },
-            setProfile: function(user){
-                var d = $q.defer();
-                $http.post('api/profile/personal', user).then(function (response) {
-                    d.resolve(response.data);
-                }, function (response) {
-                    d.reject(response);
-                });
-                return d.promise;
-            }
+    }).service('profileService', function ($http, $q) {
+    return {
+        getProfile: function () {
+            var d = $q.defer();
+            $http.get('api/profile/personal').then(function (response) {
+                d.resolve(response.data);
+            }, function (response) {
+                d.reject(response);
+            });
+            return d.promise;
+        },
+        setProfile: function (user) {
+            var d = $q.defer();
+            $http.post('api/profile/personal', user).then(function (response) {
+                d.resolve(response.data);
+            }, function (response) {
+                d.reject(response);
+            });
+            return d.promise;
         }
-    });
-
-
-// EXAMPLE !!
-/*
- return {
- getTest: function (json) {
- var d = $q.defer();
- $http.get('api/testjson').then(function (response) {
- console.log(response);
- d.resolve(response.data);
- //return response;
- });
- return d.promise;
- },
- sendData: function(json){
- var d = $q.defer();
- $http.post('api/testjsons', json).then(function(response){
- console.log("menu : ", response);
- d.resolve(true);
- });
- }
- }
- */
+    }
+}).service('toWatchService', function ($http, $q) {
+    return {
+        toWatch: function () {
+            var d = $q.defer();
+            $http.get('api/towatch').then(function (response) {
+                d.resolve(response.data);
+            }, function (response) {
+                d.reject(response);
+            });
+            return d.promise;
+        }
+    }
+});

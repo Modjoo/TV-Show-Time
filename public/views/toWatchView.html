@@ -1,18 +1,31 @@
 <div template></div>
 <div id="contentContainer" class="container-fluid">
     <span us-spinner="{radius:30, width:8, length: 16}"></span>
-    <div ng-repeat="serie in data.series" >
-        <!-- TODO: Fix image size css {{serie.cover_img_url}}-->
-
-        <div ng-click="detail(serie)" class="Sbox col-md-3">
-            <div ng-if="serie.cover_img_url == 'N/A'">
-                {{serie.cover_img_url = 'img/no_img.png'}}>
+    <div class="row">
+        <div ng-repeat="serie in toWatch" ng-if="!serie.isEmpty">
+            <div class="col-md-12"><h1>{{serie.title}}</h1></div>
+            <div class="col-md-12">
+                <div ng-repeat="season in serie.seasons" ng-if="!season.isEmpty">
+                    <div class="col-md-12"><h3>Saison{{season.number}}</h3>
+                        <div>
+                            <table class="table">
+                                <thead>
+                                <th>No</th>
+                                <th>Titre</th>
+                                <th>Synopsis</th>
+                                <th>Vus</th>
+                                </thead>
+                                <tr ng-repeat="episode in season.episodes">
+                                    <td>{{episode.number}}</td>
+                                    <td>{{episode.title}}</td>
+                                    <td>{{episode.description}}</td>
+                                    <td><input type="checkbox" id="{{episode.number}}" ng-click="episodeSelected(episode)" ng-checked="episode.isWatched"/><label for="{{episode.number}}"><span class="ui"></span>&nbsp;</label></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-           <img class="searchImg" src="{{serie.cover_img_url}}">
-            <h3> {{serie.title}} </h3>
-            <p>{{serie.synopsis}}</p>
-            <!-- TODO: Ajouter les catégories -->
-            <p> Categorie : </p>
         </div>
     </div>
 </div>
