@@ -48,6 +48,7 @@ echo Html::script(asset('scripts/controllers/researchController.js'));
 echo Html::script(asset('scripts/controllers/singleController.js'));
 echo Html::script(asset('scripts/controllers/profilController.js'));
 echo Html::script(asset('scripts/controllers/calendarController.js'));
+echo Html::script(asset('scripts/filters/filters.js'));
 echo Html::script(asset('scripts/services/services.js'));
 
 

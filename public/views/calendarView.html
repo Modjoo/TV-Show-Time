@@ -30,15 +30,15 @@
                         </div>
                     </div>
                 </div>
+            </tien-clndr>
         </div>
     </div>
-    </tien-clndr>
     <div id="eventWrapper" style="border-left:1.5em #6dbec9 solid;  height:100%;" class="col-md-5">
         <div class="row">
             <div class="col-md-12" id="subfeed">
 
-                <div ng-repeat="episode in subscription" class="row lcalendar">
-                    <div class="date_event">{{episode.release_date}}</div>
+                <div ng-repeat="episode in subscription | orderBy:'+release_date'" class="row lcalendar">
+                    <div class="date_event">Release : {{episode.release_date | formatDate: 'DD-MM-YYYY'}}</div>
                     <div class="img_event col-md-5">
                         <div ng-if="episode.cover_img_url == 'N/A'">
                             {{episode.cover_img_url = 'img/no_img.png'}}>
