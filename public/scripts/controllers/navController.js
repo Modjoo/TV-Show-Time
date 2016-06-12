@@ -21,6 +21,7 @@
     function NavController($location, $rootScope, $scope, $auth, search, cacheService) {
         $scope.user = JSON.parse(localStorage.getItem('user'));
         $scope.searchText = '';
+        console.log($scope.user);
 
         // Search a series with their name
         $scope.search = function(){

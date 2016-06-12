@@ -64,6 +64,10 @@ body {
     margin-left: 45px;
 
 }
+#prof_pic img{
+    max-height:45px;
+    max-width:45px;
+}
 
 .sform input {
     background: #6dbec9;

@@ -4,14 +4,17 @@
         <div id="mcontainer">
             <form class="navbar-form navbar-default search" role="search">
                 <div class="form-group sform">
-                    <input id="manuleswaggy" type="text" class="form-control" placeholder="Search" ng-model="searchText">
+                    <input id="manuleswaggy" type="text" class="form-control" placeholder="Search"
+                           ng-model="searchText">
                 </div>
                 <button ng-click="search()" type="submit" class="btn sbutton btn-default"><i class="fa fa-search fa-lg "
-                                                                         aria-hidden="true"></i></button>
+                                                                                             aria-hidden="true"></i>
+                </button>
             </form>
             <ul class="nav navbar-nav navbar-right">
 
-                <li ng-if="user" class="mright"><a href="auth">Welcome {{user.pseudo}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /</a></li>
+                <li ng-if="user" class="mright"><a href="auth">Welcome {{user.pseudo}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    /</a></li>
                 <li class="mright"><a href="profil">Profil &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </a></li>
                 <li class="mright"><a href="towatch">To Watch &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </a></li>
                 <li class="mright"><a href="calendar">Calendar &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </a></li>
@@ -20,7 +23,12 @@
                 <li ng-if="!user" class="mright"><a href="auth">Sign in</a></li>
                 <li ng-if="user" class="mright"><a ng-click="logout()" href="#">Log out</a></li>
 
-                <a id="prof_pic" href="user"><img src="circle.png"></a>
+                <a id="prof_pic" href="user">
+                    <div ng-if="user.avatar_img == ''">
+                        {{user.avatar_img= '../../circle.png'}}>
+                    </div>
+                    <img ng-src="{{user.avatar_img}}">
+                </a>
             </ul>
         </div>
     </nav>
