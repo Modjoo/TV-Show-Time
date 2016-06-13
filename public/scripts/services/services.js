@@ -1,5 +1,5 @@
 angular.module('serialWatcherApp')
-    // This service allows you to search a serie using its name
+// This service allows you to search a serie using its name
     .service('search', ['$http', '$q', function ($http, $q) {
         return {
             /**
@@ -18,6 +18,7 @@ angular.module('serialWatcherApp')
             }
         };
     }])
+    // Retrieves all information about a series ( seasons and episodes).
     .service('seriesService', ['$http', '$q', function ($http, $q) {
         return {
             /**
@@ -36,6 +37,7 @@ angular.module('serialWatcherApp')
             }
         }
     }])
+    // Retrieves favorites or featured series.
     .service('homeService', ['$http', '$q', function ($http, $q) {
         return {
             getFeaturedSeries: function () {
@@ -54,6 +56,8 @@ angular.module('serialWatcherApp')
             }
         };
     }])
+    // Retrieves a list of episodes for the series which the user subscribes and which
+    // the episode are not yet out
     .service('calendarService', ['$http', '$q', function ($http, $q) {
         return {
             getSubscriptions: function () {
@@ -65,7 +69,9 @@ angular.module('serialWatcherApp')
             }
         };
     }])
-    // Add or delete data (stored inside a variable like hashmap) (Stored in local storage).
+    /**
+     * Add or delete data (stored inside a variable like hashmap) (Stored in local storage).
+     */
     .service('cacheService', function ($window) {
         var map = [];
 
@@ -179,7 +185,7 @@ angular.module('serialWatcherApp')
             }
         }
     })
-    //
+    // Retrieves a list of episodes that the user has already seen for a given season.
     .service('episodeService', function ($http, $q) {
         return {
             /**
@@ -212,53 +218,58 @@ angular.module('serialWatcherApp')
                 return d.promise;
             }
         }
-    }).service('profileService', function ($http, $q) {
-    return {
-        /**
-         * Retrieves all user profile information.
-         * @returns {d.promise} with user object
-         */
-        getProfile: function () {
-            var d = $q.defer();
-            $http.get('api/profile/personal').then(function (response) {
-                d.resolve(response.data);
-            }, function (response) {
-                d.reject(response);
-            });
-            return d.promise;
-        },
-        /**
-         * Set user's profile informations.
-         * @param user {User} Need to be a user object.
-         * @returns {d.promise}
-         */
-        setProfile: function (user) {
-            var d = $q.defer();
-            $http.post('api/profile/personal', user).then(function (response) {
-                d.resolve(response.data);
-            }, function (response) {
-                d.reject(response);
-            });
-            return d.promise;
+    })
+    // Retrieves all information related to the authenticated user.
+    // It also allows to update this information .
+    .service('profileService', function ($http, $q) {
+        return {
+            /**
+             * Retrieves all user profile information.
+             * @returns {d.promise} with user object
+             */
+            getProfile: function () {
+                var d = $q.defer();
+                $http.get('api/profile/personal').then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            },
+            /**
+             * Set user's profile informations.
+             * @param user {User} Need to be a user object.
+             * @returns {d.promise}
+             */
+            setProfile: function (user) {
+                var d = $q.defer();
+                $http.post('api/profile/personal', user).then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            }
         }
-    }
-}).service('toWatchService', function ($http, $q) {
-    return {
-        /**
-         * Retrieve a list of series that contains the seasons and episodes that the user has to watch.
-         * @returns {d.promise} with list of series
-         */
-        toWatch: function () {
-            var d = $q.defer();
-            $http.get('api/towatch').then(function (response) {
-                d.resolve(response.data);
-            }, function (response) {
-                d.reject(response);
-            });
-            return d.promise;
+    })
+    // Gets all the episodes that the user must still watch.
+    .service('toWatchService', function ($http, $q) {
+        return {
+            /**
+             * Retrieve a list of series that contains the seasons and episodes that the user has to watch.
+             * @returns {d.promise} with list of series
+             */
+            toWatch: function () {
+                var d = $q.defer();
+                $http.get('api/towatch').then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
+            }
         }
-    }
-}).service('signUpService', function ($http, $q) {
+    }).service('signUpService', function ($http, $q) {
     return {
         /**
          *  SignUp the new user
@@ -275,38 +286,40 @@ angular.module('serialWatcherApp')
             return d.promise;
         }
     }
-}).service('authenticateService', function($rootScope,$auth,$http){
-    return {
-        /**
-         * 
-         * @param credentials contains {pseudo:'foo', password:'bar'}
-         * @returns {*}
-         */
-        authenticate: function (credentials) {
-            return $auth.login(credentials).then(function () {
-                //Return an $http request for the now authenticated user
-                return $http.get('api/authenticate/user');
-            }, function (error) {
-                return error;
-            }).then(function (response) {
+})
+// This service will retrieve the authentication information.
+    .service('authenticateService', function ($rootScope, $auth, $http) {
+        return {
+            /**
+             * Get the authenticate token, if the user is valid.
+             * @param credentials contains {pseudo:'foo', password:'bar'}
+             * @returns {promise} with : the authenticated user.
+             */
+            authenticate: function (credentials) {
+                return $auth.login(credentials).then(function () {
+                    //Return an $http request for the now authenticated user
+                    return $http.get('api/authenticate/user');
+                }, function (error) {
+                    return error;
+                }).then(function (response) {
 
-                // Stringify the returned data for the local storage
-                var user = JSON.stringify(response.data.user);
+                    // Stringify the returned data for the local storage
+                    var user = JSON.stringify(response.data.user);
 
-                if(angular.isDefined(user)){
-                    // Set the stringified user data into local storage
-                    localStorage.setItem('user', user);
-                }
+                    if (angular.isDefined(user)) {
+                        // Set the stringified user data into local storage
+                        localStorage.setItem('user', user);
+                    }
 
-                // Define the user logged in
-                $rootScope.authenticated = true;
+                    // Define the user logged in
+                    $rootScope.authenticated = true;
 
-                // Putting the user's data on the rootScop
-                // allows us to access it anywhere
-                $rootScope.currentUser = response.data.user;
-                // Authenticated user
-                return response.data.user;
-            });
+                    // Putting the user's data on the rootScop
+                    // allows us to access it anywhere
+                    $rootScope.currentUser = response.data.user;
+                    // Authenticated user
+                    return response.data.user;
+                });
+            }
         }
-    }
-});
+    });
