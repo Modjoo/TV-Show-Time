@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('serialWatcherApp', ['ui.router', 'satellizer', 'tien.clndr', 'ngLoadingSpinner'])
+    angular.module('serialWatcherApp', ['ui.router', 'ui.bootstrap', 'satellizer', 'tien.clndr', 'ngLoadingSpinner'])
         .directive('template', function () {
             return {
                 templateUrl: '../views/nav/navBar.html'
@@ -48,6 +48,13 @@
                     reload: true,
                     controller: 'LandingController as searchlanding',
                     templateUrl: '../views/searchLandingView.html'
+                })
+                .state('signup', {
+                    url: '/signup',
+                    cache: false,
+                    reload: true,
+                    controller: 'SignUpController as signupcontroller',
+                    templateUrl: '../views/signUp.html'
                 })
                 .state('index', {
                     url: '/',

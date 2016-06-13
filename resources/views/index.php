@@ -35,6 +35,7 @@ echo Html::script(asset('scripts/lib/angular-clndr.min.js'));
 echo Html::script(asset('scripts/lib/spin.min.js'));
 echo Html::script(asset('scripts/lib/angular-spinner.min.js'));
 echo Html::script(asset('scripts/lib/angular-loading-spinner.js'));
+echo Html::script(asset('scripts/lib/ui-bootstrap-tpls-1.3.3.min.js'));
 
 echo Html::script(asset('scripts/lib/toucheffects.js'));
 
@@ -48,6 +49,7 @@ echo Html::script(asset('scripts/controllers/singleController.js'));
 echo Html::script(asset('scripts/controllers/profilController.js'));
 echo Html::script(asset('scripts/controllers/calendarController.js'));
 echo Html::script(asset('scripts/controllers/toWatchController.js'));
+echo Html::script(asset('scripts/controllers/signUpController.js'));
 echo Html::script(asset('scripts/filters/filters.js'));
 echo Html::script(asset('scripts/services/services.js'));
 

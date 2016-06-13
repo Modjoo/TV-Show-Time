@@ -202,6 +202,8 @@ Route::group(['prefix' => 'api'], function () {
         'middleware' => 'jwt.auth',
         'uses' => 'ToWatchController@getToWatch'
     ]);
+    
+    Route::post('signup', 'ProfileController@signUp');
 
 
     // Profile Controller

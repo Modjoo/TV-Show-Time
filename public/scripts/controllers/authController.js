@@ -12,7 +12,7 @@
      * @param $rootScope
      * @constructor
      */
-    function AuthController($auth, $location, $scope, $window, $http, $rootScope) {
+    function AuthController($location, $scope, authenticateService,$window, $uibModal) {
         var vm = this;
         vm.loginError = false;
         vm.loginErrorText;
@@ -25,30 +25,27 @@
                 pseudo: vm.pseudo,
                 password: vm.password
             };
-            // Use Satellizer's $auth service to login
-            $auth.login(credentials).then(function () {
-                //Return an $http request for the now authenticated user
-                return $http.get('api/authenticate/user');
-            }, function (error) {
-                vm.loginError = true;
-                vm.loginErrorText = error.data.error;
-            }).then(function (response) {
-
-                // Stringify the returned data for the local storage
-                var user = JSON.stringify(response.data.user);
-
-                // Set the stringified user data into local storage
-                localStorage.setItem('user', user);
-
-                // Define the user logged in
-                $rootScope.authenticated = true;
-
-                // Putting the user's data on the rootScop
-                // allows us to access it anywhere
-                $rootScope.currentUser = response.data.user;
-
-                // Redirect the users state to view data
-                $window.history.back();
+            authenticateService.authenticate(credentials).then(function(data){
+                if(angular.isUndefined(data)){
+                    var modalData = {
+                        title: "Error",
+                        content: "Invalid pseudo or password"
+                    };
+                    var modalInstance = $uibModal.open({
+                        animation: $scope.animationsEnabled,
+                        templateUrl: '../views/modalContent.html',
+                        controller: 'ModalInstanceCtrl',
+                        size: 12,
+                        resolve: {
+                            items: function () {
+                                return modalData;
+                            }
+                        }
+                    });
+                    console.error(modalData.content);
+                }else {
+                    $window.history.back();
+                }
             });
         };
         

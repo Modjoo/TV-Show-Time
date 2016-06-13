@@ -5,8 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model {
 
     protected $table = 'users';
-    protected $fillable = ['pseudo', 'avatar_img', 'birthday', 'gender', 'updated_at'];
-    protected $guarded = ['id', 'password'];
+    protected $fillable = ['pseudo', 'avatar_img','password', 'birthday', 'gender', 'updated_at'];
+    protected $guarded = ['id'];
     public $timestamps = false;
 
 

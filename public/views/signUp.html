@@ -1,0 +1,29 @@
+<!-- public/views/authView.html -->
+<div template></div>
+<div class="vertical-center">
+    <div class="well">
+        <h3>Sing up</h3>
+        <form name="form" ng-submit="submitForm()">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pseudo" name="uPseudo" ng-model="user.pseudo"
+                       required="!user.pseudo">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="uPassword" placeholder="Password"
+                       ng-model="user.password" required="!user.password">
+            </div>
+            <div class="form-group">
+                Gender:<br>
+                <input type="radio" name="gender" ng-model="user.gender" value="Homme" name="uGender"
+                       ng-required="!user.gender"> Male<br>
+                <input type="radio" name="gender" ng-model="user.gender" value="Femme" name="uGender"
+                       ng-required="!user.gender"> Female <br>
+            </div>
+            <div class="form-group">
+                Birthdate : <input type="date" ng-model="user.birthday" name="user.birthdate"
+                                   ng-required="!user.birthdate" max="{{maxDate}}">
+            </div>
+            <button class="btn btn-info-outline" ng-click="pouet()">Submit</button>
+        </form>
+    </div>
+</div>

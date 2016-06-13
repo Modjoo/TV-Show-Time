@@ -258,4 +258,54 @@ angular.module('serialWatcherApp')
             return d.promise;
         }
     }
+}).service('signUpService', function ($http, $q) {
+    return {
+        /**
+         * Retrive a series lists containing the seasons and episodes that the user must watch.
+         * @returns {d.promise} with list of series
+         */
+        signUp: function (user) {
+            var d = $q.defer();
+            $http.post('api/signup', user).then(function (response) {
+                d.resolve(response.data);
+            }, function (response) {
+                d.reject(response);
+            });
+            return d.promise;
+        }
+    }
+}).service('authenticateService', function($rootScope,$auth,$http){
+    return {
+        /**
+         * 
+         * @param credentials contains {pseudo:'foo', password:'bar'}
+         * @returns {*}
+         */
+        authenticate: function (credentials) {
+            return $auth.login(credentials).then(function () {
+                //Return an $http request for the now authenticated user
+                return $http.get('api/authenticate/user');
+            }, function (error) {
+                return error;
+            }).then(function (response) {
+
+                // Stringify the returned data for the local storage
+                var user = JSON.stringify(response.data.user);
+
+                if(angular.isDefined(user)){
+                    // Set the stringified user data into local storage
+                    localStorage.setItem('user', user);
+                }
+
+                // Define the user logged in
+                $rootScope.authenticated = true;
+
+                // Putting the user's data on the rootScop
+                // allows us to access it anywhere
+                $rootScope.currentUser = response.data.user;
+                // Authenticated user
+                return response.data.user;
+            });
+        }
+    }
 });

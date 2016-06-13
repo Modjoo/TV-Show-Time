@@ -41,6 +41,11 @@
             });
         };
 
+
+        $rootScope.$on("UpdateUser", function(event, data){
+            $scope.user = data.data;
+        });
+
         // Logout the authenticated user
         $scope.logout = function(){
             $auth.logout().then(function () {

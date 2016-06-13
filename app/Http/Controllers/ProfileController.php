@@ -7,7 +7,9 @@ use App\Models\User;
 use App\Http\Services\DataBaseService;
 use App\Http\Utils\Utils;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use Mockery\CountValidator\Exception;
 
 class ProfileController extends Controller
 {
@@ -42,6 +44,29 @@ class ProfileController extends Controller
 
         $user = User::find($user->id);
         $user->update(['pseudo' => $pseudo, 'avatar_img' => $avatar, 'birthday' => Utils::convertDate($birthday), 'gender' => $gender]);
+    }
+    
+    
+    public function signUp(){
+        $pseudo = Input::get('pseudo');
+        $password = Input::get('password');
+        $birthday = Input::get('birthday');
+        $gender = Input::get('gender');
+
+
+        $user = User::where('pseudo', '=', $pseudo)->first();
+
+        if($user != null){
+            throw new Exception("please change your user name");
+        }else{
+
+            try{
+                $params = ['pseudo' => $pseudo, 'password' => Hash::make($password), 'birthday' => $birthday, 'gender' => $gender];
+                User::create($params);
+            }catch (Exception $exception){
+                throw new Exception("user data invalid");
+            }
+        }
     }
     
     public function getPersonnalData(){
