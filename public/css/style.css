@@ -64,9 +64,10 @@ body {
     margin-left: 45px;
 
 }
-#prof_pic img{
-    max-height:45px;
-    max-width:45px;
+
+#prof_pic img {
+    max-height: 45px;
+    max-width: 45px;
 }
 
 .sform input {
@@ -145,6 +146,11 @@ figure img {
 
 .Sbox {
     height: 550px;
+
+}
+
+.Sbox img {
+    cursor: pointer;
 }
 
 .grid figure {
@@ -501,24 +507,29 @@ select {
     min-width: 20%;
     max-width: 70%;
     margin: 0 auto;
-    margin-top:25%;
+    margin-top: 25%;
 
 }
 
-#thumb_clndr{
-    max-width:170px;
-    max-height:233px;
+#thumb_clndr {
+    max-width: 170px;
+    max-height: 233px;
 }
-#txt_clndr{
-    display:inline-block;
-    padding:5%;
+
+#txt_clndr {
+    display: inline-block;
+    padding: 5%;
+    text-align:center;
 }
-.lcalendar{
-    margin:5%;
+
+.lcalendar {
+    margin: 5%;
 }
-#eventwrapper{
-    overflow-y:auto;
+
+#eventwrapper {
+    overflow-y: auto;
 }
+
 .date_event {
     text-align: center;
     font-family: Lato, sans-serif;
@@ -529,8 +540,12 @@ select {
     font-size: 2em;
 }
 
-.img_event img{
-    max-height:300px;
-    max-width:250px;
+.img_event img {
+    max-height: 300px;
+    max-width: 250px;
 }
+
 /*- END CALENDAR */
+/*search landing page*/
+
+/* end search page*/

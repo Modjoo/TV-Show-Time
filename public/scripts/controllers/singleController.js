@@ -6,7 +6,7 @@
 
     /**
      * Display the main page of a serie.
-     * The user can subscribe or not a serie and say whether or not he saw the episode of the serie.
+     * The user can subscribe or unsubscribe to a serie and say whether or not he saw the episodes of the serie.
      * @param $scope
      * @param $location
      * @param seriesService
@@ -26,7 +26,7 @@
         var user = localStorage.getItem("user");
 
         /**
-         * Compare the id of episodes.
+         * Compare the id of the episodes.
          * @param episodeId {Integer}
          * @param watchedEpisodeList {Array}
          * @returns {boolean} true if it encounters an episode with the same id.
@@ -47,8 +47,8 @@
         /**
          * Compare two episodes list and determines whether the user watched these episodes
          * @param episodeList {Array} All episodes from the seasons
-         * @param watchedEpisodeList {Array} episodes watched by the user form the saisons
-         * @returns {Array} an list of episodes with the params isWatcher {boolean}
+         * @param watchedEpisodeList {Array} episodes watched by the user from the seasons
+         * @returns {Array} a list of episodes with the params isWatcher {boolean}
          */
         var mergeWatchedEpisode = function (episodeList, watchedEpisodeList) {
             var finalEpisodeList = [];
@@ -63,16 +63,16 @@
         };
 
         /**
-         * If the user is authenticate
+         * If the user is authenticated
          */
         if (isLogged) {
-            // check if the user is subscribed to the series.
+            // check if the user has subscribed to the serie.
             subscribeService.isSubscribed($scope.serie.id).then(function (response) {
                 $scope.isSubscribe = response.subscribe;
             });
         }
 
-        // Request the api for getting all data (seasons and episodes) from one serie.
+        // Request the api to get all data (seasons and episodes) from one serie.
         // This will take a while if there are no data on the database.
         seriesService.getFilledSerie($scope.serie.id).then(function (filled) {
             $scope.seasonFilled = filled;
@@ -82,10 +82,10 @@
 
         // If the user select a season
         $scope.$watch('selectedSeason', function (selecedSeasonHashKey) {
-            // Check if there are a season filled.
+            // Check if there ise a filled season already.
             if ($scope.seasonFilled && $scope.seasonFilled.seasons) {
                 $scope.seasonFilled.seasons.forEach(function (filled) {
-                    // compare the user selection with all seasons of the list.
+                    // compare the user selection with every seasons of the list.
                     if (filled.$$hashKey == selecedSeasonHashKey) {
                         $scope.selectedSeasonId = filled.season.id;
 
@@ -114,7 +114,7 @@
             });
         };
 
-        // Episode watched toggel
+        // Toggle watched episodes
         $scope.episodeSelected = function (episode) {
             if ($scope.selectedSeasonId != null && isLogged) {
                 episode.isWatched = !episode.isWatched;

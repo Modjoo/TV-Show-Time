@@ -26,6 +26,7 @@
             $scope.events = [];
 
             $scope.subscription.forEach(function(episode){
+                console.log(episode.title);
                 $scope.events.push({date: moment(episode.release_date).format(), title: episode.title});
             });
         });

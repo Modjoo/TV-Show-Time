@@ -1,9 +1,9 @@
 angular.module('serialWatcherApp')
-    // This service allows you to search a series using its name
+    // This service allows you to search a serie using its name
     .service('search', ['$http', '$q', function ($http, $q) {
         return {
             /**
-             * Search serie by the name
+             * Search serie by name
              * @param name {String} query name
              * @returns {d.promise}
              */
@@ -21,7 +21,7 @@ angular.module('serialWatcherApp')
     .service('seriesService', ['$http', '$q', function ($http, $q) {
         return {
             /**
-             * Get a full serie with all saisons and all episodes.
+             * Get a full serie with all seasons and all episodes.
              * @param serieId {Integer} PK of the serie.
              * @returns {d.promise}
              */
@@ -65,13 +65,13 @@ angular.module('serialWatcherApp')
             }
         };
     }])
-    // Add or delete data (stored inside on variable like hashmap) (Store in local storage).
+    // Add or delete data (stored inside a variable like hashmap) (Stored in local storage).
     .service('cacheService', function ($window) {
         var map = [];
 
         // This is one entity like Hash map
-        // Key the id.
-        // Value the data.
+        // key  = id
+        // Value = the data.
         var generateEntity = function (params) {
             return {
                 key: params.key,
@@ -131,12 +131,12 @@ angular.module('serialWatcherApp')
             getData: getData
         }
     })
-    // Subscribe or unsubscribe a user of a series.
-    // It also shows whether the user is already registered for a series.
+    // Subscribe or unsubscribe a user to a serie.
+    // It also shows whether the user has already subscribe to a serie
     .service('subscribeService', function ($http, $q) {
         return {
             /**
-             * Subscribe the user to a series
+             * Subscribe the user to a serie
              * @param idSerie {Integer} serie id (PK).
              * @returns {d.promise}
              */
@@ -150,7 +150,7 @@ angular.module('serialWatcherApp')
                 return d.promise;
             },
             /**
-             * Unsubscribe the user to a series
+             * Unsubscribe the user to a serie
              * @param idSerie {Integer} serie id (PK).
              * @returns {d.promise}
              */
@@ -164,7 +164,7 @@ angular.module('serialWatcherApp')
                 return d.promise;
             },
             /**
-             * Indicates whether the user is subscribed or not to a series
+             * Indicates whether the user has subscribed or not to a serie
              * @param idSerie {Integer} serie id (PK).
              * @returns {d.promise} subscribe: true or false
              */
@@ -185,7 +185,7 @@ angular.module('serialWatcherApp')
             /**
              * Define if the user have seen the episode.
              * @param episodeId {Integer} id episode (PK)
-             * @param seen {Boolean} true if the user have watched
+             * @param seen {Boolean} true if the user have watched the episode
              * @returns {d.promise}
              */
             setSeenEpisode: function (episodeId, seen) {
@@ -228,7 +228,7 @@ angular.module('serialWatcherApp')
             return d.promise;
         },
         /**
-         * Set user profile information.
+         * Set user's profile informations.
          * @param user {User} Need to be a user object.
          * @returns {d.promise}
          */
@@ -245,7 +245,7 @@ angular.module('serialWatcherApp')
 }).service('toWatchService', function ($http, $q) {
     return {
         /**
-         * Retrive a series lists containing the seasons and episodes that the user must watch.
+         * Retrieve a list of series that contains the seasons and episodes that the user has to watch.
          * @returns {d.promise} with list of series
          */
         toWatch: function () {

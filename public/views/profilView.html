@@ -3,7 +3,10 @@
     <div id="leftContainer" class="col-md-3">
 
         <div id="circular">
-            <img class="img-circle">
+            <div ng-if="user.avatar_img == ''">
+                {{user.avatar_img= '../../circle.png'}}>
+            </div>
+            <img class="img-circle" src="{{user.avatar_img}}">
         </div>
         <div id="subscribe">
             <button class="btn btn-info-outline sbs" ng-click="update(user)">Update</button>

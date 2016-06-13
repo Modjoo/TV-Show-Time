@@ -40,6 +40,12 @@ class CalendarController extends Controller
             }
         })->get();
 
+
+        foreach ($episodes as $episode){
+            $episode->season_id = \App\Models\Season::where("id", "=", $episode->season_id)->pluck("number");
+        }
+
+
         return \App\Http\Services\JsonService::generateSubscription($episodes);
 
     }

@@ -11,12 +11,12 @@
      */
     function ToWatchController($scope, toWatchService,episodeService) {
 
-        // Load all not seen episodes by the user
+        // Load all unseen episodes by current user
         toWatchService.toWatch().then(function(toWatch){
             $scope.toWatch = toWatch.series;
         });
         
-        // Watched episode toggel
+        // Toggle watched episode
         $scope.episodeSelected = function(episode){
             if(angular.isUndefined(episode.isWatched)){
                 episode.isWatched = true;

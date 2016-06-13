@@ -18,7 +18,7 @@
         vm.loginErrorText;
 
         /**
-         * Authenticate the user, use the api path : api/authenticate/user for getting the token.
+         * Authenticate the user, using the api path : api/authenticate/user to get a token.
          */
         vm.login = function () {
             var credentials = {
@@ -40,10 +40,10 @@
                 // Set the stringified user data into local storage
                 localStorage.setItem('user', user);
 
-                // Define the user logged in
+                // Define the user as logged in
                 $rootScope.authenticated = true;
 
-                // Putting the user's data on the rootScop
+                // Put the user's data on the rootScop
                 // allows us to access it anywhere
                 $rootScope.currentUser = response.data.user;
 
