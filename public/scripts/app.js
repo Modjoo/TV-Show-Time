@@ -54,7 +54,7 @@
                     cache: false,
                     reload: true,
                     controller: 'SignUpController as signupcontroller',
-                    templateUrl: '../views/signUp.html'
+                    templateUrl: '../views/signUpView.html'
                 })
                 .state('index', {
                     url: '/',

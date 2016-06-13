@@ -11,6 +11,12 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Models\User;
 
+/**
+ * This controller sets a user's authentication logic.
+ * This will be use by JWTAuth
+ * Class AuthenticateController
+ * @package App\Http\Controllers
+ */
 class AuthenticateController extends Controller
 {
     public function index()
@@ -18,15 +24,22 @@ class AuthenticateController extends Controller
         return "Hello world ";
     }
 
+    /**
+     * Authenticate the user.
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function authenticate(Request $request)
     {
         $credentials = $request->only('pseudo', 'password');
 		
-		
+		// retrive the user
 		$user = User::where('pseudo', '=', $credentials['pseudo'])->first();
 
         try {
+            // Check the user and the password
             if ($user != null && Hash::check($credentials['password'], $user->password)) {
+                // Générate the token.
                 $token = JWTAuth::fromUser($user);
             } else {
                 return response()->json(['error' => 'invalid_credentials'], 401);
@@ -38,7 +51,11 @@ class AuthenticateController extends Controller
         return response()->json(compact('token'));
 
     }
-    
+
+    /**
+     * Check if the user is authenticated and if his token is still valid.
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAuthenticatedUser()
     {
         try {

@@ -261,8 +261,9 @@ angular.module('serialWatcherApp')
 }).service('signUpService', function ($http, $q) {
     return {
         /**
-         * Retrive a series lists containing the seasons and episodes that the user must watch.
-         * @returns {d.promise} with list of series
+         *  SignUp the new user
+         * @param user {Object} must contains : {pseudo, password, birthday, gender}
+         * @returns {d.promise}
          */
         signUp: function (user) {
             var d = $q.defer();
