@@ -18,7 +18,7 @@
         vm.loginErrorText;
 
         /**
-         * Authenticate the user, use the api path : api/authenticate/user for getting the token.
+         * Authenticate the user, using the api path : api/authenticate/user to get a token.
          */
         vm.login = function () {
             var credentials = {

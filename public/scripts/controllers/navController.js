@@ -23,16 +23,16 @@
         $scope.searchText = '';
         console.log($scope.user);
 
-        // Search a series with their name
+        // Search series by name
         $scope.search = function(){
             search.searchByName($scope.searchText).then(function(result){
                 $scope.data = result;
 
-                // Save the searched series. this will be use by the ResearchController
+                // Save the searched series. this will be used by the ResearchController
                 cacheService.setCache("search_series", result);
 
-                // Dispatches an event for all controllers.
-                // This will be use by the LandingController for update the $scope.
+                // Dispatches an event for every controllers.
+                // This will be used by the LandingController to update the $scope.
                 $rootScope.$emit("UpdateSearch", {
                     data: result
                 });

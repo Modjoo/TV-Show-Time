@@ -21,12 +21,12 @@
         // Get searched series from the local storage.
         $scope.data = cacheService.getData("search_series");
 
-        // Updates the list of series if an event came
+        // Update the list of series if an event happens
         $rootScope.$on("UpdateSearch", function(event, data){
             $scope.data = data.data;
         });
 
-        // If one serie as been choosen by the user.
+        // If a serie has been chosen by the user.
         $scope.detail = function(serie){
             cacheService.setCache("selected_serie", serie);
             $location.path("/single");

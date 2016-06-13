@@ -157,7 +157,7 @@ Route::group(['prefix' => 'api'], function () {
 
     /**
      * Define if the user have seen the episode
-     * seen: true if the user have seen the episode, false if not then will be remove from the database.
+     * seen: true if the user have seen the episode, false if not then will be removed from the database.
      * id: Episode id
      */
     Route::post('episode/seen/{id}/{seen}',[
@@ -182,7 +182,7 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     /**
-     * Return true or false if the user is subscribe to the serie
+     * Return true or false if the user has subdscribed to the serie
      * isSubscribe
      */
     Route::get('/subscribed/{idserie}', [
