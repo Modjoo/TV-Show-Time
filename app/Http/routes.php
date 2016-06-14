@@ -55,8 +55,7 @@ Route::get('/barchich', [
 ]);
 
 Route::get('/barchiFunc', function () {
-    dd(\App\Models\Series::whereIn('id', \App\Models\UsersSeries::where('user_id', '=', 1)->pluck("serie_id"))
-        ->paginate(10));
+    dd(\App\Models\Series::whereIn('id', \App\Models\UsersSeries::where("user_id", "=", 1)->pluck('serie_id'))->get());
 });
 
 

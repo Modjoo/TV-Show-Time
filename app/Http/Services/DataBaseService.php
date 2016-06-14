@@ -129,15 +129,7 @@ class DataBaseService
 
     public function getSubscriptions($idUser)
     {
-        $usersSeries = UsersSeries::where("user_id", "=", $idUser)->get();
-        $series[] = array();
-        $i = 0;
-        foreach ($usersSeries as $usersSerie) {
-            $series[$i] = Series::find($usersSerie->serie_id);
-            $i++;
-        }
-        return $series;
-
+        return Series::whereIn('id', UsersSeries::where("user_id", "=", $idUser)->pluck('serie_id'))->get();
     }
 
     public function getSeenEpisodes($idUser, $idSeason){

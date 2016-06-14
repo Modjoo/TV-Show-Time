@@ -8,8 +8,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Series;
-use App\Models\User;
+use App\Http\Services\JsonService;
+use App\Models\Episode;
+use App\Models\Season;
 use App\Models\UsersSeries;
 use App\Http\Services\DataBaseService;
 
@@ -32,9 +33,9 @@ class CalendarController extends Controller
             return null;
         }
 
-        $subscriptions = \App\Models\UsersSeries::where(['user_id' => $user->id])->get();
+        $subscriptions = UsersSeries::where(['user_id' => $user->id])->get();
 
-        $episodes = \App\Models\Episode::whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function($query) use ($subscriptions){
+        $episodes = Episode::whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function($query) use ($subscriptions){
             foreach ($subscriptions as $subscription){
                 $query->orWhere(["serie_id" => $subscription->serie_id]);
             }
@@ -42,11 +43,11 @@ class CalendarController extends Controller
 
 
         foreach ($episodes as $episode){
-            $episode->season_id = \App\Models\Season::where("id", "=", $episode->season_id)->pluck("number");
+            $episode->season_id = Season::where("id", "=", $episode->season_id)->pluck("number");
         }
 
 
-        return \App\Http\Services\JsonService::generateSubscription($episodes);
+        return JsonService::generateSubscription($episodes);
 
     }
 
