@@ -43,7 +43,9 @@
                         <div ng-if="episode.cover_img_url == 'N/A'">
                             {{episode.cover_img_url = 'img/no_img.png'}}>
                         </div>
-                        <img ng-src="{{episode.cover_img_url}}">
+
+                            <img ng-click="detail(episode)" ng-src="{{episode.cover_img_url}}">
+
                     </div>
                     <div class="col-md-7" id="txt_clndr">
                         <p>{{episode.title}}</p>

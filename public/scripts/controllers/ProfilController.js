@@ -36,7 +36,6 @@
             profileService.setProfile(sendUser).then(function () {
                 localStorage.setItem("user", JSON.stringify(sendUser));
                 modalService.openDialogModal("Update", "User profile successfully updated");
-                
             }, function (error) {
                 console.error("error when update profile ");
                 modalService.openDialogModal("Error", "Error updating the user profile");
