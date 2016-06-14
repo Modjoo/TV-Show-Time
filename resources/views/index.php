@@ -46,7 +46,7 @@ echo Html::script(asset('scripts/controllers/homeController.js'));
 echo Html::script(asset('scripts/controllers/navController.js'));
 echo Html::script(asset('scripts/controllers/landingController.js'));
 echo Html::script(asset('scripts/controllers/singleController.js'));
-echo Html::script(asset('scripts/controllers/profilController.js'));
+echo Html::script(asset('scripts/controllers/profileController.js'));
 echo Html::script(asset('scripts/controllers/calendarController.js'));
 echo Html::script(asset('scripts/controllers/toWatchController.js'));
 echo Html::script(asset('scripts/controllers/signUpController.js'));

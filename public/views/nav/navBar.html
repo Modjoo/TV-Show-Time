@@ -15,7 +15,7 @@
 
                 <li ng-if="user" class="mright"><a href="auth">Welcome {{user.pseudo}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     /</a></li>
-                <li class="mright"><a href="profil">Profil &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </a></li>
+                <li class="mright"><a href="profile">Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </a></li>
                 <li class="mright"><a href="towatch">To Watch &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </a></li>
                 <li class="mright"><a href="calendar">Calendar &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </a></li>
 
@@ -23,7 +23,7 @@
                 <li ng-if="!user" class="mright"><a href="auth">Sign in</a></li>
                 <li ng-if="user" class="mright"><a ng-click="logout()" href="#">Log out</a></li>
 
-                <a id="prof_pic" href="user">
+                <a id="prof_pic" href="profile">
                     <div ng-if="user.avatar_img == ''">
                         {{user.avatar_img= '../../circle.png'}}>
                     </div>
