@@ -341,15 +341,22 @@ angular.module('serialWatcherApp')
             content: "default"
         };
         return{
+            
             /**
-             *
+             * 
              * @param title {String} main title of the modal
-             * @param bodyMessage {String} text content
+             * @param bodyMessage {String} (Optional) text content
+             * @param params {Array} (Optional) is a hashMapArray [{
+             *  bodyList {Array}(optional)[{
+             *      params p : Generate <p> Example : bodylist.push({p:'Hello World'});
+             *  }]
+             * }]
              * @returns {Window|*|{get, set}}
              */
-            openDialogModal: function(title, bodyMessage){
+            openDialogModal: function(title, bodyMessage, params){
                 modalData.title = title;
                 modalData.content = bodyMessage;
+                modalData = angular.extend({}, modalData, params);
                 return $uibModal.open({
                     animation: true,
                     templateUrl: '../views/modalContent.html',

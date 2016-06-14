@@ -9,7 +9,7 @@
     angular.module('serialWatcherApp').controller('CalendarController', CalendarController);
 
 
-    function CalendarController($scope, calendarService, cacheService) {
+    function CalendarController($scope, $location, seriesService, calendarService, modalService, cacheService) {
 
         $scope.options = {
             weekOffset: 1,
@@ -19,27 +19,31 @@
                 endDate: moment().add(2, 'months').format('YYYY-MM-15')
             }
         };
-        
-        
+
+
         calendarService.getSubscriptions().then(function (response) {
             $scope.subscription = response.subscription;
-            console.log($scope.subscription);
             $scope.events = [];
 
-            $scope.subscription.forEach(function(episode){
-                console.log(episode.title);
+            $scope.subscription.forEach(function (episode) {
                 $scope.events.push({date: moment(episode.release_date).format(), title: episode.title});
             });
         });
 
         $scope.detail = function (episode) {
             cacheService.setCache("selected_episode", episode);
+            seriesService.getFilledSerie(episode.serie_id).then(function (response) {
+                cacheService.setCache("selected_serie", response.serie);
+                $location.path("/single");
+            });
         };
 
         $scope.showEvents = function (events) {
-            alert(events.map(function (e) {
-                return e.title
-            }).join("\n"));
+            var episodeName = [];
+            events.forEach(function(event){
+                episodeName.push({p:event.title});
+            });
+            modalService.openDialogModal("Episode", null, {bodyList: episodeName});
         };
     }
 })();
