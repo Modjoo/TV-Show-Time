@@ -49,6 +49,7 @@ class CalendarController extends Controller
 
         $episodes = Episode::whereBetween('release_date', [Carbon::now(), Carbon::now()->addYear()])->whereIn('serie_id', $seriesID)->get();
 
+
         
 
         // Add the season number information
