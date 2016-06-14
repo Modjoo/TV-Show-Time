@@ -13,7 +13,7 @@ use App\Models\Episode;
 use App\Models\Season;
 use App\Models\UsersSeries;
 use App\Http\Services\DataBaseService;
-
+use Carbon\Carbon;
 use App\Http\Requests;
 
 class CalendarController extends Controller
@@ -41,11 +41,15 @@ class CalendarController extends Controller
 
         $subscriptions = UsersSeries::where(['user_id' => $user->id])->get();
 
-        $episodes = Episode::whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function ($query) use ($subscriptions) {
-            foreach ($subscriptions as $subscription) {
-                $query->orWhere(["serie_id" => $subscription->serie_id]);
-            }
-        })->get();
+        $seriesID = [];
+        foreach($subscriptions as $subscription)
+        {
+            array_push($seriesID, $subscription->serie_id);
+        }
+
+        $episodes = Episode::whereBetween('release_date', [Carbon::now(), Carbon::now()->addYear()])->whereIn('serie_id', $seriesID)->get();
+
+        
 
         // Add the season number information
         foreach ($episodes as $episode) {
