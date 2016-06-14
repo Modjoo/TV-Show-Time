@@ -20,74 +20,11 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/api/testjson', function () {
-    return "{
-    \"menu\": {
-        \"id\": \"jdhdhdh\",
-        \"value\": \"File\",
-        \"popup\": {
-            \"menuitem\": [
-                { \"value\": \"New\", \"onclick\": \"CreateNewDoc()\" },
-                { \"value\": \"Open\", \"onclick\": \"OpenDoc()\" },
-                { \"value\": \"Close\", \"onclick\": \"CloseDoc()\" }
-            ]
-        }
-    }
-}";
-});
-
-Route::get('/pouet', function(){
-
-    $subscriptions = \App\Models\UsersSeries::where(['user_id' => 1])->get();
-
-    $episodes = \App\Models\Episode::whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function($query) use ($subscriptions){
-        foreach ($subscriptions as $subscription){
-            $query->orWhere(["serie_id" => $subscription->serie_id]);
-        }
-    })->get();
-
-    return \App\Http\Services\JsonService::generateEpisodes($episodes);
-
-});
-
-Route::get('/barchich', [
-    'uses' => 'CalendarController@getCalendarSubs'
-]);
-
-Route::get('/barchiFunc', function () {
-    dd(\App\Models\Series::whereIn('id', \App\Models\UsersSeries::where("user_id", "=", 1)->pluck('serie_id'))->get());
-});
-
-
-
-Route::post('/testPosts', function(){
-   return \Illuminate\Support\Facades\Input::get('data');
-});
-
 Route::get('/hello', function () {
-    $subscriptions = UsersSeries::where(['user_id' => $user->id])->get();
-
-    $episodes = Episode::whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function($query) use ($subscriptions){
-        foreach ($subscriptions as $subscription){
-            $query->orWhere(["serie_id" => $subscription->serie_id]);
-        }
-    })->get();
-
-
-    foreach ($episodes as $episode){
-        $episode->season_id = Season::where("id", "=", $episode->season_id)->pluck("number");
-    }
-    dd($episodes);
-
+    return "Security works !";
 });
-
 Route::get('/securitycheck', ['middleware' => 'jwt.auth', function () {
     return "Security works !";
-}]);
-
-Route::get('api/auth/test', ['middleware' => 'jwt.auth', function () {
-    $user = \App\Http\Controllers\AuthenticateController::getAuthUser();
-    return $user;
 }]);
 
 
@@ -101,16 +38,6 @@ Route::get('api/auth/test', ['middleware' => 'jwt.auth', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-/*
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
-
-/*
- * ROUTES TO USE
-*/
-
 
 Route::group(['prefix' => 'api'], function () {
 

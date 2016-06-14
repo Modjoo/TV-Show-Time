@@ -44,6 +44,8 @@ angular.module('serialWatcherApp')
                 var d = $q.defer();
                 $http.get('api/featured').then(function (response) {
                     d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
                 });
                 return d.promise;
             },
@@ -51,6 +53,8 @@ angular.module('serialWatcherApp')
                 var d = $q.defer();
                 $http.get('api/favourites').then(function (response) {
                     d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
                 });
                 return d.promise;
             }
@@ -64,6 +68,8 @@ angular.module('serialWatcherApp')
                 var d = $q.defer();
                 $http.get('api/calendar').then(function (response) {
                     d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
                 });
                 return d.promise;
             }
@@ -254,7 +260,7 @@ angular.module('serialWatcherApp')
              * get all subscription from the current user
              * @returns {d.promise} with list of series
              */
-            getSubscriptions: function(){
+            getSubscriptions: function () {
                 var d = $q.defer();
                 $http.get('api/profile/subscriptions').then(function (response) {
                     d.resolve(response.data);
@@ -335,35 +341,33 @@ angular.module('serialWatcherApp')
             }
         }
     })
-    .service('modalService', function($uibModal){
-        var modalData = {
-            title: "Info",
-            content: "default"
-        };
-        return{
-            
+    // Manage all modal. Allow you to display some modal.
+    .service('modalService', function ($uibModal) {
+        return {
+
             /**
-             * 
+             *
              * @param title {String} main title of the modal
              * @param bodyMessage {String} (Optional) text content
-             * @param params {Array} (Optional) is a hashMapArray [{
+             * @param params {Array} (Optional) is like a hashMapArray [{
              *  bodyList {Array}(optional)[{
-             *      params p : Generate <p> Example : bodylist.push({p:'Hello World'});
+             *      params p : Generate paragraph <p> Example : bodylist.push({p:'Hello World'});
              *  }]
              * }]
              * @returns {Window|*|{get, set}}
              */
-            openDialogModal: function(title, bodyMessage, params){
+            openDialogModal: function (title, bodyMessage, params) {
+                var modalData = {};
                 modalData.title = title;
                 modalData.content = bodyMessage;
                 modalData = angular.extend({}, modalData, params);
                 return $uibModal.open({
                     animation: true,
                     templateUrl: '../views/modalContent.html',
-                    controller: 'ModalInstanceCtrl',
+                    controller: 'ModalController',
                     size: 12,
                     resolve: {
-                        items: function () {
+                        params: function () {
                             return modalData;
                         }
                     }

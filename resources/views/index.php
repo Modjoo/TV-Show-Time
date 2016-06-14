@@ -50,7 +50,7 @@ echo Html::script(asset('scripts/controllers/profileController.js'));
 echo Html::script(asset('scripts/controllers/calendarController.js'));
 echo Html::script(asset('scripts/controllers/toWatchController.js'));
 echo Html::script(asset('scripts/controllers/signUpController.js'));
-echo Html::script(asset('scripts/controllers/modalInstanceController.js'));
+echo Html::script(asset('scripts/controllers/modalController.js'));
 echo Html::script(asset('scripts/filters/filters.js'));
 echo Html::script(asset('scripts/directives/directives.js'));
 echo Html::script(asset('scripts/services/services.js'));

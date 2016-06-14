@@ -35,10 +35,10 @@
             sendUser.birthday = $filter('date')(user.birthday, 'yyyy-MM-dd');
             profileService.setProfile(sendUser).then(function () {
                 localStorage.setItem("user", JSON.stringify(sendUser));
-                modalService.openDialogModal("Update", "User profile successfully updated");
+                modalService.openDialogModal("Update", "User profile successfully updated",null);
             }, function (error) {
                 console.error("error when update profile ");
-                modalService.openDialogModal("Error", "Error updating the user profile");
+                modalService.openDialogModal("Error", "Error updating the user profile",null);
             });
         };
 
