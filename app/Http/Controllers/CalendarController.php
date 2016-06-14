@@ -20,19 +20,24 @@ class CalendarController extends Controller
 {
     private $dbservice;
 
-
+    /**
+     * CalendarController constructor.
+     */
     public function __construct()
     {
         $this->dbservice = new DataBaseService();
     }
 
+    /**
+     * Get the unreleased episodes from the series followed by the user
+     * @return null|string
+     */
     public function getCalendarSubs()
     {
         $user = AuthenticateController::getAuthUser();
         if ($user == null) {
             return null;
         }
-
 
         $subscriptions = UsersSeries::where(['user_id' => $user->id])->get();
 
@@ -42,10 +47,11 @@ class CalendarController extends Controller
             }
         })->get();
 
-
+        // Add the season number information
         foreach ($episodes as $episode) {
             $episode->season_id = Season::where("id", "=", $episode->season_id)->pluck("number");
         }
+
 
         return JsonService::generateSubscription($episodes);
     }

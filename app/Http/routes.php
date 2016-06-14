@@ -215,7 +215,7 @@ Route::group(['prefix' => 'api'], function () {
         'uses' => 'ToWatchController@getToWatch'
     ]);
     
-    Route::post('signup', 'ProfileController@signUp');
+    Route::post('signup', 'AuthenticateController@signUp');
 
 
     // Profile Controller
@@ -235,12 +235,12 @@ Route::group(['prefix' => 'api'], function () {
         /**
          * Set personal data
          */
-        Route::post('personal', 'ProfileController@setPersonnalData');
+        Route::post('personal', 'ProfileController@setPersonalData');
 
         /**
-         * Set personal data
+         * Get personal data
          */
-        Route::get('personal', 'ProfileController@getPersonnalData');
+        Route::get('personal', 'ProfileController@getPersonalData');
 
     });
 

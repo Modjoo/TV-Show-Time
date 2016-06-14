@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Services\DataBaseService;
+use App\Http\Services\JsonService;
 
 class HomeController extends Controller
 {
@@ -12,20 +13,24 @@ class HomeController extends Controller
 
     /**
      * HomeController constructor.
-     * @param $dbs
      */
     public function __construct()
     {
         $this->dbservice = new DataBaseService();
     }
 
-
+    /**
+     * Get the featured series for the home page
+     * @return string
+     */
     public function getFeaturedSeries(){
-        $featuredSeries = $this->dbservice->getFeaturedSeries();
-        return json_encode(["featuredseries" => $featuredSeries]);       
+        return JsonService::generateFeaturedSeries($this->dbservice->getFeaturedSeries());
     }
 
-
+    /**
+     * Get the favourites series of the authenticated user
+     * @return null|string
+     */
     public function getFavouritesSeries(){
         // Get user
         $user = AuthenticateController::getAuthUser();
@@ -33,8 +38,7 @@ class HomeController extends Controller
             return null;
         }
 
-        $favouritesSeries = $this->dbservice->getFavouritesSeries($user->id);
-        return json_encode(["favouritesSeries" => $favouritesSeries]);
+        return JsonService::generateFavouritesSeries($this->dbservice->getFavouritesSeries($user->id));
     }
 
 

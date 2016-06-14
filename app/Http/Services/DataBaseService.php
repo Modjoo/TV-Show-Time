@@ -11,12 +11,12 @@ namespace App\Http\Services;
 
 use App\Http\Utils\JsonParser;
 use App\Http\Utils\Omdb;
+use App\Models\Episode;
+use App\Models\EpisodesUser;
 use App\Models\Genre;
 use App\Models\GenresSeries;
 use App\Models\Series;
 use App\Models\UsersSeries;
-use App\Models\EpisodesUser;
-use App\Models\Episode;
 
 class DataBaseService
 {
@@ -49,6 +49,18 @@ class DataBaseService
         return $serie;
     }
 
+    /**
+     *
+     * @param $serie one serie object with pk
+     * @param $genres array of genres (list of string)
+     */
+    private function linkGenre($serie, $genres)
+    {
+        foreach ($genres as $genre) {
+            $g = Genre::firstOrCreate(["name" => $genre]);
+            GenresSeries::firstOrCreate(["serie_id" => $serie->id, "genre_id" => $g->id]);
+        }
+    }
 
     public function findOrcreateSeasons($serie, $externalID)
     {
@@ -93,7 +105,6 @@ class DataBaseService
         return $episodes;
     }
 
-
     /**
      * @param $seasonJson
      * @param $fill query the api for fill the episode with complete data.
@@ -113,20 +124,6 @@ class DataBaseService
         return $listEpisode;
     }
 
-
-    /**
-     *
-     * @param $serie one serie object with pk
-     * @param $genres array of genres (list of string)
-     */
-    private function linkGenre($serie, $genres)
-    {
-        foreach ($genres as $genre) {
-            $g = Genre::firstOrCreate(["name" => $genre]);
-            GenresSeries::firstOrCreate(["serie_id" => $serie->id, "genre_id" => $g->id]);
-        }
-    }
-
     public function getSubscriptions($idUser)
     {
         return Series::whereIn('id', UsersSeries::where("user_id", "=", $idUser)->pluck('serie_id'))->get();
@@ -139,7 +136,7 @@ class DataBaseService
 
     public function getFeaturedSeries()
     {
-        return \App\Models\Series::featured();
+        return Series::featured();
     }
 
     public function getFavouritesSeries($idUser)
@@ -147,4 +144,5 @@ class DataBaseService
         return Series::whereIn('id', UsersSeries::where('user_id', '=', $idUser)->pluck("serie_id"))
             ->take(10)->get();
     }
+
 }

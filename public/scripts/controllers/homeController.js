@@ -17,7 +17,7 @@
 
         // Load all featured series
         homeService.getFeaturedSeries().then(function (response) {
-            $scope.featuredSeries = response.featuredseries;
+            $scope.featuredSeries = response.featuredSeries;
         });
 
         // load all favourite series if the user are authenticated.

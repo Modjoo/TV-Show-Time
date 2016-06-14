@@ -13,21 +13,21 @@ class Series extends Model
 
     public function genres()
     {
-        return $this->belongsToMany(\App\Models\Genre::class, 'genres_series', 'serie_id', 'genre_id');
+        return $this->belongsToMany(Genre::class, 'genres_series', 'serie_id', 'genre_id');
     }
 
     public function genresSeries()
     {
-        return $this->hasMany(\App\Models\GenresSeries::class, 'serie_id', 'id');
+        return $this->hasMany(GenresSeries::class, 'serie_id', 'id');
     }
 
     public function seasons()
     {
-        return $this->hasMany(\App\Models\Season::class, 'serie_id', 'id');
+        return $this->hasMany(Season::class, 'serie_id', 'id');
     }
 
-    public function scopeFeatured($query)
+    public function scopeFeatured()
     {
-        return DB::select(DB::raw('select * from series where id > ( (select COUNT(*) from series) - 10)'));
+        return Series::take(10)->get();
     }
 }

@@ -15,61 +15,56 @@ class ProfileController extends Controller
 {
     private $dbservice;
 
-
+    /**
+     * ProfileController constructor.
+     */
     public function __construct()
     {
         $this->dbservice = new DataBaseService();
     }
 
+    /**
+     * Get the series followed by the current user
+     * @return null|string
+     */
     public function getSubscriptions(){
         // Get user
         $user = AuthenticateController::getAuthUser();
         if ($user == null){
             return null;
         }
-        return json_encode(["series" => $this->dbservice->getSubscriptions($user->id)]);
+
+        return JsonService::generateSeries($this->dbservice->getSubscriptions($user->id));
     }
 
 
-    public function setPersonnalData(){
+    /**
+     * Update personal data of the current user
+     * @return null
+     */
+    public function setPersonalData(){
+        // Get data from form
         $pseudo = Input::get('pseudo');
         $avatar = Input::get('avatar_img');
         $birthday = Input::get('birthday');
         $gender = Input::get('gender');
 
+        // Get authenticated user
         $user = AuthenticateController::getAuthUser();
         if ($user == null){
             return null;
         }
 
+        // Update data in the database
         $user = User::find($user->id);
         $user->update(['pseudo' => $pseudo, 'avatar_img' => $avatar, 'birthday' => Utils::convertDate($birthday), 'gender' => $gender]);
     }
-    
-    
-    public function signUp(){
-        $pseudo = Input::get('pseudo');
-        $password = Input::get('password');
-        $birthday = Input::get('birthday');
-        $gender = Input::get('gender');
 
-
-        $user = User::where('pseudo', '=', $pseudo)->first();
-
-        if($user != null){
-            throw new Exception("please change your user name");
-        }else{
-
-            try{
-                $params = ['pseudo' => $pseudo, 'password' => Hash::make($password), 'birthday' => $birthday, 'gender' => $gender];
-                User::create($params);
-            }catch (Exception $exception){
-                throw new Exception("user data invalid");
-            }
-        }
-    }
-    
-    public function getPersonnalData(){
+    /**
+     * Get personal data to fill
+     * @return array
+     */
+    public function getPersonalData(){
         $user = AuthenticateController::getAuthUser();
         return JsonService::generateUser($user);
     }

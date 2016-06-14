@@ -19,10 +19,6 @@ use App\Models\User;
  */
 class AuthenticateController extends Controller
 {
-    public function index()
-    {
-        return "Hello world ";
-    }
 
     /**
      * Authenticate the user.
@@ -33,13 +29,13 @@ class AuthenticateController extends Controller
     {
         $credentials = $request->only('pseudo', 'password');
 		
-		// retrive the user
+		// Retrieve the user
 		$user = User::where('pseudo', '=', $credentials['pseudo'])->first();
 
         try {
-            // Check the user and the password
+            // Check the user and its password
             if ($user != null && Hash::check($credentials['password'], $user->password)) {
-                // Générate the token.
+                // Generate the token.
                 $token = JWTAuth::fromUser($user);
             } else {
                 return response()->json(['error' => 'invalid_credentials'], 401);
@@ -77,7 +73,7 @@ class AuthenticateController extends Controller
 
 
     /**
-     * Retrive the authenticate user.
+     * Return the authenticated user if it exists
      * @return null
      */
     public static function getAuthUser()
@@ -99,6 +95,34 @@ class AuthenticateController extends Controller
         }
 
         return $user;
+    }
+
+
+    /**
+     * Create new user
+     * @throws Exception
+     */
+    public function signUp(){
+        // Get data from the form
+        $pseudo = Input::get('pseudo');
+        $password = Input::get('password');
+        $birthday = Input::get('birthday');
+        $gender = Input::get('gender');
+
+        // Test if the chosen pseudo is not already taken
+        if(User::where('pseudo', '=', $pseudo)->first() != null){
+            throw new Exception("please change your user name");
+        }
+        else
+        {
+            // Create new user
+            try{
+                $params = ['pseudo' => $pseudo, 'password' => Hash::make($password), 'birthday' => $birthday, 'gender' => $gender];
+                User::create($params);
+            }catch (Exception $exception){
+                throw new Exception("user data invalid");
+            }
+        }
     }
 
 }
