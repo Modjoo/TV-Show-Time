@@ -545,6 +545,10 @@ select {
     max-width: 250px;
 }
 
+.serie-profile-image{
+    max-width: 20%;
+}
+
 /*- END CALENDAR */
 /*search landing page*/
 

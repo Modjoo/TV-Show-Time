@@ -1,4 +1,4 @@
-<div template></div>
+<div nav-bar></div>
 <div id="contentContainer" class="container-fluid">
     <div id="leftContainer" class="col-md-3">
 
@@ -30,10 +30,34 @@
 
                     Birthdate<br>
                     <input type="date" ng-model="user.birthday" name="birthdate"><br>
-
-
                 </form>
             </div>
+        </div>
+    </div>
+    <div ng-if="!seriesIsEmpty">
+        <div class="col-md-12"><h2>Subscribed</h2></div>
+        <div class="col-md-12"><label>Search: <input ng-model="searchSeries"></label></div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <th></th>
+                <th>Title</th>
+                <th>Show</th>
+                <th>Subscribed</th>
+                </thead>
+                <tr ng-repeat="serie in series | filter:searchSeries">
+                    <td><img ng-click="detail(serie)" class="serie-profile-image" src="{{serie.cover_img_url}}"></td>
+                    <td>{{serie.title}}</td>
+                    <td>
+                        <button ng-click="detail(serie)" class="btn btn-info-outline sbs" ng-click="">Details</button>
+                    </td>
+                    <td>
+                        <button confirmed-click="unsubscribe(serie)" ng-confirm-click="Do you want to unsubscribe ?"
+                                class="btn btn-info-outline sbs">Unsubscribe
+                        </button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

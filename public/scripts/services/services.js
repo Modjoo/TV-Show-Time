@@ -249,6 +249,19 @@ angular.module('serialWatcherApp')
                     d.reject(response);
                 });
                 return d.promise;
+            },
+            /**
+             * get all subscription from the current user
+             * @returns {d.promise} with list of series
+             */
+            getSubscriptions: function(){
+                var d = $q.defer();
+                $http.get('api/profile/subscriptions').then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
             }
         }
     })
@@ -286,8 +299,7 @@ angular.module('serialWatcherApp')
             return d.promise;
         }
     }
-})
-// This service will retrieve the authentication information.
+})  // This service will retrieve the authentication information.
     .service('authenticateService', function ($rootScope, $auth, $http) {
         return {
             /**
@@ -319,6 +331,35 @@ angular.module('serialWatcherApp')
                     $rootScope.currentUser = response.data.user;
                     // Authenticated user
                     return response.data.user;
+                });
+            }
+        }
+    })
+    .service('modalService', function($uibModal){
+        var modalData = {
+            title: "Info",
+            content: "default"
+        };
+        return{
+            /**
+             *
+             * @param title {String} main title of the modal
+             * @param bodyMessage {String} text content
+             * @returns {Window|*|{get, set}}
+             */
+            openDialogModal: function(title, bodyMessage){
+                modalData.title = title;
+                modalData.content = bodyMessage;
+                return $uibModal.open({
+                    animation: true,
+                    templateUrl: '../views/modalContent.html',
+                    controller: 'ModalInstanceCtrl',
+                    size: 12,
+                    resolve: {
+                        items: function () {
+                            return modalData;
+                        }
+                    }
                 });
             }
         }

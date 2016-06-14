@@ -1,11 +1,6 @@
 (function () {
     'use strict';
     angular.module('serialWatcherApp', ['ui.router', 'ui.bootstrap', 'satellizer', 'tien.clndr', 'ngLoadingSpinner'])
-        .directive('template', function () {
-            return {
-                templateUrl: '../views/nav/navBar.html'
-            };
-        })
         .config(function ($stateProvider, $locationProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
 
             // Satellizer configuration that specifies which API

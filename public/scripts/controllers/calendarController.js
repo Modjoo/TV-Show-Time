@@ -23,6 +23,7 @@
         
         calendarService.getSubscriptions().then(function (response) {
             $scope.subscription = response.subscription;
+            console.log($scope.subscription);
             $scope.events = [];
 
             $scope.subscription.forEach(function(episode){
