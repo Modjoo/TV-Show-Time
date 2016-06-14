@@ -27,10 +27,10 @@
                     controller: 'ToWatchController as towatch',
                     templateUrl: '../views/toWatchView.html'
                 })
-                .state('profil', {
-                    url: '/profil',
-                    templateUrl: '../views/profilView.html',
-                    controller: 'ProfilController as profil'
+                .state('profile', {
+                    url: '/profile',
+                    templateUrl: '../views/profileView.html',
+                    controller: 'ProfileController as profile'
                 })
                 .state('single', {
                     url: '/single',

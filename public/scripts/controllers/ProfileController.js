@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('serialWatcherApp').controller('ProfilController', ProfilController);
+    angular.module('serialWatcherApp').controller('ProfileController', ProfileController);
 
 
     /**
@@ -13,7 +13,7 @@
      * @param profileService
      * @constructor
      */
-    function ProfilController($location, $scope, $filter, profileService, subscribeService,modalService, cacheService) {
+    function ProfileController($location, $scope, $filter, profileService, subscribeService, modalService, cacheService) {
 
         $scope.series = [];
 
