@@ -29,23 +29,24 @@ class CalendarController extends Controller
     public function getCalendarSubs()
     {
         $user = AuthenticateController::getAuthUser();
-        if ($user == null){
+        if ($user == null) {
             return null;
         }
 
 
-        $seasons = Season::with(['episodes' => function($query) use ($user) {
-            $subscriptions = UsersSeries::where(['user_id' => $user->id])->get();
-            $query->whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function($query) use ($subscriptions){
-                foreach ($subscriptions as $subscription){
-                    $query->orWhere(["serie_id" => $subscription->serie_id]);
-                }
-            })->get();
-        }])->whereIn('id', UsersSeries::where("user_id", "=", $user->id)->pluck("serie_id"))->get();
+        $subscriptions = UsersSeries::where(['user_id' => $user->id])->get();
+
+        $episodes = Episode::whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function ($query) use ($subscriptions) {
+            foreach ($subscriptions as $subscription) {
+                $query->orWhere(["serie_id" => $subscription->serie_id]);
+            }
+        })->get();
 
 
-        return JsonService::generateSubscription($seasons);
+        foreach ($episodes as $episode) {
+            $episode->season_id = Season::where("id", "=", $episode->season_id)->pluck("number");
+        }
 
+        return JsonService::generateSubscription($episodes);
     }
-
 }

@@ -65,7 +65,20 @@ Route::post('/testPosts', function(){
 });
 
 Route::get('/hello', function () {
-    return "It works !";
+    $subscriptions = UsersSeries::where(['user_id' => $user->id])->get();
+
+    $episodes = Episode::whereRaw('release_date between NOW() AND DATE_ADD(NOW(), INTERVAL 1 YEAR)')->where(function($query) use ($subscriptions){
+        foreach ($subscriptions as $subscription){
+            $query->orWhere(["serie_id" => $subscription->serie_id]);
+        }
+    })->get();
+
+
+    foreach ($episodes as $episode){
+        $episode->season_id = Season::where("id", "=", $episode->season_id)->pluck("number");
+    }
+    dd($episodes);
+
 });
 
 Route::get('/securitycheck', ['middleware' => 'jwt.auth', function () {
