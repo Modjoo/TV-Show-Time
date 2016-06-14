@@ -2,7 +2,7 @@
 <div nav-bar></div>
 <div id="contentContainer" class="container-fluid">
     <div id="doubleWrapper">
-        <div id="clndrWrapper" class="col-md-7">
+        <div id="clndrWrapper" class="col-md-6">
             <tien-clndr class="clndr" tien-clndr-object="clndr" tien-clndr-events="events">
                 <div class="clndr-controls">
                     <div class="clndr-previous-button" ng-click="clndr.back()">
@@ -33,7 +33,9 @@
             </tien-clndr>
         </div>
     </div>
-    <div id="eventWrapper" style="border-left:1.5em #6dbec9 solid;  height:100%;" class="col-md-5">
+    <span class="col-md-1" style="border-left:1.5em #6dbec9 solid;  position:fixed; height:80%;"></span>
+
+    <div id="eventWrapper" class="col-md-5">
         <div class="row">
             <div class="col-md-12" id="subfeed">
 
@@ -44,11 +46,12 @@
                             {{episode.cover_img_url = 'img/no_img.png'}}>
                         </div>
 
-                            <img ng-click="detail(episode)" ng-src="{{episode.cover_img_url}}">
+                        <img ng-click="detail(episode)" ng-src="{{episode.cover_img_url}}">
 
                     </div>
                     <div class="col-md-7" id="txt_clndr">
                         <p>{{episode.title}}</p>
+
                         <p>Episode : {{episode.number}} Saison : {{episode.season_id}}</p>
                     </div>
                 </div>
