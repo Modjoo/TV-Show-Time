@@ -51,7 +51,7 @@ Route::get('/pouet', function(){
 });
 
 Route::get('/barchich', [
-    'uses' => 'HomeController@getFavouritesSeries'
+    'uses' => 'CalendarController@getCalendarSubs'
 ]);
 
 Route::get('/barchiFunc', function () {

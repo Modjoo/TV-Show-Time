@@ -24,8 +24,8 @@ class JsonService
         return json_encode(["episode" => $episodes]);
     }
 
-    public static function generateSubscription($episodes){
-        return json_encode(["subscription" => $episodes]);
+    public static function generateSubscription($seaspns){
+        return json_encode(["subscription" => $seaspns]);
     }
 
     public static function parseSeason($season, $episodeList){
