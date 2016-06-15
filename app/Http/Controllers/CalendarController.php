@@ -34,6 +34,7 @@ class CalendarController extends Controller
      */
     public function getCalendarSubs()
     {
+        // Get the authenticated user
         $user = AuthenticateController::getAuthUser();
         if ($user == null) {
             return null;

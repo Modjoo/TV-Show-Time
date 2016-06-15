@@ -24,17 +24,29 @@ class SearchService
         $this->omdb = new Omdb();
     }
 
+    /**
+     * Get season info with its episodes
+     * @param $externalSerieId
+     * @param $seasonNumber
+     * @return \App\Models\Season
+     */
+    public function getSeason($externalSerieId, $seasonNumber)
+    {
+        $json = $this->omdb->getInfoSeason($externalSerieId, $seasonNumber);
+        return JsonParser::parseSeason($json);
+    }
+
+    /**
+     * Get episode full info from the api
+     * @param $externalId
+     * @return \App\Models\Episode
+     */
     public function getEpisode($externalId)
     {
         $json = $this->omdb->searchEpisodeById($externalId);
         return JsonParser::parseEpisode($json);
     }
 
-    public function getSeason($externalSerieId, $seasonNumber)
-    {
-        $json = $this->omdb->getInfoSeason($externalSerieId, $seasonNumber);
-        return JsonParser::parseSeason($json);
-    }
 
     public function getSerie($externalId)
     {

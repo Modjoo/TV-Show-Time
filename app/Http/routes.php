@@ -150,8 +150,6 @@ Route::group(['prefix' => 'api'], function () {
     /**
      * Get all profile info
      */
-    Route::get('profile', 'ProfileController@getProfile');
-
     Route::group(['prefix' => 'profile', 'middleware' => 'jwt.auth'], function () {
 
         /**

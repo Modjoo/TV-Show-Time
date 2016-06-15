@@ -154,7 +154,7 @@ class SerieController extends Controller
             return "";
         }
 
-        $seasons = $this->dbservice->findOrcreateSeasons($serie, $serie->external_id);
+        $seasons = $this->dbservice->findOrCreateSeasons($serie, $serie->external_id);
 
         // Generate the seasons info with its episodes
         foreach ($seasons as $season){
