@@ -20,62 +20,62 @@ class GenresTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'name' => 'Animation',
+                'name' => 'Action',
             ),
             1 => 
             array (
                 'id' => 2,
-                'name' => 'Adventure',
+                'name' => 'Drama',
             ),
             2 => 
             array (
                 'id' => 3,
-                'name' => 'Comedy',
+                'name' => 'History',
             ),
             3 => 
             array (
                 'id' => 4,
-                'name' => 'Crime',
+                'name' => 'Animation',
             ),
             4 => 
             array (
                 'id' => 5,
-                'name' => 'Drama',
+                'name' => 'Adventure',
             ),
             5 => 
             array (
                 'id' => 6,
-                'name' => 'Thriller',
+                'name' => 'Comedy',
             ),
             6 => 
             array (
                 'id' => 7,
-                'name' => 'Fantasy',
+                'name' => 'Crime',
             ),
             7 => 
             array (
                 'id' => 8,
-                'name' => 'Documentary',
+                'name' => 'Thriller',
             ),
             8 => 
             array (
                 'id' => 9,
-                'name' => 'History',
+                'name' => 'Fantasy',
             ),
             9 => 
             array (
                 'id' => 10,
-                'name' => 'War',
+                'name' => 'Documentary',
             ),
             10 => 
             array (
                 'id' => 11,
-                'name' => 'Mystery',
+                'name' => 'War',
             ),
             11 => 
             array (
                 'id' => 12,
-                'name' => 'Action',
+                'name' => 'Mystery',
             ),
             12 => 
             array (
@@ -96,6 +96,41 @@ class GenresTableSeeder extends Seeder
             array (
                 'id' => 16,
                 'name' => 'Music',
+            ),
+            16 => 
+            array (
+                'id' => 17,
+                'name' => 'Biography',
+            ),
+            17 => 
+            array (
+                'id' => 18,
+                'name' => 'Family',
+            ),
+            18 => 
+            array (
+                'id' => 19,
+                'name' => 'Short',
+            ),
+            19 => 
+            array (
+                'id' => 20,
+                'name' => 'N/A',
+            ),
+            20 => 
+            array (
+                'id' => 21,
+                'name' => 'Romance',
+            ),
+            21 => 
+            array (
+                'id' => 22,
+                'name' => 'Horror',
+            ),
+            22 => 
+            array (
+                'id' => 23,
+                'name' => 'Reality-TV',
             ),
         ));
         

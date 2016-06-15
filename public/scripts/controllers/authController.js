@@ -12,7 +12,7 @@
      * @param $rootScope
      * @constructor
      */
-    function AuthController($location, $scope, authenticateService,$window, $uibModal) {
+    function AuthController($location, $scope, authenticateService,$window, modalService) {
         var vm = this;
         vm.loginError = false;
         vm.loginErrorText;
@@ -27,22 +27,9 @@
             };
             authenticateService.authenticate(credentials).then(function(data){
                 if(angular.isUndefined(data)){
-                    var modalData = {
-                        title: "Error",
-                        content: "Invalid pseudo or password"
-                    };
-                    var modalInstance = $uibModal.open({
-                        animation: $scope.animationsEnabled,
-                        templateUrl: '../views/modalContent.html',
-                        controller: 'ModalInstanceCtrl',
-                        size: 12,
-                        resolve: {
-                            items: function () {
-                                return modalData;
-                            }
-                        }
-                    });
-                    console.error(modalData.content);
+                    var message = "Invalid pseudo or password";
+                    modalService.openDialogModal("Error", "Invalid pseudo or password");
+                    console.error(message);
                 }else {
                     $window.history.back();
                 }

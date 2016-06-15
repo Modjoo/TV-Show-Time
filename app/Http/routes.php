@@ -21,7 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/hello', function () {
-    return "Security works !";
+    $db = new \App\Http\Services\DataBaseService();
+    return "Hello world";
 });
 Route::get('/securitycheck', ['middleware' => 'jwt.auth', function () {
     return "Security works !";
