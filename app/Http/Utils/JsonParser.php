@@ -19,12 +19,21 @@ use App\Http\Utils;
 class JsonParser implements IJsonParser
 {
 
-
+    /**
+     * Convert Episode to a json
+     * @param $json
+     * @return Episode
+     */
     public static function parseEpisode($json){
         $map = self::mapEpisode($json);
         return new Episode($map);
     }
 
+    /**
+     * Convert Serie to a json
+     * @param $json
+     * @return Episode
+     */
     public static function parseSerie($json){
         if(!self::isValid($json)){
             throwException(new InvalidJsonException("Invalid json exception"));
@@ -33,16 +42,21 @@ class JsonParser implements IJsonParser
         return new Series($array);
     }
 
+    /**
+     * Convert Season to a json
+     * @param $json
+     * @return Episode
+     */
     public static function parseSeason($json){
         $map = self::mapSeason($json);
         return new Season($map);
     }
 
-    // TODO - implement parseSeriesList function when we search from a string.
-    public static function parseSeriesList($json){
-
-    }
-
+    /**
+     * Check json validity
+     * @param \App\Contracts\Json $json
+     * @return bool
+     */
     public static function isValid($json)
     {
         if($json == null){
@@ -53,9 +67,9 @@ class JsonParser implements IJsonParser
 
 
     /**
-     * Extract Genre from json and convert them to array
+     * Extract Genre from json and convert it to an array
      * @param $json
-     * return array of genre name
+     * @return array
      */
     public static function parseGenres($json){
         $wordList = preg_split('/,/', $json->Genre, 0, PREG_SPLIT_NO_EMPTY);
@@ -85,7 +99,12 @@ class JsonParser implements IJsonParser
         ];
         return $map;
     }
-    
+
+    /**
+     * Map the json with the episode attributes
+     * @param $json
+     * @return array
+     */
     private static function mapEpisode($json){
         if(property_exists($json, 'Runtime')){
             $map = [
@@ -129,6 +148,11 @@ class JsonParser implements IJsonParser
         return $map;
     }
 
+    /**
+     * Map the json with the season attributes
+     * @param $json
+     * @return array
+     */
     private static function mapSeason($json){
         $map = [
             "title" => $json->Title,

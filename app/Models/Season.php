@@ -2,6 +2,12 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Link between episodes and series
+ * Useful for the Single serie  view to display every episodes of each season
+ * Class Season
+ * @package App\Models
+ */
 class Season extends Model {
 
     protected $table = 'seasons';

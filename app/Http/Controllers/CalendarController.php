@@ -34,6 +34,7 @@ class CalendarController extends Controller
      */
     public function getCalendarSubs()
     {
+        // Get the authenticated user
         $user = AuthenticateController::getAuthUser();
         if ($user == null) {
             return null;
@@ -49,14 +50,10 @@ class CalendarController extends Controller
 
         $episodes = Episode::whereBetween('release_date', [Carbon::now(), Carbon::now()->addYear()])->whereIn('serie_id', $seriesID)->get();
 
-
-        
-
         // Add the season number information
         foreach ($episodes as $episode) {
             $episode->season_id = Season::where("id", "=", $episode->season_id)->pluck("number");
         }
-
 
         return JsonService::generateSubscription($episodes);
     }

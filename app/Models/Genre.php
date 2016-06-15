@@ -2,6 +2,12 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+
+/**
+ * Each serie has a genre
+ * Class Genre
+ * @package App\Models
+ */
 class Genre extends Model {
 
     protected $table = 'genres';

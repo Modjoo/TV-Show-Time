@@ -41,86 +41,50 @@ Route::get('/securitycheck', ['middleware' => 'jwt.auth', function () {
 
 Route::group(['prefix' => 'api'], function () {
 
-    // Home Controller
-    /**
-     * Get all featured series
-     */
     Route::get('featured', 'HomeController@getFeaturedSeries');
 
-    /**
-     * Get favourites series from user
-     */
     Route::get('favourites', [
         'middleware' => 'jwt.auth',
         'uses' => 'HomeController@getFavouritesSeries'
     ]);
+
 
     // Authenticate Controller
 
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 
-    // Serie Controller
 
-    /**
-     * Search serie from with the name
-     */
+    // Serie Controller
 
     Route::get('search/{string}', 'SerieController@searchSerie');
 
-    /**
-     * Get a serie by ID from home page
-     */
     Route::get('serie/{id}', 'SerieController@getSerie');
 
-    /**
-     * Get a serie with all seasons and episodes
-     */
     Route::get('serie/filled/{id}', 'SerieController@getFilledSerie');
 
-    /**
-     * Get episodes seen by the user
-     */
     Route::get('episodes/seen/{idseason}',[
         'middleware' => 'jwt.auth',
         'uses' => 'SerieController@getSeenEpisodes'
     ]);
 
-    /**
-     * Get episode information
-     */
     Route::get('episode/{id}', 'SerieController@getEpisode');
 
-    /**
-     * Define if the user have seen the episode
-     * seen: true if the user have seen the episode, false if not then will be removed from the database.
-     * id: Episode id
-     */
     Route::post('episode/seen/{id}/{seen}',[
         'middleware' => 'jwt.auth',
         'uses' => 'SerieController@seenEpisode'
     ]);
 
-    /**
-     * Subscribe to a serie
-     */
     Route::post('/serie/subscribe/{idserie}', [
         'middleware' => 'jwt.auth',
         'uses' => 'SerieController@subscribe'
     ]);
 
-    /**
-     * Unsubscribe from a serie
-     */
     Route::post('/serie/unsubscribe/{idserie}', [
         'middleware' => 'jwt.auth',
         'uses' => 'SerieController@unsubscribe'
     ]);
-
-    /**
-     * Return true or false if the user has subdscribed to the serie
-     * isSubscribe
-     */
+    
     Route::get('/serie/subscribed/{idserie}', [
         'middleware' => 'jwt.auth',
         'uses' => 'SerieController@isSubscribed'
@@ -143,31 +107,15 @@ Route::group(['prefix' => 'api'], function () {
 
 
     // Profile Controller
-
-    /**
-     * Get all profile info
-     */
-    Route::get('profile', 'ProfileController@getProfile');
-
     Route::group(['prefix' => 'profile', 'middleware' => 'jwt.auth'], function () {
 
-        /**
-         * Get all subscriptions
-         */
         Route::get('subscriptions', 'ProfileController@getSubscriptions');
 
-        /**
-         * Set personal data
-         */
         Route::post('personal', 'ProfileController@setPersonalData');
 
-        /**
-         * Get personal data
-         */
         Route::get('personal', 'ProfileController@getPersonalData');
 
     });
-
 
 });
 

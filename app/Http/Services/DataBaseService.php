@@ -24,7 +24,6 @@ class DataBaseService
 
     /**
      * DataBaseService constructor.
-     * @param Omdb $externalAPI
      */
     public function __construct()
     {
@@ -32,6 +31,11 @@ class DataBaseService
     }
 
 
+    /**
+     * Get the serie from an external id and add it to the database if it is missing
+     * @param $externalSeriesID
+     * @return Series
+     */
     public function findOrCreateSeriesFromExternalId($externalSeriesID)
     {
         $serie = Series::where("external_id", "=", $externalSeriesID)->get();
@@ -50,7 +54,7 @@ class DataBaseService
     }
 
     /**
-     *
+     * Link the serie to its categories
      * @param $serie one serie object with pk
      * @param $genres array of genres (list of string)
      */
@@ -62,7 +66,13 @@ class DataBaseService
         }
     }
 
-    public function findOrcreateSeasons($serie, $externalID)
+    /**
+     * Get the seasons from the serie external id and add it to the database if it is missing
+     * @param $serie
+     * @param $externalID
+     * @return array
+     */
+    public function findOrCreateSeasons($serie, $externalID)
     {
         // Check if seasons exists
         $seasons = $serie->seasons()->get();
@@ -85,8 +95,11 @@ class DataBaseService
     }
 
     /**
-     * @param $season {Season}
-     * @param $externalID {String}
+     * Add to the database the episodes of a given season
+     * @param $serie
+     * @param $season
+     * @param null $rawEpisodes
+     * @return array
      */
     public function createFullEpisode($serie, $season, $rawEpisodes = null)
     {
@@ -106,8 +119,9 @@ class DataBaseService
     }
 
     /**
-     * @param $seasonJson
-     * @param $fill query the api for fill the episode with complete data.
+     * Extract episodes from a season in the external api
+     * @param $rawEpisodes
+     * @param $fill
      * @return array
      */
     private function extractEpisodeFromSeason($rawEpisodes, $fill)
@@ -124,21 +138,41 @@ class DataBaseService
         return $listEpisode;
     }
 
+    /**
+     * Get the series followed by the given user
+     * @param $idUser
+     * @return mixed
+     */
     public function getSubscriptions($idUser)
     {
         return Series::whereIn('id', UsersSeries::where("user_id", "=", $idUser)->pluck('serie_id'))->get();
     }
 
+    /**
+     * Get the episodes seen by the given user
+     * @param $idUser
+     * @param $idSeason
+     * @return mixed
+     */
     public function getSeenEpisodes($idUser, $idSeason){
         return Episode::whereIn('id', EpisodesUser::where('user_id', '=', $idUser)->pluck("episode_id"))
             ->where('season_id', '=', $idSeason)->get();
     }
 
+    /**
+     * Get the featured series from the database
+     * @return mixed
+     */
     public function getFeaturedSeries()
     {
         return Series::featured();
     }
 
+    /**
+     * Get the favourites series from a given user
+     * @param $idUser
+     * @return mixed
+     */
     public function getFavouritesSeries($idUser)
     {
         return Series::whereIn('id', UsersSeries::where('user_id', '=', $idUser)->pluck("serie_id"))

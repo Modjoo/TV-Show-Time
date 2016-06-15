@@ -2,6 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Contains personnal user informations
+ * Class User
+ * @package App\Models
+ */
 class User extends Model {
 
     protected $table = 'users';
