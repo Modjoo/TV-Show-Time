@@ -34,6 +34,20 @@ angular.module('serialWatcherApp')
                     d.reject(response);
                 });
                 return d.promise;
+            },
+            /**
+             * Get only one serie.
+             * @param serieId
+             * @returns {d.promise} with serie object
+             */
+            getSerie: function (serieId){
+                var d = $q.defer();
+                $http.get('api/serie/' + serieId).then(function (response) {
+                    d.resolve(response.data);
+                }, function (response) {
+                    d.reject(response);
+                });
+                return d.promise;
             }
         }
     }])

@@ -2,7 +2,7 @@
 <div id="contentContainer" class="container-fluid">
     <span us-spinner="{radius:30, width:8, length: 16}"></span>
     <div class="row">
-        <div class="col-md-12"><label>Search: <input ng-model="searchSeries"></label></div>
+        <div class="col-md-12"><label>Search by serie name: <input ng-model="searchSeries"></div>
         <div ng-repeat="serie in toWatch | filter:searchSeries " ng-if="!serie.isEmpty">
             <div class="col-md-12"><h1>{{serie.title}}</h1></div>
             <div class="col-md-12">

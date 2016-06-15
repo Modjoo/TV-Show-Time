@@ -45,7 +45,7 @@ class SerieController extends Controller
      * @return string
      */
     public function getSerie($idSerie){
-        return JsonService::generateSingleSerie(Series::where("id", "=", $idSerie)->get());
+        return JsonService::generateSingleSerie(Series::where("id", "=", $idSerie)->first());
     }
 
     /**
