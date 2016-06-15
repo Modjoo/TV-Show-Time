@@ -1,6 +1,12 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+/*
+ *
+ * Link between episodes and series
+ * Useful for the Single serie  view to display every episodes of each season
+ *
+ */
 
 class Season extends Model {
 

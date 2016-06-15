@@ -2,6 +2,15 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/*
+ *
+ * Contains 2 important elements, the "isfilled" that indicates if the episode has been fully developped
+ * During the research of a season using the API, we have plenty of informations about the episodes
+ * which allows us to avoid doing request for each episode during the  generation of the season
+ * the "serie_id" to facilitate the generation of the "ToWatch" and "Calendar" views.
+ *
+ * */
+
 class Episode extends Model {
 
     protected $table = 'episodes';

@@ -3,6 +3,12 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+/*
+ *
+ * Contains informations about a serie
+ *
+ */
+
 class Series extends Model
 {
 

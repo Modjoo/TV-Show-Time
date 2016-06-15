@@ -2,6 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+
+/*
+ *
+ * Link between the user and each episode he watched
+*/
 class EpisodesUser extends Model {
 
     protected $table = 'episodes_users';

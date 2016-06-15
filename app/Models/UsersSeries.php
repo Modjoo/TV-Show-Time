@@ -1,6 +1,13 @@
 <?php namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Model;
+
+/*
+ *
+ * Linking table that allows us to display every series that the user's following
+ *
+ */
 
 class UsersSeries extends Model {
 

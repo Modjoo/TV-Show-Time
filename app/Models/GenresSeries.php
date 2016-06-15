@@ -2,6 +2,12 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+
+/*
+ *
+ * Allows us to search by categories
+ */
+
 class GenresSeries extends Model {
 
     protected $table = 'genres_series';
