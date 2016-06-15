@@ -56,7 +56,7 @@
         };
 
         $scope.unsubscribe = function(serie){
-            //subscribeService.unsubscribeToSerie(serie.id);
+            subscribeService.unsubscribeToSerie(serie.id);
             $scope.series.splice($scope.series.indexOf(serie), 1);
             seriesIsEmptyTest();
             $scope.$digest();
