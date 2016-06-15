@@ -21,35 +21,50 @@ class Omdb implements ISearchSeries
 
     /**
      * Omdb constructor.
-     * @param null $client
      */
     public function __construct()
     {
         $this->request = new Client();
     }
 
-
+    /**
+     * Get series matching a given string
+     * @param $string
+     * @return mixed
+     */
     public function searchBySeriesName($string)
     {
         $params = array('s' => $string . '*', 'type' => 'series');
         return $this->requestAPI($this->generateQuery($params));
     }
 
-
+    /**
+     * Get serie from omdb
+     * @param $id
+     * @return mixed
+     */
     public function searchSerieById($id)
     {
         $params = array('i' => $id);
         return $this->requestAPI($this->generateQuery($params));
     }
 
-
+    /**
+     * Get episode full info from omdb
+     * @param $idEpisod
+     * @return mixed
+     */
     public function searchEpisodeById($idEpisod)
     {
         $params = array('i' => $idEpisod);
         return $this->requestAPI($this->generateQuery($params));
     }
 
-
+    /**
+     * Get the number of seasons in the given serie
+     * @param $idSerie
+     * @return int
+     */
     public function getSeasonAmount($idSerie)
     {
         $json = $this->getInfoSeason($idSerie, 1);
@@ -60,6 +75,12 @@ class Omdb implements ISearchSeries
         }
     }
 
+    /**
+     * Get season info with its episodes
+     * @param $idSerie
+     * @param $seasonNumber
+     * @return mixed
+     */
     public function getInfoSeason($idSerie, $seasonNumber)
     {
         $params = array('i' => $idSerie, 'Season' => $seasonNumber, 'plot' => 'full');
@@ -67,7 +88,7 @@ class Omdb implements ISearchSeries
     }
 
     /**
-     * Send request http to the omdb api
+     * Send the http request to the omdb api
      * @param $query
      * @return mixed
      */
@@ -82,7 +103,8 @@ class Omdb implements ISearchSeries
     }
 
     /**
-     * @param $params May be an array or object containing properties.
+     * Generate the http request
+     * @param $params
      * @return string Full url
      */
     private function generateQuery($params)

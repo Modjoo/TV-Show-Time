@@ -47,13 +47,22 @@ class SearchService
         return JsonParser::parseEpisode($json);
     }
 
-
+    /**
+     * Get serie from the external api
+     * @param $externalId
+     * @return \App\Models\Series
+     */
     public function getSerie($externalId)
     {
         $json = $this->omdb->searchSerieById($externalId);
         return JsonParser::parseSerie($json);
     }
 
+    /**
+     * Get series matching a given string
+     * @param $string
+     * @return array
+     */
     public function searchSeriesByName($string)
     {
         $dataBaseService = new DataBaseService();

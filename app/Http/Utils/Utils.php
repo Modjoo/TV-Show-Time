@@ -11,6 +11,11 @@ namespace App\Http\Utils;
 
 class Utils
 {
+    /**
+     * Extract a number of a string value
+     * @param $string
+     * @return int
+     */
     public static function extractNumber($string){
         $duration = 0;
         preg_match("/[0-9]+/", $string, $matches);
@@ -20,6 +25,11 @@ class Utils
         return $duration;
     }
 
+    /**
+     * Convert a date to a valuable format
+     * @param $string
+     * @return bool|string
+     */
     public static function convertDate($string){
         $timestamp = strtotime($string);
         return date("Y-m-d H:i:s", $timestamp);
