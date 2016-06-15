@@ -55,11 +55,8 @@ Route::group(['prefix' => 'api'], function () {
         'uses' => 'HomeController@getFavouritesSeries'
     ]);
 
-
-
     // Authenticate Controller
 
-    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 
@@ -107,7 +104,7 @@ Route::group(['prefix' => 'api'], function () {
     /**
      * Subscribe to a serie
      */
-    Route::post('/subscribe/{idserie}', [
+    Route::post('/serie/subscribe/{idserie}', [
         'middleware' => 'jwt.auth',
         'uses' => 'SerieController@subscribe'
     ]);
@@ -115,7 +112,7 @@ Route::group(['prefix' => 'api'], function () {
     /**
      * Unsubscribe from a serie
      */
-    Route::post('/unsubscribe/{idserie}', [
+    Route::post('/serie/unsubscribe/{idserie}', [
         'middleware' => 'jwt.auth',
         'uses' => 'SerieController@unsubscribe'
     ]);
@@ -124,7 +121,7 @@ Route::group(['prefix' => 'api'], function () {
      * Return true or false if the user has subdscribed to the serie
      * isSubscribe
      */
-    Route::get('/subscribed/{idserie}', [
+    Route::get('/serie/subscribed/{idserie}', [
         'middleware' => 'jwt.auth',
         'uses' => 'SerieController@isSubscribed'
     ]);

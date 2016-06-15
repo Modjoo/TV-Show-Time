@@ -154,7 +154,7 @@ angular.module('serialWatcherApp')
              */
             subscribeToSerie: function (idSerie) {
                 var d = $q.defer();
-                $http.post('api/subscribe/' + idSerie).then(function (response) {
+                $http.post('api/serie/subscribe/' + idSerie).then(function (response) {
                     d.resolve(response.data);
                 }, function (response) {
                     d.reject(response);
@@ -168,7 +168,7 @@ angular.module('serialWatcherApp')
              */
             unsubscribeToSerie: function (idSerie) {
                 var d = $q.defer();
-                $http.post('api/unsubscribe/' + idSerie).then(function (response) {
+                $http.post('api/serie/unsubscribe/' + idSerie).then(function (response) {
                     d.resolve(response.data);
                 }, function (response) {
                     d.reject(response);
@@ -182,7 +182,7 @@ angular.module('serialWatcherApp')
              */
             isSubscribed: function (idSerie) {
                 var d = $q.defer();
-                $http.get('api/subscribed/' + idSerie).then(function (response) {
+                $http.get('api/serie/subscribed/' + idSerie).then(function (response) {
                     d.resolve(response.data);
                 }, function (response) {
                     d.reject(response);

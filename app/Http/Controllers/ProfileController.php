@@ -7,9 +7,7 @@ use App\Models\User;
 use App\Http\Services\DataBaseService;
 use App\Http\Utils\Utils;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
-use Mockery\CountValidator\Exception;
 
 class ProfileController extends Controller
 {
