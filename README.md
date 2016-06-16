@@ -1,82 +1,79 @@
-## Laravel PHP Framework
+# SerialWatcher
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Documenation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Vous trouverez la documentation à la racine du projet sous le nom de **SerialWatcher.pdf**
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Prérequis
 
-## Official Documentation
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+-	PHP : v7.0.6
+-	Composer : Permet de gérer toutes les dépendances php.
+-	Une base de données mysql pour utiliser le projet. Exemple « serialwatcher ».
 
 ## Installation
-Please install composer : [Composer](https://laravel.com/docs/4.2).
 
-### Download all dependencies
-
-Before run the project with wamp you need to download all dependencies. Go to your root project directory and run this command :
+1. Cloner le projet.
+2. Déplacer-vous à la racine du projet
 ```sh
+# Cela vas installer toutes les dépendances
 composer install
 ```
-
-copy the file .env.example, rename it .env and configure it.
-
-### Generate api key 
-
-Generate api key for .env 
-
+3. Copier le fichier **.env.example** et nommer le **.env**
+4. Générer la clef api Laravel
 ```sh
 php artisan key:generate
 ```
-
-### Authentication token
-
-Generate new token
-
-```sh
-php artisan jwt:generate
+5. Ensuite éditer le fichier **.env** afin que les données 
+   de connexion à la base de donnée correspondre à votre configuration.
 ```
-
-### Download front end dependencies
-
-```sh
-npm install angular satellizer angular-ui-router bootstrap
+   DB_HOST : nom du host (localhost)
+   DB_DATABASE : nom de la base de données (serialwatcher)
+   DB_USERNAME : Nom d’utilisateur de la base de données.
+   DB_PASSWORD : Mot de passe de la base de données. (laisser vide si pas de mot de passe).
 ```
-
-### Migrate database from laravel
-
-1. create your database
-2. deploy 
-
+6. Importer la base de données
 ```sh
 php artisan migrate
 ```
-
-3. Seed it
-
+7. Importer les données de tests
 ```sh
-php artisan db:seed
+php artisan db:seed 
 ```
 
-### Launch server
+## Exécuter le projet
+
+Maintenant que vous avez télécharger toutes les dépendances, créer la base de 
+données et configurer la web application vous pouvez maintenant lancer le serveurs.
 
 ```sh
-php artisan serve --port 8082
+php artisan serve –port 8082
 ```
+Vous pouvez accéder à l’application via l’url : http://localhost:8082/
 
-## Contributing
+Pour accéder à l’api : http://localhost:8082/api/
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+## Routes
 
-## Security Vulnerabilities
+| Method | URI                          | Description                                                                                              | Attributes                                    | Returned value             | Middleware |
+|--------|------------------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------------|----------------------------|------------|
+| POST   | api/authenticate             | Get the Token of the current user                                                                        | {user} : with pseudo and,password             | {String} : JSON Web,Tokens | -          |
+| GET    | api/authenticate/user        | Get the user object without password {user}                                                              | -                                             | {User}                     | -          |
+| GET    | api/calendar                 | Get an array of episodes unreleased yet from the series that the current user follows.                   | -                                             | Array of Episodes          | jwt.auth   |
+| POST   | api/episode/seen/{id}/{seen} | Update database if the current user has seen the given episode.                                          | {id} : database   episode ID {seen} : boolean | -                          | jwt.auth   |
+| GET    | api/episode/{id}             | Get full data of an episode.                                                                             | {id} : database episode ID                    | Episode                    | -          |
+| GET    | api/episodes/seen/{idseason} | Get the episodes seen by the current user in the given season.                                           | {idseason} : database season ID               | Array of Episodes          | jwt.auth   |
+| GET    | api/favourites               | Get the 10 favourites series of the current user                                                         | -                                             | Array of Series            | jwt.auth   |
+| GET    | api/featured                 | Get the 10 featured series of the database                                                               | -                                             | Array of Series            | -          |
+| GET    | api/profile/personal         | Get personal data of the current user.                                                                   | -                                             | User                       | jwt.auth   |
+| POST   | api/profile/personal         | Update personal data of the current user by the form informations.                                       | -                                             | -                          | jwt.auth   |
+| GET    | api/profile/subscriptions    | Get all series followed by the current user.                                                             | -                                             | Array of Series            | jwt.auth   |
+| GET    | api/search/{string}          | Get a list of series from the external api matching the given string                                     | {string} :   string to match titles           | Array of Series            | -          |
+| GET    | api/serie/filled/{id}        | Get a serie from its database ID and fill database with its full information                             | {id} : database serie ID                      | Series                     | -          |
+| GET    | api/serie/{id}               | Get a serie from its database ID                                                                         | {id} : database serie ID                      | Series                     | -          |
+| POST   | api/signup                   | Create a new user                                                                                        | -                                             | -                          | -          |
+| POST   | api/serie/subscribe/{id}     | Add the given serie to the current user subscriptions                                                    | {id} : database serie ID                      | -                          | jwt.auth   |
+| GET    | api/serie/subscribed/{id}    | Check if the current user follows the given serie                                                        | {id} : database serie ID                      | Boolean                    | jwt.auth   |
+| GET    | api/towatch                  | Return all episodes that the current user hasn't seen and that belongs to the series followed by him     | -                                             | Array of Series            | jwt.auth   |
+| POST   | api/serie/unsubscribe/{id}   | Remove the given serie to the current user subscriptions                                                 | {id} : database serie ID                      | -                          | jwt.auth   |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
