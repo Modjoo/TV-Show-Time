@@ -52,6 +52,14 @@ Vous pouvez accéder à l’application via l’url : http://localhost:8082/
 
 Pour accéder à l’api : http://localhost:8082/api/
 
+## Utilisateur de test
+
+| Pseudo | Password   |
+|--------|------------|
+| Modjo  | secret     |
+| Manu   | blabla     |
+| Hacker | secret     |
+
 ## Routes
 
 | Method | URI                          | Description                                                                                              | Attributes                                    | Returned value             | Middleware |
