@@ -13,7 +13,7 @@
      * @param profileService
      * @constructor
      */
-    function ProfileController($location, $scope, $filter, profileService, subscribeService, modalService, cacheService) {
+    function ProfileController($location, $scope, $filter, profileService,$rootScope, subscribeService, modalService, cacheService) {
 
         $scope.series = [];
 
@@ -35,6 +35,9 @@
             sendUser.birthday = $filter('date')(user.birthday, 'yyyy-MM-dd');
             profileService.setProfile(sendUser).then(function () {
                 localStorage.setItem("user", JSON.stringify(sendUser));
+                $rootScope.$emit("UpdateUser", {
+                    data: sendUser
+                });
                 modalService.openDialogModal("Update", "User profile successfully updated",null);
             }, function (error) {
                 console.error("error when update profile ");

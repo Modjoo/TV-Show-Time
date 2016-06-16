@@ -4,9 +4,12 @@
 
         <div id="circular">
             <div ng-if="user.avatar_img == ''">
-                {{user.avatar_img= '../../circle.png'}}>
+                <img class="img-circle" src="../../circle.png">
             </div>
-            <img class="img-circle" src="{{user.avatar_img}}">
+            <div ng-if="!user.avatar_img == ''">
+                <img class="img-circle" src="{{user.avatar_img}}">
+            </div>
+
         </div>
 
 
