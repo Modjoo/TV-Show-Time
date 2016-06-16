@@ -2,6 +2,9 @@
 
     'use strict';
 
+    /**
+     * This controller allows you to add new users.
+     */
     angular.module('serialWatcherApp').controller('SignUpController', SignUpController);
 
 
@@ -21,6 +24,8 @@
 
         $scope.submitForm = function () {
             var user = angular.merge({}, $scope.user);
+
+            // Convert the date for the database.
             user.birthday = moment(new Date()).format('YYYY-MM-DD');
             signUpService.signUp(user).then(function (result) {
                 login(user).then(function(authUser){
