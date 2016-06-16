@@ -19,6 +19,9 @@ Vous trouverez la documentation à la racine du projet sous le nom de **SerialWa
 composer install
 ```
 3. Copier le fichier **.env.example** et nommer le **.env**
+```sh
+cp .env.example .env
+```
 4. Générer la clef api Laravel
 ```sh
 php artisan key:generate
@@ -46,7 +49,7 @@ Maintenant que vous avez téléchargé toutes les dépendances, créé la base d
 données et configuré la web application vous pouvez maintenant lancer le serveur.
 
 ```sh
-php artisan serve –port 8082
+php artisan serve --port 8082
 ```
 Vous pouvez accéder à l’application via l’url : http://localhost:8082/
 

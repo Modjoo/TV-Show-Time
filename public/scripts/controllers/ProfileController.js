@@ -35,6 +35,8 @@
             sendUser.birthday = $filter('date')(user.birthday, 'yyyy-MM-dd');
             profileService.setProfile(sendUser).then(function () {
                 localStorage.setItem("user", JSON.stringify(sendUser));
+				// Send message when the user has been updated.
+				// This is for the nav-bar
                 $rootScope.$emit("UpdateUser", {
                     data: sendUser
                 });
