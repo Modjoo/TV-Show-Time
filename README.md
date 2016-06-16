@@ -13,9 +13,9 @@ Vous trouverez la documentation à la racine du projet sous le nom de **SerialWa
 ## Installation
 
 1. Cloner le projet.
-2. Déplacer-vous à la racine du projet
+2. Déplacez-vous à la racine du projet
 ```sh
-# Cela vas installer toutes les dépendances
+# Cela va installer toutes les dépendances
 composer install
 ```
 3. Copier le fichier **.env.example** et nommer le **.env**
@@ -24,7 +24,7 @@ composer install
 php artisan key:generate
 ```
 5. Ensuite éditer le fichier **.env** afin que les données 
-   de connexion à la base de donnée correspondre à votre configuration.
+   de connexion à la base de données correspondent à votre configuration.
 ```
    DB_HOST : nom du host (localhost)
    DB_DATABASE : nom de la base de données (serialwatcher)
@@ -42,8 +42,8 @@ php artisan db:seed
 
 ## Exécuter le projet
 
-Maintenant que vous avez télécharger toutes les dépendances, créer la base de 
-données et configurer la web application vous pouvez maintenant lancer le serveurs.
+Maintenant que vous avez téléchargé toutes les dépendances, créé la base de 
+données et configuré la web application vous pouvez maintenant lancer le serveur.
 
 ```sh
 php artisan serve –port 8082
